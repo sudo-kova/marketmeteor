@@ -584,7 +584,7 @@ int main() {
                            << jsonResponse;
             response = responseStream.str();
 
-        } else if (request.find("POST /process-date HTTP") == 0) {
+        } else if (request.find("POST /api/process-date HTTP") == 0) {
             // Extract the JSON data from the request
             size_t jsonStart = request.find("\r\n\r\n");
             std::string jsonData = request.substr(jsonStart + 4); // +4 to skip the "\r\n\r\n"

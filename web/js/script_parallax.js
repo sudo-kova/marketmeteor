@@ -300,7 +300,7 @@ document.addEventListener('keydown', function(event) {
                     // search..
 
                 // Send the accumulatedString to the server
-                fetch('/process-date', {
+                fetch('/api/process-date', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
