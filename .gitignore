@@ -1,8 +1,8 @@
 
 data/chartdata/historic/*
-data/earnings/*
+# data/earnings/*
 data/PortSim/Sweep/*
-data/raw/daily/*
+# data/raw/daily/*
 data/temp/*
 Thumbs.db
 

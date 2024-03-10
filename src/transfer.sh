@@ -15,7 +15,7 @@ echo_green() {
 #     exit 1
 # fi
 
-echo_green "Phase 1: Beginning cp to marketmeteor-data"
+echo_green "Phase 1: cp to marketmeteor-data"
 
 # [1] Copying R08 chartdata2 folder
 echo_green "[1] Copying R08 chartdata2 folder"
@@ -31,5 +31,12 @@ echo_green "[3] Copying tickerlist_validated.txt"
 cp /media/share/Stockland/raw_stock_data/tickerlists/tickerlist_validated.txt /media/share/repositories/marketmeteor-data/tickerlist_validated.txt
 cp /media/share/Stockland/raw_stock_data/tickerlists/tickerlist_validated.txt /media/share/repositories/collab/marketmeteor/data/tickerlists/tickerlist_validated.txt
 
-echo_green "Phase 2: Beginning cp to web_server"
+echo_green "Phase 2: update portfolios"
 python transfer.py
+
+echo_green "Phase 3: copy earnings"
+cp -rf /media/share/Stockland/earnings/splice/* /media/share/repositories/collab/marketmeteor/data/earnings/splice/
+cp /media/share/Stockland/earnings/earnings_parsed_full.csv /media/share/repositories/collab/marketmeteor/data/earnings/earnings_parsed_full.csv
+
+echo_green "Phase 4: copy raw stock data"
+cp -rf /media/share/Stockland/raw_stock_data/daily_data/* /media/share/repositories/collab/marketmeteor/data/raw/daily/
