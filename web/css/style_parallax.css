@@ -1144,4 +1144,18 @@ li {
     display: block;
     justify-content: flex-start; /* This line can be removed as it won't apply to block elements */
   }
+
+  .ticker-tape {
+    margin-right: 12px; /* Adjust right margin to match left */
+    overflow-x: auto; /* Allow horizontal scrolling */
+    font-size: 14px; /* Optional: Adjust font size for smaller screens */
+  }
+
+  .footer{
+    display: block !important;
+  }
+
+  .title-bar{
+    height: 1vh;
+  }
 }
