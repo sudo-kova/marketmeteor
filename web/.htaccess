@@ -2,6 +2,11 @@ RewriteEngine On
 
 RewriteRule ^$ /html/index.html [L]
 
+# Redirect specific files to their new path
+RewriteRule ^background2\.png$ /img/background2.png [L,R=301]
+RewriteRule ^crispy_trex_nobg\.png$ /img/crispy_trex_nobg.png [L,R=301]
+RewriteRule ^site_preview\.jpg$ /img/site_preview.jpg [L,R=301]
+
 # Specific rewrite for /mobile
 RewriteRule ^mobile$ /index_mobile.html [L,R=302]
 

@@ -42,7 +42,7 @@ h2 {
   background-color: #161617;
   /* background-image: url(lab.png); */
   /* background: linear-gradient(360deg, #7a76ff7d 0%, #2a2b2e 50%, #414345 100%); */
-  background-image: linear-gradient(360deg, #7a76ff7d 0%,#2a2b2e 50%, #414345 100%), url('lab.png');
+  background-image: linear-gradient(360deg, #7a76ff7d 0%,#2a2b2e 50%, #414345 100%), url('../img/lab.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -99,7 +99,7 @@ h2 {
 }
 
 #keyart-0 {
-  background-image: url('background2.png');
+  background-image: url('../img/background2.png');
   transform: translate3d(0px, -46px, -1.3px) scale(2.3);
   background-size: auto 100%;
 	  position: absolute;
@@ -110,7 +110,7 @@ h2 {
 }
 
 #keyart-7 {
-  background-image: url('dino_full_isolate.png');
+  background-image: url('../img/dino_full_isolate.png');
   /* transform:translate3d(0,106px,.38px) scale(.65); */
 }
 #keyart-8 {
