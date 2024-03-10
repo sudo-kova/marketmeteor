@@ -1116,8 +1116,10 @@ li {
   outline: none; /* Removing default focus outline */
 }
 
-
-
+/* ROLLBACK */
+.right-icons{
+	padding-right: inherit;
+}
 
 /* MEDIA QUERY for smaller screens (e.g., phones) */
 @media (max-width: 1000px) {

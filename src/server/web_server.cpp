@@ -400,10 +400,15 @@ std::string getFilePath(const std::string &request) {
 
         return "/repos/marketmeteor/data/raw/minute/" + ticker + ".csv";
 
-    } else if (path.find("/rollback_chartdata/") == 0) {
+    } else if (path.find("/api/rollback_chartdata/") == 0) {
         // Extract ticker name and construct CSV file path
-        std::string ticker = path.substr(std::string("/rollback_chartdata/").length());
-        return "/media/share/Stockland/m20perf_L2016/charts/repo/m20/R08/rollback/" + ticker;
+        std::string ticker = path.substr(std::string("/api/rollback_chartdata/").length());
+
+        std::cout << "Retrieving rollback chart data for ticker: " ticker << std::endl;
+
+        return "../../data/chartdata/rollback/" + ticker + ".csv";
+        // return "/media/share/Stockland/m20perf_L2016/charts/repo/m20/R08/rollback/" + ticker;
+
     } else if (path == "/api/sectors-data") {
         return "/marketmeteor/web_server/dataset/sectors.csv";
         // not used
