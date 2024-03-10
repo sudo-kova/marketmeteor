@@ -398,7 +398,7 @@ std::string getFilePath(const std::string &request) {
         // download one minute data for specified stock
         std::system(("bash -c 'source /marketmeteor/web_server/myenv/bin/activate && python3 ../python/live_1m_data.py " + ticker + "'").c_str());
 
-        return "/incoming/marketmeteor-data/one_minute_data/" + ticker + ".csv";
+        return "/repos/marketmeteor/data/raw/minute/" + ticker + ".csv";
 
     } else if (path.find("/rollback_chartdata/") == 0) {
         // Extract ticker name and construct CSV file path
