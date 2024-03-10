@@ -1,5 +1,7 @@
 
 data/chartdata/historic/*
+data/chartdata/rollback/*
+!data/chartdata/rollback/.gitkeep
 # data/earnings/*
 data/PortSim/Sweep/*
 # data/raw/daily/*

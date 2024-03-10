@@ -590,8 +590,10 @@ int main() {
             std::string ticker = data["ticker"];
 
             // Path to the Python script
-            std::string scriptPath = "/media/share/Stockland/m20perf_L2016/charts/repo/m20/R08/setup/gen_rollback_v2.py";
-            std::string command = "python " + scriptPath + " " + ticker + " " + received_date;
+            // std::string scriptPath = "bash -c source /marketmeteor/web_server/myenv/bin/activate && python3 ../python/gen_rollback_v2.py";
+            std::string command = "bash -c 'source /marketmeteor/web_server/myenv/bin/activate && python3 ../python/gen_rollback_v2.py " + ticker + " " + received_date + "'";
+            // usage: bash -c 'source /marketmeteor/web_server/myenv/bin/activate && python3 ../python/gen_rollback_v2.py TSLA 2024-03-06'
+            // std::string command = "python " + scriptPath + " " + ticker + " " + received_date;
 
             // Execute the Python script
             int result = std::system(command.c_str());
@@ -600,7 +602,7 @@ int main() {
             nlohmann::json response_data;
             if (result == 0) { // Assuming 0 is success
                 // Construct successful response
-                std::string csvFilePath = "/media/share/Stockland/m20perf_L2016/charts/repo/m20/R08/rollback/" + ticker + ".csv";
+                std::string csvFilePath = "../../data/chartdata/rollback/" + ticker + ".csv";
                 response_data = {
                     {"status", "Rollback data generated"},
                     {"prepared for", received_date},
