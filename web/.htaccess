@@ -15,7 +15,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.html [QSA,L]
 
-<FilesMatch "\.(js)$">
+<FilesMatch "\.(js|css)$">
     FileETag None
     <IfModule mod_headers.c>
         Header unset ETag
