@@ -21,7 +21,12 @@ else:
     base_path = "/media/share/Stockland"
     NRSUBPROCESSES = 1
 
-    validated_tickers_file = "/incoming/marketmeteor-data/watchlist.txt"
+    # when the site runs live, it reads from here because the full list is too much to update live
+    # validated_tickers_file = "/incoming/marketmeteor-data/watchlist.txt"
+
+    # full list
+    validated_tickers_file = "../../data/tickerlists/tickerlist_validated.txt"
+
     csv_filename = "../../data/marketmeteors/stock_prices.csv"
 
 # run by cron from 15:30 - 16:00
