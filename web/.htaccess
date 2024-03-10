@@ -1,5 +1,7 @@
 RewriteEngine On
 
+RewriteRule ^$ /html/index.html [L,R=301]
+
 # Specific rewrite for /mobile
 RewriteRule ^mobile$ /index_mobile.html [L,R=302]
 

@@ -134,7 +134,8 @@ class StockDataProcessor:
         combined_m20_df.rename(columns={'M20Pct': 'Pwin'}, inplace=True)
         combined_m20_df.rename(columns={'M20InplayPct': 'PwinIP'}, inplace=True)
         # Drop unnecessary columns
-        combined_m20_df.drop(columns=['RollbackDate', 'M20PassCount', 'M20Total', 'M20InplayPassCount', 'M20InplayTotal'], inplace=True)
+        combined_m20_df.drop(columns=['RollbackDate'], inplace=True)
+        # combined_m20_df.drop(columns=['RollbackDate', 'M20PassCount', 'M20Total', 'M20InplayPassCount', 'M20InplayTotal'], inplace=True)
         return combined_m20_df
 
     def process(self, nr_subprocesses):
