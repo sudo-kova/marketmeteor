@@ -84,7 +84,7 @@ function setActiveTicker(index) {
     tickerItems[index].scrollIntoView({ inline: 'center', block: 'nearest' });
     // showImagesForTicker(tickerItems[index].textContent.trim());  // Update the images based on the active ticker
     plotGraph(tickerItems[index].textContent.trim())
-    // turnCalendarIconWhite() // if a ticker was set active from the ticker tape, it will not be in rollback mode
+    turnCalendarIconWhite() // if a ticker was set active from the ticker tape, it will not be in rollback mode
     currentTickerIndex = index;
 
     processSectorData()
