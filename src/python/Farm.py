@@ -29,7 +29,8 @@ class Farm:
             one_minute_base_path = '../../data/raw/minute'
         else:
             one_minute_base_path = self.tld_base_path
-        self.one_minute_directory = os.path.join(one_minute_base_path, 'marketmeteor-data', 'one_minute_data')
+        self.one_minute_directory = one_minute_base_path
+        # self.one_minute_directory = os.path.join(one_minute_base_path, 'marketmeteor-data', 'one_minute_data')
 
         # data files
         self.GSPC_data_csv = os.path.join(self.daily_data_directory, '^GSPC.csv')
