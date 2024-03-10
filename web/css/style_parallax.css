@@ -1,0 +1,1138 @@
+body {
+  margin: 0;
+  font-family:Helvetica,Sans-serif;
+  overflow-x:hidden;
+  background-color: #161617
+}
+h1 {
+  text-align:center;
+  color: white;
+  z-index: 998 !important;
+}
+
+h2 {
+  text-align:center;
+  color: #868D98;
+}
+
+.page {
+  width:100vw;
+  height:100vh;
+  perspective:1px;
+  perspective-origin: center center;
+  overflow-x:hidden;
+}
+
+.overflow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%; /* Span the full height of the .overflow div */
+  background: linear-gradient(to top, transparent, #161617 100%);
+  z-index: 1; /* Should be below the text content */
+}
+
+.overflow {
+  position: absolute;
+  width: 100vw;
+  /* height: 100vh; */
+  top: 100vh;
+  background-color: #161617;
+  /* background-image: url(lab.png); */
+  /* background: linear-gradient(360deg, #7a76ff7d 0%, #2a2b2e 50%, #414345 100%); */
+  background-image: linear-gradient(360deg, #7a76ff7d 0%,#2a2b2e 50%, #414345 100%), url('lab.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  z-index: 0; /* Ensure it's below the .overflow::before gradient */
+}
+
+#overflowtitle,
+#overflowsubtitle {
+  font-weight: 100;
+  position: relative;
+  z-index: 2; /* Above the ::before pseudo-element */
+  /* color: #FFFFFF; */
+  text-align: center; /* Center the text if that's what you're going for */
+  /* Add any additional styling you need here */
+}
+
+#overflowsubtitle {
+  font-size: 16px;
+  max-width: 80%; /* Ensures that the content does not exceed 80% width */
+  margin: 0 auto; /* Centers the h2 horizontally */
+  word-wrap: break-word; /* Ensures that the text wraps */
+}
+
+#parallax {
+	position: relative;
+  transform-style: preserve-3d;
+  height:120vh;
+}
+
+#parallax::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%; /* Increased height for a more noticeable gradient */
+  background: linear-gradient(to top, #161617 60%, transparent 100%);
+  z-index: 2; /* Ensure it's above the other parallax layers but below the text content */
+}
+
+
+
+.keyart_layer {
+  
+	background-position: bottom center;
+	/* background-size: cover; */
+	/* background-repeat: repeat-x; */
+  background-repeat: no-repeat;
+	position: absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+}
+
+#keyart-0 {
+  background-image: url('background2.png');
+  transform: translate3d(0px, -46px, -1.3px) scale(2.3);
+  background-size: auto 100%;
+	  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#keyart-7 {
+  background-image: url('dino_full_isolate.png');
+  /* transform:translate3d(0,106px,.38px) scale(.65); */
+}
+#keyart-8 {
+  /* background-image: url('parallax8.png'); */
+  transform:translate3d(0, 111px,.45px) scale(.6);
+  /* if you want to dim the feet */
+  /* background: linear-gradient(transparent, rgb(228 183 56 / 44%) 70%) */
+}
+
+.line-and-text {
+  /* position: relative; */
+  left: 25%;
+  /* width: 50%; */
+  /* height: 100vh; */
+  transform: rotateZ(37deg) translateZ(-1px);
+  transform-origin: top left;
+}
+
+.line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, transparent, #fff, transparent, transparent);
+  background-repeat: no-repeat;
+  animation: shine 2s infinite;
+}
+
+.text, .text-amzn, .text-goog, .text-nvda, .text-aapl, .text-msft {
+  position: absolute;
+  color: white;
+  font-size: 36px;
+  opacity: 0; /* Initially hidden */
+  visibility: hidden; /* Initially not visible */
+  animation: moveText 4s linear infinite, fadeInOut 4s linear infinite !important;
+}
+
+.text {
+  position: absolute;
+  color: white;
+  font-size: 36px; /* Adjust as needed */
+  animation: moveText 4s linear infinite;
+  animation-delay: 0s, 0s; /* No delay for $TSLA */
+
+}
+
+.line-and-text-amzn {
+  /* position: relative; */
+  left: 25%;
+  transform: rotateZ(37deg) translateZ(-1px);
+  transform-origin: top left;
+}
+
+.line-amzn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, transparent, #fff, transparent, transparent);
+  background-repeat: no-repeat;
+  animation: shine 2s infinite;
+}
+
+.text-amzn {
+  position: absolute;
+  color: white;
+  animation-delay: 0.5s, 0.5s !important;
+}
+
+.line-and-text-nvda {
+  /* position: relative; */
+  left: 15%;
+  transform: rotateZ(43deg) translateZ(-1px);
+  top: 20vh;
+}
+
+.line-nvda {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, transparent, #fff, transparent, transparent);
+  background-repeat: no-repeat;
+  animation: shine 2s infinite;
+}
+
+.text-nvda {
+  position: absolute;
+  color: white;
+  animation-delay: 1s, 1s !important;
+
+}
+
+.line-and-text-aapl {
+  /* position: relative; */
+  left: 5%;
+  transform: rotateZ(43deg) translateZ(-1px);
+  top: 15vh;
+}
+
+.line-aapl {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, transparent, #fff, transparent, transparent);
+  background-repeat: no-repeat;
+  animation: shine 2s infinite;
+}
+
+.text-aapl {
+  position: absolute;
+  color: white;
+  animation-delay: 1.5s, 1.5s !important;
+
+}
+
+.line-and-text-msft {
+  /* position: relative; */
+  left: 5%;
+  transform: rotateZ(43deg) translateZ(-1px);
+  top: 15vh;
+}
+
+.line-msft {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, transparent, #fff, transparent, transparent);
+  background-repeat: no-repeat;
+  animation: shine 2s infinite;
+}
+
+.text-msft {
+  position: absolute;
+  color: white;
+  animation-delay: 2.0s, 2.0s !important;
+}
+
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  1%, 99% {
+    visibility: visible; /* Make the text visible as soon as the fade in starts */
+  }
+  25%, 75% {
+    opacity: 1;
+  }
+}
+
+@keyframes shine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes moveText {
+  0% {
+    top: 0;
+    left: 0;
+  }
+  100% {
+    top: 50%;
+    left: 100%;
+  }
+}
+
+
+
+/* [MARKET METEOR UI] */
+.meteor-ui {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 80%; /* Adjust width as needed */
+  margin: 2rem auto; /* Centers the meteor-ui and provides space from the h2 */
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  padding: 1rem;
+  border-radius: 16px; /* Optional rounded corners */
+  z-index: 3; /* Above the ::before pseudo-element */
+  color: #FFFFFF; /* Text color */
+  height: 80vh;
+}
+
+/* TTILE BAR */
+
+.title-bar {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  height: 1vh;
+
+  display: flex;
+  justify-content: space-between; /* Aligns children to the extreme ends */
+  align-items: center; /* Aligns children vertically in the middle */
+  white-space: nowrap;
+  font-size: 20px;
+  height: 1.25%;
+}
+#search-box {
+  font-size: 16px;
+  color: #868D98;
+  background: transparent;
+  border: none;
+  outline: none;
+  text-align: center;
+}
+
+#search-overlay {
+  display: none;
+  /* display: block; */
+  position: absolute;
+  right: 50px;
+}
+
+.ticker-tape {
+  color: #868D98;
+
+  /* width: 30%; */
+  overflow: hidden; /* Clip text that spills out */
+  white-space: nowrap; /* Prevents text from wrapping */
+  border-radius: 10px; /* Rounded corners */
+  background-color: #34343766; /* Solid background color, adjust as needed */
+  text-overflow: ellipsis; /* Add an ellipsis to indicate clipped text */
+
+  margin-left: auto; /* Centering the div horizontally */
+  /* margin-right: auto; */
+  margin-right: 300px;
+  display: flex;
+  margin-left: 12px;
+  font-size: 16px;
+}
+
+.ticker-item {
+  margin: 0 10px; /* Add space around each ticker item */
+  /* Additional styling for each ticker item */
+}
+
+.ticker-item {
+  /* padding: 15px; */
+  /* text-align: center; */
+  /* color: grey; */
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.ticker-item.active {
+  color: #7A76FF;
+}
+
+
+/* [PLOTLYJS] */
+
+.js-plotly-plot .plotly .modebar-group {
+
+  padding-left: 0 !important; /* Override plotlyjs default padding-left */
+
+}
+
+
+/* [ROUNDED DIV STYLING] */
+
+/* by default, rows take 50% of the height. */
+/* in full screen div mode, this must change to 100% */
+/* the other 4 divs must change to display: none */
+
+.hidediv {
+  display: none !important;
+}
+
+.showdiv {
+  display: flex !important;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between; /* Distributes boxes evenly */
+  margin-bottom: 1rem; /* Space between rows */
+  /* height: 50%; */
+  height: 47.875%;
+}
+
+.roundedDiv {
+  flex: 1; /* Each box will take up equal space */
+  margin: 0 0.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background for boxes */
+  border-radius: 12px; /* Optional rounded corners for boxes */
+  /* Additional styling for the boxes as needed */
+  /* height:40%; */
+  padding: 6px;
+  outline: 1px solid #343437;
+  background: #16161782;
+  display: flex;
+  flex-direction: column;
+
+  /* shouldnt need this since these are flex columns */
+  /* width: 30%; */
+  
+}
+
+.addmarginauto{
+  margin: auto !important;
+}
+
+#divTitle, #div5Title, #div1Title, #div2Title, #div3Title, #div4Title{
+  text-align: left;
+  color: white;
+  padding-left: 8px;
+  font-weight: 100;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+#divSubTitle{
+  font-size: 13px;
+  text-align: left;
+  color: #868D98 !important;
+  padding-left: 8px;
+  margin-bottom: 8px;
+}
+
+#graphDiv, #graphDiv2, #graphDiv3, #graphDiv4, #graphDiv6{
+  /* height: calc((80vh - 1vh)); */
+  display: flex !important;
+  border-radius: 8px;
+  background: #28282ac7;
+  margin: 0 auto;
+  flex-grow: 1;
+
+  /* to avoid spillover. make height 10%, flex will grow it. */
+  height: 10%;
+}
+
+#graphDiv5, #holdingsDiv6 {
+  display: flex; /*used to be !important*/
+  border-radius: 8px;
+  background: #28282ac7;
+  margin: 0 auto;
+  flex-grow: 1;
+  height: 50%;
+}
+
+/* to avoid spillover. make last div in each row 10% width, flex will grow it. */
+
+#rd_closeseries, #rd_63d, #rd_63dearnings, #rd_maxfwd {
+  width: 10%;
+}
+
+
+/* #tablemenu{
+  display: none !important;
+} */
+
+/* [WATCHLIST] */
+
+/* Label Styling */
+#m20watchlistdiv label {
+  color: #f1f1f1; /* Light text for visibility */
+  margin-right: 5px;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: direction;
+  /* align-items: flex-start; */
+}
+
+.top-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* This will put the titles and the tablemenu on opposite ends */
+  align-items: flex-start; /* Aligns items to the start of the container */
+}
+
+.titles {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center; /* Center the h1 and h2 vertically */
+}
+
+div#tablemenu {
+  font-size: 11px;
+}
+
+/* Input Field Styling */
+#tablemenu input[type="number"],
+#tablemenu select {
+  background-color: #333; /* Darker background for the input */
+  color: #fff; /* Light text color */
+  border: 1px solid #555; /* Subtle border */
+  padding: 5px;
+  border-radius: 3px; /* Slightly rounded borders for a modern look */
+  width: 5em;
+  font-size: 11px;
+  -moz-appearance: none; /* Remove default styling specific to Firefox */
+  -webkit-appearance: none; /* Remove default styling specific to WebKit browsers */
+  appearance: none; /* General property to remove default browser styling */
+}
+
+#newPortfolioName{
+  background-color: #333; /* Darker background for the input */
+  color: #fff; /* Light text color */
+  border: 1px solid #555; /* Subtle border */
+  padding: 5px;
+  border-radius: 3px; /* Slightly rounded borders for a modern look */
+  width: 10em;
+  font-size: 11px;
+  -moz-appearance: none; /* Remove default styling specific to Firefox */
+  -webkit-appearance: none; /* Remove default styling specific to WebKit browsers */
+  appearance: none; /* General property to remove default browser styling */
+}
+
+#tablemenu input[type="number"]:focus,
+#tablemenu select:focus {
+  outline: none;
+  border-color: #777; /* Slightly brighter border for focus */
+}
+
+/* Button Styling */
+#tablemenu button {
+  background-color: #444; /* Dark background for the button */
+  color: #fff; /* Light text */
+  border: none;
+  padding: 8px 15px;
+  margin-left: 10px;
+  border-radius: 4px; /* Rounded borders for the button */
+  cursor: pointer; /* Hand cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.titles button {
+  background-color: #444; /* Dark background for the button */
+  color: #fff; /* Light text */
+  border: none;
+  padding: 8px 15px;
+  margin-left: 10px;
+  border-radius: 4px; /* Rounded borders for the button */
+  cursor: pointer; /* Hand cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+  white-space: nowrap;
+}
+
+.tab_button{
+	font-size: 13px !important;
+    text-align: center !important;
+    color: #868D98 !important;
+    padding: 10px 15px !important;
+    margin-bottom: 8px;
+    background-color: #000000 !important;
+    border-bottom: 3px solid #7A76FF !important;
+    cursor: pointer !important;
+    outline: none !important;
+    transition: background-color 0.3s, border-color 0.3s !important;
+}
+
+.tab_button:hover {
+    border-bottom: 3px solid #d6d5ef !important;
+
+}
+
+#m20watchlistdiv button:hover {
+  background-color: #555; /* Slightly lighter on hover for interactivity */
+}
+
+#m20watchlistdiv label[for="minOverallRecordPct"] {
+  padding: 10px;
+  display: inline-block; /* This makes padding effective */
+  color: #f1f1f1;
+  margin-right: 5px;
+}
+
+/* Info Tooltip */
+.info-icon {
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 5px;
+  position: relative;
+  color: grey;
+}
+
+.info-icon:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 100%;
+  top: 0;
+  white-space: normal; /* Allow the text to wrap */
+  width: 20vw; /* Set a fixed width for the tooltip */
+  z-index: 1000;
+  background-color: #333;
+  color: #fff;
+  text-align: left;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-left: 10px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+  font-size: 0.9em;
+  line-height: 1.4; /* Adjust line height for better readability */
+}
+
+.dark-table {
+  /* border: 1em solid #121212; */
+  width: 100%;
+  border-collapse: collapse;
+  /* color: #ddd; */
+  /* background-color: #333; */
+  text-align: left;
+  max-height: 400px; /* Set the maximum height for your table container */
+  overflow-y: auto;  /* Enables vertical scrolling */    
+  /* margin-top: 1vh; */
+  font-size: 12px;
+  width: max-content;
+}
+
+/* .dark-table thead {
+  background-color: #222;
+} */
+
+.dark-table th,
+.dark-table td {
+  padding: 10px;
+  border-bottom: 1px solid #555;
+}
+
+.dark-table tbody tr:hover {
+  background-color: #444;
+}
+
+.purple-glow {
+  background-color: #1f1b36 !important;/* A muted purple color for dark themes */
+  color: #ffffff !important; /* Light text for contrast */
+}
+
+.grey-hidden-glow {
+  color: #ffffff38 !important;
+}
+
+.green-success-glow {
+  color: #76ffbf2e !important;
+}
+
+.scrollable-table-container {
+  max-height: 70vh; /* Adjust the height as needed */
+  overflow-y: auto;  /* Enables vertical scrolling */
+  /* overflow-x: hidden; */ /* Prevents horizontal scrolling */
+  margin-top: 1vh;
+}
+
+.settings-icon {
+  fill: #7a76ff;
+}
+
+/* [DATA FOOTER] */
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: #0e0e0e; */
+  width: 80vw;
+  margin: 0 auto;
+  color: white;
+  /* padding: 10px 0; */
+  font-size: 13px;
+  /* flex-wrap: wrap; */
+  /* margin-top: 4vh; */
+  /* height: 20vh; */
+  /* background-color: #0e0e0e96; */
+  border-radius: 12px;
+  height: 3%;
+}
+
+.footer p {
+  flex: 1 1 30%; /* Adjust basis to around 30% */
+  margin: 0 2px;
+  color: #ffffff;
+  height: 30px;
+}
+
+/* Align the first three <p> tags to the left */
+.footer p:nth-child(-n+3) {
+  text-align: center;
+}
+
+/* Align the last three <p> tags to the right */
+.footer p:nth-child(n+4) {
+  text-align: center;
+}
+
+/* [GUIDED TUTORIAL] */
+
+.tutorial_highlight{
+  outline: 2px solid #7A76FF;
+}
+
+.tutorial_div {
+  position: absolute;
+
+  z-index: 1000;
+  font-size: 24px;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 12px;
+  margin: auto;
+  width: 30vw;
+
+  /* hide by default */
+  display: none;
+
+}
+
+.tut_purplebg{
+  backdrop-filter: blur(10px);
+  background: #7a76ff47;
+}
+
+.tutorial_div_ticker_tape{
+  position: absolute;
+  z-index: 1000;
+  font-size: 24px;
+  /* top: 0; */
+  /* left: 0; */
+  left: 10%;
+  /* right: 0; */
+  /* padding: 12px; */
+  margin: auto;
+  width: 30vw;
+  /* display: none; */
+  color: #FFFFFF;
+
+  display: none;
+}
+
+.tutorial_div_title_bar_dbl{
+  position: absolute;
+  z-index: 1000;
+  font-size: 24px;
+  top: -2%;
+  /* left: 0; */
+  left: -10%;
+  /* right: 0; */
+  /* padding: 12px; */
+  margin: auto;
+  width: 30vw;
+  /* display: none; */
+  color: #FFFFFF;
+
+  display: none;
+}
+
+.tutorial_img {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  /* backdrop-filter: blur(10px); */
+  /* background: #7a76ff47; */
+  border-radius: 8px;
+}
+
+.tutorial_img_summary {
+  /* display: flex !important; */
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  background: #7a76ff47;
+  border-radius: 8px;
+  padding: 6px;
+}
+
+.crispydino{
+  width: 125px; 
+  height: auto;
+  padding: 12px;
+}
+
+.close_btn, .close_btn_tickertape, .close_btn_summary_info, .close_btn_title_bar_dbl, .close_btn_close_v_date, .close_btn_63d_v_date, .close_btn_63d_v_earnings, .close_btn_63d_v_fwd, .close_btn_watchlist_ovr, .close_btn_watchlist_cols, .close_btn_holdings{
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 24px;
+  z-index: 999;
+}
+
+.close_btn:hover, .close_btn_tickertape:hover, .close_btn_summary_info:hover, .close_btn_title_bar_dbl:hover, .close_btn_close_v_date:hover, .close_btn_63d_v_date:hover, .close_btn_63d_v_earnings:hover, .close_btn_63d_v_fwd:hover, .close_btn_watchlist_ovr:hover, .close_btn_watchlist_cols:hover, .close_btn_holdings:hover {
+  background-color: #7a76ff; /* Light grey background on hover */
+  border-radius: 25px;
+}
+
+.showwalkthrough{
+  display: block !important;
+}
+
+@keyframes magicalAppearance {
+  0% {
+    /* opacity: 0; */
+    transform: scale(0.5);
+  }
+  100% {
+    /* opacity: 1; */
+    transform: scale(1);
+  }
+}
+
+.magical-div {
+  animation: magicalAppearance 1s ease-in-out forwards;
+  /* Other styles for your div */
+}
+
+.circle {
+    position: absolute;
+    /* right: -50px; */ /* Adjust as needed to position the circle */
+    /* top: 50%; */ /* Center vertically in the parent div */
+    /* transform: translateY(-50%); */ /* Adjust vertical centering */
+    left: 50vw;
+    width: 24px; /* Circle size */
+    height: 24px; /* Circle size */
+    background-color: #7a76ff47;
+    border-radius: 50%; /* Make it round */
+    backdrop-filter: blur(10px);
+    border: 2px solid transparent;
+    animation: pulse 1.5s infinite;
+    z-index: 100;
+}
+
+@keyframes pulse {
+  0% {
+      box-shadow: 0 0 5px #7a76ff, 0 0 15px #7a76ff; /* Adjust glow size and color */
+  }
+  50% {
+      box-shadow: 0 0 15px #7a76ff, 0 0 30px #7a76ff; /* Adjust glow size and color */
+  }
+  100% {
+      box-shadow: 0 0 5px #7a76ff, 0 0 15px #7a76ff; /* Adjust glow size and color */
+  }
+}
+
+
+/* ---- [TUTORIAL] ---- */
+
+
+.tutorial_div_summary_info {
+  position: absolute;
+  z-index: 1000;
+  font-size: 24px;
+  /* top: 0; */
+  left: -5%;
+  /* top: -1%; */
+  /* left: 10%; */
+  /* right: 0; */
+  /* padding: 12px; */
+  margin: auto;
+  width: 30vw;
+  color: #FFFFFF;
+  display: none;
+}
+
+.tutorial_div_close_v_date {
+  position: absolute;
+  z-index: 1000;
+  font-size: 24px;
+  /* top: 0; */
+  /* left: -5%; */
+  top: 10%;
+  /* left: 10%; */
+  right: 5%;
+  /* padding: 12px; */
+  margin: auto;
+  width: 30vw;
+  color: #FFFFFF;
+  display: none;
+}
+
+.tutorial_div_63d_v_date {
+  position: absolute;
+  z-index: 1000;
+  font-size: 24px;
+  /* top: 0; */
+  /* left: -5%; */
+  top: 10%;
+  /* left: 10%; */
+  right: 5%;
+  /* padding: 12px; */
+  margin: auto;
+  width: 30vw;
+  color: #FFFFFF;
+  display: none;
+}
+
+.tutorial_div_63d_v_earnings {
+  position: absolute;
+  z-index: 1000;
+  font-size: 24px;
+  /* top: 0; */
+  /* left: -5%; */
+  top: 10%;
+  /* left: 10%; */
+  right: 5%;
+  /* padding: 12px; */
+  margin: auto;
+  width: 30vw;
+  color: #FFFFFF;
+  display: none;
+}
+
+.tutorial_div_63d_v_fwd {
+  position: absolute;
+  z-index: 1000;
+  font-size: 24px;
+  /* top: 0; */
+  /* left: -5%; */
+  top: 10%;
+  /* left: 10%; */
+  right: 5%;
+  /* padding: 12px; */
+  margin: auto;
+  width: 30vw;
+  color: #FFFFFF;
+  display: none;
+}
+
+.tutorial_div_watchlist_ovr {
+  position: absolute;
+  z-index: 1000;
+  font-size: 24px;
+  /* top: 0; */
+  /* left: -5%; */
+  top: 15%;
+  /* left: 10%; */
+  right: -5%;
+  /* padding: 12px; */
+  margin: auto;
+  width: 30vw;
+  color: #FFFFFF;
+  display: none;
+}
+
+.tutorial_div_watchlist_cols {
+  position: absolute;
+  z-index: 1000;
+  font-size: 24px;
+  /* top: 0; */
+  left: -5%;
+  top: 35%;
+  /* left: 10%; */
+  /* right: -5%; */
+  /* padding: 12px; */
+  margin: auto;
+  width: 30vw;
+  color: #FFFFFF;
+  display: none;
+}
+
+.tutorial_div_holdings {
+  position: absolute;
+  z-index: 1000;
+  font-size: 24px;
+  /* top: 0; */
+  /* left: -5%; */
+  top: 15%;
+  /* left: 10%; */
+  right: -5%;
+  /* padding: 12px; */
+  margin: auto;
+  width: 30vw;
+  color: #FFFFFF;
+  display: none;
+}
+
+.circle_summary_info {
+  position: absolute;
+  /* right: -50px; */
+  /* top: 50%; */
+  transform: translateY(-50%);
+  /* left: 50vw; */
+  left: -0.5%;
+  width: 24px;
+  height: 24px;
+  background-color: #7a76ff47;
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+  border: 2px solid transparent;
+  animation: pulse 1.5s infinite;
+  z-index: 100;
+}
+
+.circle_title_bar_dbl {
+  position: absolute;
+  /* right: -50px; */ /* Adjust as needed to position the circle */
+  /* top: 50%; */ /* Center vertically in the parent div */
+  /* transform: translateY(-50%); */ /* Adjust vertical centering */
+  left: 25%;
+  width: 24px; /* Circle size */
+  height: 24px; /* Circle size */
+  background-color: #7a76ff47;
+  border-radius: 50%; /* Make it round */
+  backdrop-filter: blur(10px);
+  border: 2px solid transparent;
+  animation: pulse 1.5s infinite;
+  z-index: 100;
+}
+
+.circle_watchlist_ovr {
+  position: absolute;
+  /* right: -50px; */
+  /* top: 50%; */
+  transform: translateY(-50%);
+  /* left: 50vw; */
+  left: 1%;
+  width: 24px;
+  height: 24px;
+  background-color: #7a76ff47;
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+  border: 2px solid transparent;
+  animation: pulse 1.5s infinite;
+  z-index: 100;
+}
+
+li {
+  font-size: 16px;
+  margin: 24px;
+}
+
+/* HANDLE STATES */
+
+@keyframes flashAnimation {
+  0%, 100% { background-color: transparent; }
+  50% { background-color: #7a76ff57; } /* Light purple flash */
+}
+
+.flash {
+  animation: flashAnimation 1s; /* Run animation once for 1 second */
+}
+
+#login{
+  background-color: #444;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  margin-left: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#logout{
+  display: none;
+
+  background-color: #444;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  margin-left: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+}
+
+.button-disabled {
+  pointer-events: none;
+  opacity: 0.5; /* This makes the button look faded, indicating it's disabled */
+}
+
+
+/* Media query for smaller screens (e.g., phones) */
+@media (max-width: 1000px) {
+  .meteor-ui .row {
+    justify-content: center;
+    flex-direction: column;
+	  height: auto; /* Adjust height based on content */
+	  margin-bottom: 10px; /* Space between rows */
+
+  }
+
+  .meteor-ui {
+    height: auto !important;
+    width: auto !important;
+  }
+
+  .roundedDiv {
+    margin-bottom: 10px !important;
+	  width: auto !important;
+  }
+}
+
+/* WATCHLIST ENTRY */
+.required-cell::before {
+  content: attr(data-placeholder);
+  color: #ccc;
+  display: block;
+}
+
+.required-cell.error {
+  background-color: #ff76b72e; /* or any indication of error */
+}
+
+/* EDIT MODE */
+
+.editable-cell {
+  background-color: #7a76ff26;
+  padding: 5px; /* Some padding for space */
+  border-radius: 4px; /* Rounded corners */
+}
+
+/* Highlighting effect on focus */
+.editable-cell:focus {
+  background-color: #e7e7ff73; /* Light blue background on focus */
+  /* border-color: #7a76ff;  */
+  outline: none; /* Removing default focus outline */
+}

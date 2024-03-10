@@ -550,7 +550,7 @@ def max63d(file_path, justticker, rollbackdate):
     if m20_total > 0:
         m20_pct = round(m20_pass_count/m20_total*100,4)
     else:
-        m20_pct = 0  # Set to 0 if there are no rows
+        m20_pct = ""  # Set to blank if there are no rows
 
     # -- in-play record (last 63 rows) --
 
@@ -568,7 +568,7 @@ def max63d(file_path, justticker, rollbackdate):
     if m20_inplay_total > 0:
         m20_inplay_pct = round(m20_inplay_pass_count/m20_inplay_total*100,4)
     else:
-        m20_inplay_pct = 0  # Set to 0 if there are no rows
+        m20_inplay_pct = ""  # Set to blank if there are no rows
 
     # print(f'{justticker}, {rollbackdate} {m20_pass_count}/{m20_total} ({m20_pct}%)')
     # return {'Ticker': justticker, 'RollbackDate': rollbackdate, 'M20PassCount': m20_pass_count, 'M20Total': m20_total, 'M20Pct': m20_pct}

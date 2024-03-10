@@ -4,6 +4,7 @@ data/earnings/*
 data/PortSim/Sweep/*
 data/raw/daily/*
 data/temp/*
+Thumbs.db
 
 # GITHUB Python default .gitignore
 

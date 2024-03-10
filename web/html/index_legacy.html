@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+
+  <meta property="og:title" content="Market Meteor" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://marketmeteor.org/" />
+  <!-- <meta property="og:image" content="https://www.yoursite.com/image.jpg" /> -->
+  <meta property="og:description" content="Market Meteor is dedicated to uncovering 'Market Meteors' – stocks that have experienced significant drops but may be primed for a short-term rebound. Leveraging quantitative finance techniques, we assign probabilities for potential investment opportunities to return 5% or more. Market Meteor is for entertainment and informational purposes, and does not constitute investment advice." />
+  <!-- <meta name="twitter:card" content="summary_large_image" /> -->
+
+  <title>Market Meteor</title>
+  <link href="styles.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+ </head>
+ <body>
+  <header>
+
+   <!-- Flat design SVG for hamburger -->
+  <div class="left-icons">
+
+    <div class="spacer_left"></div> <!-- Left spacer -->  
+
+   <div class="hamburger">
+    <svg fill="none" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+     <path d="M3 12H21" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+     <path d="M3 6H21" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+     <path d="M3 18H21" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+    </svg>
+   </div>
+
+   <button onclick="redirectToMobile()" style="
+   border-radius: 12px;
+   /* width: 12px; */
+">Mobile Version</button>
+
+  </div>
+
+  <h1>Market Meteor</h1>
+
+  <div class="right-icons">
+  <!-- Flat design SVG for calendar -->
+   <div class="calendar-icon">
+    <svg fill="none" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+       <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="white" stroke-width="2"></rect>
+       <line x1="3" y1="10" x2="21" y2="10" stroke="white" stroke-width="2"></line>
+       <line x1="7" y1="2" x2="7" y2="6" stroke="white" stroke-width="2"></line>
+       <line x1="17" y1="2" x2="17" y2="6" stroke="white" stroke-width="2"></line>
+    </svg>
+   </div>
+
+   <!-- Flat design SVG for search icon -->
+   <div class="search-icon">
+    <svg fill="none" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+     <path d="M11 2C6.58172 2 3 5.58172 3 10C3 14.4183 6.58172 18 11 18C15.4183 18 19 14.4183 19 10C19 5.58172 15.4183 2 11 2Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+     <path d="M21 21L16.65 16.65" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+    </svg>
+   </div>
+
+  </div>
+
+  </header>
+
+  <div class="ticker-tape">
+    <!-- Tickers will be loaded here via JavaScript -->
+  </div>
+
+  <div id="sidebar" class="sidebar">
+
+    <a href="javascript:void(0)" class="closebtn">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 6L6 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 6L18 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+
+    <!-- <span class="icon">&#x1F4C8;</span> -->
+    <h3 class="sidebar-header">Historic</h3>
+    <a href="#" id="timelineLink" class="sidebar-link">Timeline
+      <!-- <span class="info-icon" data-tooltip="[TOP PLOT] 63d % vs. Date:&#10; percent down from peak of the previous 63 days versus time. signals rely on falling like a meteor below the -20% red line. &#10; [BOTTOM PLOT] Close vs. Date: &#10; close prices versus time. Historical earnings dates annoated with the letter E. Green dots are succesful Meteor signals. Red dots are unsuccesful Meteor sigals. Signal success is defined by a gain of 5% or more within 63 days following a Meteor signal.">ℹ️</span> -->
+    </a>
+    <a href="#" id="timelineLink2" class="sidebar-link">Timeline (1d %)</a>
+    <a href="#" id="earningsOffsetLink" class="sidebar-link">Earnings Offset</a>
+    <a href="#" id="m20Link" class="sidebar-link">M20 Signals</a>
+    <!-- <a href="#" id="summaryTableLink" class="sidebar-link">Summary</a> -->
+
+    <h3 class="sidebar-header">Live</h3>
+    <a href="#" id="livem20" class="sidebar-link">M20 Watchlist</a>
+    <!-- <a href="#" class="sidebar-link">Machine Learning</a> -->
+    <a href="#" id = "pipelines" class="sidebar-link">Pipelines</a>
+
+  </div>
+
+  <div id="filterModal" style="display:none; /* other styling */">
+    <div>
+        <label for="minValue">Min %:</label>
+        <input type="number" id="minValue" name="minValue">
+    </div>
+    <div>
+        <label for="maxValue">Max %:</label>
+        <input type="number" id="maxValue" name="maxValue">
+    </div>
+    <button id="applyFilterButton">Apply Filter</button>
+    <button id="resetFilterButton">Reset Filter</button>
+    <button id="closeFilterButton">Close</button>
+  </div>
+
+
+  <footer class="footer">
+    <!-- Footer content goes here -->
+    <p>Overall Record: <span id="recordValue">Loading...</span></p>
+    <p>In-Play: <span id="inPlayValue">Loading...</span></p>
+    <p>Minimum M20: <span id="minM20PassValue">Loading...</span></p>
+    <p>Latest Earnings Offset: <span id="latestEarningsOffset">Loading...</span></p>
+    <p>Last Update: <span id="lastmodified">Loading...</span></p>
+    <p>Sector: <span id="sectormerrill">Loading...</span></p>
+  </footer>
+
+  <div id="data-table">
+    <!-- The table will be populated here -->
+  </div>
+
+  <div id="data-table-pipelines">
+    <!-- The table will be populated here -->
+  </div>
+
+  <div id = "m20watchlistdiv" style = "display: none;">
+
+    <!-- <h3>Potential M20 Signals</h3> -->
+    <!-- <span class="info-icon" data-tooltip="Live Web Socket updates prices every second. This assumes data on the server contains live data. The Last Updated will specify exact time.">ℹ️</span> -->
+
+    <div class="header-with-tooltip">
+      <h3 style="display: inline-block; margin-right: 10px;">Potential M20 Signals</h3>
+      <span class="info-icon" data-tooltip="Live Web Socket updates prices every second. This assumes data on the server contains live data. The Last Updated column will specify exact time the price was pulled. (dependencies: m20tmrw.py ran after previous day 5:48 PM, live_data.py currently running)">ℹ️</span>
+    </div>
+
+    <label for="minOverallRecordPct">Minimum Overall Record (%):</label>
+    <input type="number" id="minOverallRecordPct" value="90">
+    
+    <label for="minPriceDiffPct">Price Diff (%):</label>
+    <input type="number" id="minPriceDiffPct" value="-10">
+    <!-- <label for="maxPriceDiffPct">Max Price Diff (%):</label> -->
+    <input type="number" id="maxPriceDiffPct" value="2">
+
+    <label for="earningsinput">Earnings:</label>
+    <input type="number" id="minearnings" value="-40">
+    <input type="number" id="maxearnings" value="40">
+    
+    <button onclick="fetchAndDisplayData()">Manual Fetch and Display Data</button>
+    <button onclick="applyFilter_m20data()">Apply Filter</button>
+    <button id="toggleConnection">Enable Web Socket</button>
+    <div id="connectionStatus" style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background-color: red;"></div>
+
+    <div id = "m20watchlistdiv" class="scrollable-table-container" style = "display: block;">
+    <table id="m20-table" class="dark-table">
+      <!-- artemis pulls current prices for all stocks every 30 seconds 
+        for the last 15 minutes of market -->
+
+      <thead>
+          <tr>
+              <th>Ticker</th>
+              <th>Overall Record</th>
+              <th>Current Price</th>
+              <th>Close Price</th>
+              <th>m20tmrw</th>
+              <th>Price Drop Needed</th>
+              <th>1d %</th>
+              <th>63d %</th>
+              <th>Earnings Offset Closest</th>
+              <th>Last Updated</th>
+          </tr>
+      </thead>
+      <tbody>
+          <!-- Data rows will go here -->
+      </tbody>
+    </table>
+    </div>
+
+    <!-- <div id="signals-data-table">
+    </div> -->
+
+  </div>
+
+  <main class="grid">
+   <!-- <div class="ticker-list"> -->
+    <!-- Tickers will be loaded here via JavaScript -->
+   <!-- </div> -->
+   <!-- <div class="image-display"> -->
+  <!-- <div id="graphDiv" style="width:100vw;height:50vh;"></div>
+  <div id="graphDiv2" style="width:100vw;height:50vh;"></div> -->
+
+  <div id="graphDiv5" style="height: calc((100vh - 8.5vh) / 2); width:100vw; display: none;"></div>
+  <div id="graphDiv" style="height: calc((100vh - 8.5vh) / 2); width:100vw;"></div>
+  <div id="graphDiv2" style="height: calc((100vh - 8.5vh) / 2); width:100vw;"></div>
+  <div id="graphDiv3" style="height: calc((100vh - 8.5vh) / 2); width:100vw; display: none;"></div>
+  <div id="graphDiv4" style="height: calc((100vh - 8.5vh) / 2); width:100vw; display: none;"></div>
+
+  <!-- by default graphDiv3 is hidden -->
+
+    <!-- <div id="graphDiv" style="width:600px;height:50vh;"></div> -->
+    <!-- Images will be loaded here via JavaScript -->
+   <!-- </div> -->
+   <!-- Additional content for the grid can be added here -->
+  </main>
+  <script src="script.js"></script>
+
+    <div id="search-overlay" style="display: none;">
+        <input id="search-box" type="text" readonly placeholder="Enter ticker..." />
+
+    </div>
+
+    <div id="rollback-overlay" style="display: none;">
+      <input id="rollback-box" type="text" readonly placeholder="Enter Rollback Date..." />
+
+  </div>
+
+ </body>
+</html>
