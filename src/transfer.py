@@ -15,7 +15,7 @@ from LocalPaths import LocalPaths
 
 farm = LocalPaths()
 
-print('Beginning cp to marketmeteor-data')
+# print('Beginning cp to marketmeteor-data')
 
 def copy_directory_with_progress(src, dst):
     print(f'src: {src}')
@@ -24,8 +24,8 @@ def copy_directory_with_progress(src, dst):
     # if os.path.isdir(dst):
     #     shutil.rmtree(dst)
 
-    # if not os.path.exists(dst):
-    #     os.makedirs(dst)
+    if not os.path.exists(dst):
+        os.makedirs(dst)
     
     files = os.listdir(src)
     for f in tqdm(files, desc="[1] Copying R08 charddata2 folder"):
@@ -40,19 +40,20 @@ cp to marketmeteor-data
     # watchlist.txt
 """
 
-# cp all files from Farm.chart_data_directory to Farm.marketmeteor_data_chartdata2, overwrite
-copy_directory_with_progress(farm.chart_data_directory, farm.marketmeteor_data_chartdata2)
-# cp tickers.json file that is in the Farm.r08_directory to Farm.marketmeteor_data_repository
+# # cp all files from Farm.chart_data_directory to Farm.marketmeteor_data_chartdata2, overwrite
+# copy_directory_with_progress(farm.chart_data_directory, farm.marketmeteor_data_chartdata2)
+# # cp tickers.json file that is in the Farm.r08_directory to Farm.marketmeteor_data_repository
 
-tickers_json_src = os.path.join(farm.r08_directory, 'tickers.json')
-tickers_json_dst = os.path.join(farm.marketmeteor_data_repository, 'tickers.json')
-shutil.copy(tickers_json_src, tickers_json_dst)
-print('[2] copying tickers.json')
+# tickers_json_src = os.path.join(farm.r08_directory, 'tickers.json')
+# tickers_json_dst = os.path.join(farm.marketmeteor_data_repository, 'tickers.json')
+# shutil.copy(tickers_json_src, tickers_json_dst)
+# print('[2] copying tickers.json')
 
-# cp Farm.validated_tickers_file which is the full path to a text file, to Farm.marketmeteor_data_repository
-validated_tickers_dst = os.path.join(farm.marketmeteor_data_repository, os.path.basename(farm.validated_tickers_file))
-shutil.copy(farm.validated_tickers_file, validated_tickers_dst)
-print('[3] copying tickerlist_validated.txt')
+# # cp Farm.validated_tickers_file which is the full path to a text file, to Farm.marketmeteor_data_repository
+# validated_tickers_dst = os.path.join(farm.marketmeteor_data_repository, os.path.basename(farm.validated_tickers_file))
+# shutil.copy(farm.validated_tickers_file, validated_tickers_dst)
+# print('[3] copying tickerlist_validated.txt')
+
 
 """
 cp to web_server
@@ -67,7 +68,7 @@ cp to web_server
     run live_data_single.py
 """
 
-print('Beginning cp to web_server')
+# print('Beginning cp to web_server')
 
 print('[4] updating portfolios') # -- good on linux
 # Run get_portfolio.py for each template CSV in the portfolio directory
@@ -82,4 +83,4 @@ subprocess.run(['python', 'm20tmrw.py', '0'], cwd=farm.web_server_directory)
 
 print('[6] downloading last prices')
 # Run live_data_single.py
-subprocess.run(['python', 'live_data_single.py'], cwd=farm.web_server_directory)
+subprocess.run(['python', 'live_data_single.py', '0'], cwd=farm.web_server_directory)
