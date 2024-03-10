@@ -296,7 +296,8 @@ h2 {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 80%; /* Adjust width as needed */
+  /* width: 80%; */
+  width: 85%;
   margin: 2rem auto; /* Centers the meteor-ui and provides space from the h2 */
   background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
   padding: 1rem;
@@ -1089,28 +1090,6 @@ li {
   opacity: 0.5; /* This makes the button look faded, indicating it's disabled */
 }
 
-
-/* Media query for smaller screens (e.g., phones) */
-@media (max-width: 1000px) {
-  .meteor-ui .row {
-    justify-content: center;
-    flex-direction: column;
-	  height: auto; /* Adjust height based on content */
-	  margin-bottom: 10px; /* Space between rows */
-
-  }
-
-  .meteor-ui {
-    height: auto !important;
-    width: auto !important;
-  }
-
-  .roundedDiv {
-    margin-bottom: 10px !important;
-	  width: auto !important;
-  }
-}
-
 /* WATCHLIST ENTRY */
 .required-cell::before {
   content: attr(data-placeholder);
@@ -1135,4 +1114,34 @@ li {
   background-color: #e7e7ff73; /* Light blue background on focus */
   /* border-color: #7a76ff;  */
   outline: none; /* Removing default focus outline */
+}
+
+
+
+
+/* MEDIA QUERY for smaller screens (e.g., phones) */
+@media (max-width: 1000px) {
+  .meteor-ui .row {
+    justify-content: center;
+    flex-direction: column;
+	  height: auto; /* Adjust height based on content */
+	  margin-bottom: 10px; /* Space between rows */
+
+  }
+
+  .meteor-ui {
+    height: auto !important;
+    width: auto !important;
+  }
+
+  .roundedDiv {
+    margin-bottom: 10px !important;
+	  width: auto !important;
+  }
+
+  /* Disable flexbox for .titles class */
+  .titles {
+    display: block;
+    justify-content: flex-start; /* This line can be removed as it won't apply to block elements */
+  }
 }
