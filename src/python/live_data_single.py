@@ -22,7 +22,7 @@ else:
     NRSUBPROCESSES = 1
 
     validated_tickers_file = "/incoming/marketmeteor-data/watchlist.txt"
-    csv_filename = "/marketmeteor/web_server/stock_prices.csv"
+    csv_filename = "../../data/marketmeteors/stock_prices.csv"
 
 # run by cron from 15:30 - 16:00
 # every minute

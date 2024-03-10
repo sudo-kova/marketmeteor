@@ -396,7 +396,7 @@ std::string getFilePath(const std::string &request) {
                     [](unsigned char c) { return std::toupper(c); });
 
         // download one minute data for specified stock
-        std::system(("bash -c 'source myenv/bin/activate && python3 ../python/live_1m_data.py " + ticker + "'").c_str());
+        std::system(("bash -c 'source /marketmeteor/web_server/myenv/bin/activate && python3 ../python/live_1m_data.py " + ticker + "'").c_str());
 
         return "/incoming/marketmeteor-data/one_minute_data/" + ticker + ".csv";
 
@@ -488,7 +488,7 @@ int main() {
             // Handle sectors-data request
 
             // auto csvData = readCsv("/marketmeteor/web_server/dataset/sectors.csv");
-            auto csvData = readCsv("../../data/marketmeteor/sectors/sectors_name_country.csv");
+            auto csvData = readCsv("../../data/sectors/sectors_name_country.csv");
             nlohmann::json jsonOutput = csvToJson(csvData);
             std::string jsonResponse = jsonOutput.dump();
 
@@ -506,7 +506,7 @@ int main() {
 
             // dangerous, runs out of memory
             // if running with the full list of ~1300 tickers, it will fail and OVERWRITE stock_prices.csv, IF it exists
-            std::system("bash -c 'source myenv/bin/activate && python3 ../python/live_data_single.py'");
+            std::system("bash -c 'source /marketmeteor/web_server/myenv/bin/activate && python3 ../python/live_data_single.py'");
 
             // std::system("python3 /marketmeteor/web_server/live_data_single.py");
             // it will wait for the script to finish
@@ -555,7 +555,7 @@ int main() {
             std::cout << "Executing get_portfolio.py with account: " << accountValue << " ..." << std::endl;
 
             // Build the command string with the account parameter
-            std::string command = "bash -c 'source myenv/bin/activate && python3 ../python/get_portfolio.py " + accountValue + "'";
+            std::string command = "bash -c 'source /marketmeteor/web_server/myenv/bin/activate && python3 ../python/get_portfolio.py " + accountValue + "'";
 
             // Execute the command
             std::system(command.c_str());
@@ -769,7 +769,7 @@ int main() {
                 writeDataToCsv(csvFilename, portfolioData);
 
                 // initialize portfolio with get_portfolio_hist.py
-                std::string commandhist = "bash -c 'source myenv/bin/activate && python3 ../python/get_portfolio_hist.py " + portfolioName + "'";
+                std::string commandhist = "bash -c 'source /marketmeteor/web_server/myenv/bin/activate && python3 ../python/get_portfolio_hist.py " + portfolioName + "'";
                 std::system(commandhist.c_str());
 
                 std::string csv_file_created = "../../data/portfolios/" + portfolioName + ".csv";

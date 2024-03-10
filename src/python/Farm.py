@@ -26,7 +26,7 @@ class Farm:
         
         # Set one_minute_directory with a specific base path for Linux
         if self.operating_system == "Linux":
-            one_minute_base_path = '/incoming'
+            one_minute_base_path = '../../data/raw/minute'
         else:
             one_minute_base_path = self.tld_base_path
         self.one_minute_directory = os.path.join(one_minute_base_path, 'marketmeteor-data', 'one_minute_data')
@@ -43,7 +43,7 @@ class Farm:
         self.web_server_directory = os.path.join(self.tld_base_path, 'marketmeteor', 'web_server')
 
 
-        self.web_server_port_folio_directory = os.path.join(self.tld_base_path, 'marketmeteor', 'web_server', 'portfolios')
+        self.web_server_port_folio_directory = "../../data/portfolios"
 
         self.marketmeteor_data_repository = os.path.join(self.tld_base_path, 'marketmeteor-data')
 
