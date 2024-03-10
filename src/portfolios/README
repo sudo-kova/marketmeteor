@@ -1,0 +1,65 @@
+media/share/Stockland/m20perf_L2016/charts/repo/m20/R08/setup python3 gen_charts_tqdm_forks.py
+    runtime: 9.5 min
+    input:
+        !> FOLLOWING INPUTS CHANGE DAILY
+        validated_tickers_file = os.path.join(base_path, 'raw_stock_data', 'tickerlists', 'tickerlist_validated.txt')
+        daily_data_directory = os.path.join(base_path, 'raw_stock_data', 'daily_data')
+        earnings_directory = os.path.join(base_path, 'earnings', 'splice')
+        earnings_file = os.path.join(base_path, 'earnings', 'earnings_parsed_full.csv')
+    output: 
+        files in chartdata_forks/
+
+get_m20_hist.py 
+    runtime: insignificant
+    input: 
+        chartdata_forks/
+    output: 
+        combined_m20_data.csv, rows with m20 pass or m20 pass
+
+gen_Pwin_for_m20_hist.py
+
+    run once for FULL unfiltered list of signals
+    only rerun if new signals have been added to combined_m20_data.csv
+    if adding filters when creating signal_table.csv, you do not need to rerun gen_Pwin 
+
+    runtime: ? LONG
+    input: 
+        !> SAME INPUTS CHANGE DAILY as tqdm forks
+        combined_m20_data.csv
+    output: 
+        Pwin.csv
+
+create_signals_table.py
+    runtime: insignificant
+
+    filter_signals_table(): Pwin >= 90
+
+    input: 
+        daily_data_directory = os.path.join(base_path, 'raw_stock_data', 'daily_data')
+            !> CHANGES DAILY
+        combined_m20_data.csv
+        Pwin.csv
+    output: 
+        signals_table.csv
+        date_nrs.csv
+
+    manually sort the date numbers in increasing order
+
+Portfolio_Sweep.py
+    runtime: 23-36 min
+    input: 
+        signals_table.csv
+        date_nrs.csv
+        daily_data/
+            !> CHANGES DAILY
+    output: (dated folders containing) 
+        portsim.csv
+        port_timeseries.csv
+        key_metrics_.csv
+
+Portfolio_Summarize.py
+runtime: 8 seconds
+    input: 
+        folder sweep/fullset_Pwin90plus/start10000/
+    output: 
+        sweep/fullset_Pwin90plus/start10000/summary.csv

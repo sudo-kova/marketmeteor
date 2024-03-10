@@ -1,3 +1,12 @@
+
+data/chartdata/historic/*
+data/earnings/*
+data/PortSim/Sweep/*
+data/raw/daily/*
+data/temp/*
+
+# GITHUB Python default .gitignore
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
