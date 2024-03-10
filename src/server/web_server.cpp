@@ -406,7 +406,7 @@ std::string getFilePath(const std::string &request) {
         // std::string ticker = urlDecode_carrot(path.substr(std::string("/api/rollback_chartdata/").length()));
         std::cout << "Retrieving rollback chart data for ticker: " << ticker << std::endl;
 
-        return "../../data/chartdata/rollback/" + ticker
+        return "../../data/chartdata/rollback/" + ticker;
         // return "/media/share/Stockland/m20perf_L2016/charts/repo/m20/R08/rollback/" + ticker;
 
     } else if (path == "/api/sectors-data") {
