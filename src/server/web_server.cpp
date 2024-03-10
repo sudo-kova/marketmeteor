@@ -404,7 +404,7 @@ std::string getFilePath(const std::string &request) {
         // Extract ticker name and construct CSV file path
         std::string ticker = path.substr(std::string("/api/rollback_chartdata/").length());
 
-        std::cout << "Retrieving rollback chart data for ticker: " ticker << std::endl;
+        std::cout << "Retrieving rollback chart data for ticker: " << ticker << std::endl;
 
         return "../../data/chartdata/rollback/" + ticker + ".csv";
         // return "/media/share/Stockland/m20perf_L2016/charts/repo/m20/R08/rollback/" + ticker;
