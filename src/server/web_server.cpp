@@ -403,10 +403,10 @@ std::string getFilePath(const std::string &request) {
     } else if (path.find("/api/rollback_chartdata/") == 0) {
         // Extract ticker name and construct CSV file path
         std::string ticker = path.substr(std::string("/api/rollback_chartdata/").length());
-
+        // std::string ticker = urlDecode_carrot(path.substr(std::string("/api/rollback_chartdata/").length()));
         std::cout << "Retrieving rollback chart data for ticker: " << ticker << std::endl;
 
-        return "../../data/chartdata/rollback/" + ticker + ".csv";
+        return "../../data/chartdata/rollback/" + ticker
         // return "/media/share/Stockland/m20perf_L2016/charts/repo/m20/R08/rollback/" + ticker;
 
     } else if (path == "/api/sectors-data") {
