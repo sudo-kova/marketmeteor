@@ -1170,4 +1170,34 @@ li {
   #divTitle{
 	  font-size: 1.4117647059rem;
   }
+
+  #overflowsubtitle{
+    font-size: 1.1176470588rem;
+    line-height: 1.4211026316;
+    max-width: 87.5%;
+  }
+
+  #overflowtitle{
+    font-size: 1.6470588235rem;
+    line-height: 1.1428571429;
+    font-weight: 600;
+    letter-spacing: .007em;
+  }
+
+
+  .footer {
+    display: block; /* Stack content vertically */
+    width: 90vw; /* Adjust width for smaller screens */
+    height: auto; /* Let the height grow as needed */
+    padding: 10px; /* Add some padding */
+    font-size: 14px; /* Increase font size for readability */
+  }
+
+  .footer p {
+    flex: none; /* Disable flex properties */
+    margin: 5px 0; /* Add some vertical space between items */
+    text-align: left; /* Align text to the left */
+    height: auto; /* Allow height to adjust to content */
+  }
+
 }
