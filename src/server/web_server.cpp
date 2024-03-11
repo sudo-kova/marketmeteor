@@ -511,7 +511,7 @@ int main() {
 
             // dangerous, runs out of memory
             // if running with the full list of ~1300 tickers, it will fail and OVERWRITE stock_prices.csv, IF it exists
-            std::system("bash -c 'source /marketmeteor/web_server/myenv/bin/activate && python3 ../python/live_data_single.py'");
+            std::system("bash -c 'source /marketmeteor/web_server/myenv/bin/activate && python3 ../python/live_data_single.py 1'");
 
             // std::system("python3 /marketmeteor/web_server/live_data_single.py");
             // it will wait for the script to finish
