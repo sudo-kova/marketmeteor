@@ -1797,7 +1797,10 @@ function resizePlotlyGraphs() {
         }
     });
 }
-
+// Event listener for window resize
+window.addEventListener('resize', function() {
+    resizePlotlyGraphs();
+});
 
 function fetchAndDisplayData() {
 
