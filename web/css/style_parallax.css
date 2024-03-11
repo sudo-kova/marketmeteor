@@ -1121,6 +1121,18 @@ li {
 	padding-right: inherit;
 }
 
+#rollback-box{
+  background-color: #444;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  margin-left: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-right: 12px;
+}
+
 /* MEDIA QUERY for smaller screens (e.g., phones) */
 @media (max-width: 1000px) {
   .meteor-ui .row {
