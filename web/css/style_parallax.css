@@ -1139,6 +1139,12 @@ li {
   .roundedDiv {
     margin-bottom: 10px !important;
 	  width: auto !important;
+    outline: none; /* Disable outline */
+    margin: 0; /* Reset margin */
+  }
+
+  #graphDiv, #graphDiv2, #graphDiv3, #graphDiv4, #graphDiv6 {
+    background: none; /* Disable background */
   }
 
   /* Disable flexbox for .titles class */
@@ -1159,5 +1165,9 @@ li {
 
   .title-bar{
     height: 1vh;
+  }
+
+  #divTitle{
+	  font-size: 1.4117647059rem;
   }
 }
