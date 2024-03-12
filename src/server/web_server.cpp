@@ -513,6 +513,9 @@ int main() {
             // if running with the full list of ~1300 tickers, it will fail and OVERWRITE stock_prices.csv, IF it exists
             std::system("bash -c 'source /marketmeteor/web_server/myenv/bin/activate && python3 ../python/live_data_single.py 1'");
 
+            // !!!! if watchlist doesn't exist, it will load the last cached stock_prices and m20tmrw_prices (which is typically the full list)
+            // !!!! watchlist is added to select tickers to live update during the day
+
             // std::system("python3 /marketmeteor/web_server/live_data_single.py");
             // it will wait for the script to finish
 
