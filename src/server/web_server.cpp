@@ -796,16 +796,19 @@ int main() {
                         users[userEmail]["user_watchlists"].push_back(portfolioName);
                         writeJsonFile("/incoming/marketmeteor-data/users.json", users);
 
+                        // Prepare JSON response with matchedKey
+                        json jsonOutput = users[userEmail];
+                        std::string jsonResponse = jsonOutput.dump();
+
                         std::ostringstream responseStream;
-                        responseStream << "HTTP/1.1 500 Internal Server Error\r\n"
-                                    << "Content-Type: text/plain\r\n"
-                                    << "Content-Length: 27\r\n"
+                        responseStream << "HTTP/1.1 200 OK\r\n"
+                                    << "Content-Type: application/json\r\n"
+                                    << "Content-Length: " << jsonResponse.length() << "\r\n"
                                     << "\r\n"
-                                    << "Portfolio added to user_watchlists";
+                                    << jsonResponse;
                         response = responseStream.str();
                         std::cerr << "Sending response: " << responseStream.str() << std::endl;
                         send(new_socket, response.c_str(), response.length(), 0);
-                        std::cerr << "Response sent" << std::endl;
                     }
 
                 } else {
@@ -821,7 +824,6 @@ int main() {
                     response = responseStream.str();
                     std::cerr << "(authenticated but portfolio.csv does not exist) Sending response: " << responseStream.str() << std::endl;
                     send(new_socket, response.c_str(), response.length(), 0);
-                    std::cerr << "Response sent" << std::endl;
                 }
             }
 
