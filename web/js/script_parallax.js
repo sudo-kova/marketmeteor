@@ -2205,6 +2205,13 @@ function applyFilter_m20data() {
 function createPortfolio_row() {
     // Get the table element
     const table = document.getElementById('port-table');
+    let tbody = table.getElementsByTagName('tbody')[0];
+
+    // If tbody doesn't exist, create it and append it to the table
+    if (!tbody) {
+        tbody = document.createElement('tbody');
+        table.appendChild(tbody);
+    }
 
     // Create a new row
     const newRow = document.createElement('tr');
@@ -2442,6 +2449,7 @@ function fetchPortData() {
 
         // Assuming the data is an array of objects with {ticker, currentPrice, m20tmrw, lastUpdated}
         const tableBody = document.getElementById('port-table').getElementsByTagName('tbody')[0];
+        
         tableBody.innerHTML = ''; // Clear existing rows
 
         // Populate the table with new rows
