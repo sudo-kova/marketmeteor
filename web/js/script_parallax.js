@@ -2411,23 +2411,32 @@ const updateDropdown = (watchlists) => {
 };
 
 function editPortfolio() {
-    // Get all the cells in the tbody of the port-table
-    const cells = document.querySelectorAll('#port-table tbody td');
+    // Get all the rows in the tbody of the port-table
+    const rows = document.querySelectorAll('#port-table tbody tr');
 
     // Toggle the edit mode
-    cells.forEach(cell => {
-        if (cell.isContentEditable) {
-            // If already editable, make it non-editable
-            cell.contentEditable = 'false';
-            cell.classList.remove('editable-cell'); // Assuming 'editable-cell' is your class
-        } else {
-            // If not editable, make it editable
-            cell.contentEditable = 'true';
-            cell.classList.add('editable-cell'); // Add a class for styling
-        }
+    rows.forEach(row => {
+        const cells = row.querySelectorAll('td');
+        cells.forEach((cell, index) => {
+            // Check if cell is in a column that should be editable
+            const isEditableColumn = [0, 1, 2, 7, 8].includes(index);
+
+            if (cell.isContentEditable) {
+                // If already editable, make it non-editable
+                cell.contentEditable = 'false';
+                cell.classList.remove('editable-cell');
+                if (!isEditableColumn) {
+                    // If it's not an editable column, clear the content
+                    cell.textContent = '';
+                }
+            } else if (isEditableColumn) {
+                // If not editable and it's an editable column, make it editable
+                cell.contentEditable = 'true';
+                cell.classList.add('editable-cell');
+            }
+        });
     });
 }
-
 
 function fetchPortData() {
 

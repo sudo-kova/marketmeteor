@@ -67,13 +67,15 @@ using json = nlohmann::json;
  * m20 watchlist (live): /get-m20-data SOCKET (maybe not needed)
  */
 
-void writeDataToCsv(const std::string& filename, const json& data) {
+void writeDataToCsv(const std::string& filename, const json& data, bool allowOverride = false) {
 
-    // Check if the file already exists
-    std::ifstream fileExists(filename);
-    if (fileExists.good()) {
-        std::cerr << "File already exists: " << filename << ". Aborting to prevent overwrite." << std::endl;
-        return;
+    // Check if the file already exists, only if override is not allowed
+    if (!allowOverride) {
+        std::ifstream fileExists(filename);
+        if (fileExists.good()) {
+            std::cerr << "File already exists: " << filename << ". Aborting to prevent overwrite." << std::endl;
+            return;
+        }
     }
 
     std::ofstream csvFile(filename);
@@ -706,7 +708,7 @@ int main() {
 
                     users[userEmail] = json::object({
                         {"token", json::array({token})},
-                        {"public_watchlists", json::array({"Admin_1", "Admin_3"})},
+                        {"public_watchlists", json::array({"Admin_3"})},
                         {"user_watchlists", json::array()},
                         {"btc_address_for_payment", json::array()},
                         {"paid", json::array({"false"})}
@@ -774,9 +776,17 @@ int main() {
                 // users[userEmail]["user_watchlists"].push_back(portfolioName);
                 // writeJsonFile("/incoming/marketmeteor-data/users.json", users);
 
+                json users = readJsonFile("/incoming/marketmeteor-data/users.json");
+
                 // Write portfolio data to CSV
                 std::string csvFilename = "../../data/portfolios/" + portfolioName + "_template.csv";
-                writeDataToCsv(csvFilename, portfolioData);
+                if (users.contains(userEmail) && users[userEmail]["user_watchlists"].is_array()) {
+                    // Set allowOverride to true if portfolioName is found in the user's watchlist
+                    if (std::find(users[userEmail]["user_watchlists"].begin(), users[userEmail]["user_watchlists"].end(), portfolioName) != users[userEmail]["user_watchlists"].end()) {
+                        allowOverride = true;
+                    }
+                }
+                writeDataToCsv(csvFilename, portfolioData, allowOverride);
 
                 // initialize portfolio with get_portfolio_hist.py
                 std::string commandhist = "bash -c 'source /marketmeteor/web_server/myenv/bin/activate && python3 ../python/get_portfolio_hist.py " + portfolioName + "'";
@@ -785,7 +795,7 @@ int main() {
                 std::string csv_file_created = "../../data/portfolios/" + portfolioName + ".csv";
                 if (std::filesystem::exists(csv_file_created)) {
                     // The file exists, update user data
-                    json users = readJsonFile("/incoming/marketmeteor-data/users.json");
+                    // json users = readJsonFile("/incoming/marketmeteor-data/users.json");
                     // users[userEmail]["user_watchlists"].push_back(portfolioName);
                     // writeJsonFile("/incoming/marketmeteor-data/users.json", users);
 
