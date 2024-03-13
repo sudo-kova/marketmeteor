@@ -779,6 +779,7 @@ int main() {
                 json users = readJsonFile("/incoming/marketmeteor-data/users.json");
 
                 // Write portfolio data to CSV
+                bool allowOverride = false;
                 std::string csvFilename = "../../data/portfolios/" + portfolioName + "_template.csv";
                 if (users.contains(userEmail) && users[userEmail]["user_watchlists"].is_array()) {
                     // Set allowOverride to true if portfolioName is found in the user's watchlist
