@@ -800,6 +800,15 @@ int main() {
                 } else {
                     // The file does not exist, handle the error accordingly
                     std::cerr << "CSV file was not created. get_portfolio_hist.py may have failed." << std::endl;
+
+                    std::ostringstream responseStream;
+                    responseStream << "HTTP/1.1 500 Internal Server Error\r\n"
+                                << "Content-Type: text/plain\r\n"
+                                << "Content-Length: 27\r\n"
+                                << "\r\n"
+                                << "Error processing request";
+                    response = responseStream.str();
+                    send(new_socket, response.c_str(), response.length(), 0);
                 }
             }
 
