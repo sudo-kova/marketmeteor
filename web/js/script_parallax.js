@@ -2278,7 +2278,7 @@ function createPortfolio_row() {
     });
 
     // Append the row to the table
-    table.appendChild(newRow);
+    tbody.appendChild(newRow);
 }
 
 // Function to validate the required cells
