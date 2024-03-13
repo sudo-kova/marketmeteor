@@ -2366,17 +2366,42 @@ function savePortfolio(){
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(portfolio)
-    }).then(response => {
+    }).then(async response => {
         // Handle response
         console.log('Portfolio saved:', response);
+
+        // Check if the response is ok (status code in the range 200-299)
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const responseData = await response.json();
+        console.log('User data:', responseData);
+        
+        const allWatchlists = [...responseData['public_watchlists'], ...responseData['user_watchlists']];
+        updateDropdown(allWatchlists);
+
     }).catch(error => {
         // Handle error
         console.error('Error:', error);
+
     }).finally(() => {
         // spinner.style.display = 'none'; // Hide the spinner once the fetch is complete
         temphideholdingsSettingsMenu.classList.remove('button-disabled');
     });
 }
+
+const updateDropdown = (watchlists) => {
+    const dropdown = document.getElementById('optionsDropdown');
+    dropdown.innerHTML = ''; // Clear existing options
+
+    watchlists.forEach(watchlist => {
+        const option = document.createElement('option');
+        option.value = watchlist;
+        option.text = watchlist;
+        dropdown.appendChild(option);
+    });
+};
 
 function editPortfolio() {
     // Get all the cells in the tbody of the port-table
