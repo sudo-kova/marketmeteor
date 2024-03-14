@@ -1652,7 +1652,7 @@ function setupTitlesInteraction() {
         // console.log("Showing Incoming Meteors");
 
         document.getElementById('refreshholdings').classList.add('button-disabled');
-        document.getElementById('refresh m20').classList.remove('button-disabled');
+        document.getElementById('refresh_m20').classList.remove('button-disabled');
         document.getElementById('applyfilter_m20').classList.remove('button-disabled');
 
         let holdingsSettingsMenu = document.querySelector('.holdingsettingsmenu');
@@ -1674,7 +1674,7 @@ function setupTitlesInteraction() {
         // console.log("Showing Holdings");
 
         document.getElementById('refreshholdings').classList.remove('button-disabled');
-        document.getElementById('refresh m20').classList.add('button-disabled');
+        document.getElementById('refresh_m20').classList.add('button-disabled');
         document.getElementById('applyfilter_m20').classList.add('button-disabled');
 
         let holdingsSettingsMenu = document.querySelector('.holdingsettingsmenu');

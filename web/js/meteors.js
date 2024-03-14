@@ -3,8 +3,9 @@ import { setMinuteDataShown, getMinuteDataShown } from './script_parallax.js';
 
 export function fetchAndDisplayData() {
 
-    // I put default values into the html
+    // for updating the meteors table
 
+    // default values for filters are in the html
     const minOverallRecordPct = parseFloat(document.getElementById('minOverallRecordPct').value) || 90;
     const minPriceDiffPct = parseFloat(document.getElementById('minPriceDiffPct').value) || -2;
     const maxPriceDiffPct = parseFloat(document.getElementById('maxPriceDiffPct').value) || 2;
