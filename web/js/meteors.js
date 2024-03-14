@@ -1,3 +1,5 @@
+import { setglobalData, getglobalData } from './script_parallax.js';
+
 export function fetchAndDisplayData() {
 
     // I put default values into the html
@@ -16,7 +18,8 @@ export function fetchAndDisplayData() {
     .then(data => {
 
         // console.log(data); // verified that json file contains all columns
-        globalData = data; // store for applyFilter_m20data() later
+        // globalData = data; // store for applyFilter_m20data() later
+        setglobalData(data)
 
         // Assuming the data is an array of objects with {ticker, currentPrice, m20tmrw, lastUpdated}
         const tableBody = document.getElementById('m20-table').getElementsByTagName('tbody')[0];

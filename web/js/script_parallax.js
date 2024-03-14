@@ -23,6 +23,15 @@ export function getSectorDataCache() {
     return sectorDataCache;
 }
 
+let globalData = [];
+export function setglobalData(data_input) {
+    globalData = data_input;
+}
+export function getglobalData() {
+    return globalData;
+}
+
+
 export let tickerItems;
 export let minute_data_shown = false;
 
@@ -36,8 +45,6 @@ let isFilterModalOpen = false;
 const columnNames = ['Ticker', 'Record', 'Minimum M20', 'Latest Earnings Offset'];
 
 let sortDirection = 'ascending'; // default direction of rows
-
-let globalData = []; // This will hold the data fetched from /get-m20-data
 
 // Create Ticker Tape
 
