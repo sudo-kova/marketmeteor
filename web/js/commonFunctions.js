@@ -2,6 +2,30 @@ import { currentTicker, minute_data_shown, sectorDataCache } from './script_para
 import { csvToJSON} from './file.js';
 import { palette_purple, palette_red, palette_yellow, palette_green } from './colors.js';
 
+export function getMarkerStyle(rowIndex, totalRows, regularColor, specialOutlineColor) {
+    if (rowIndex >= totalRows - 63) {
+        // Special style for last 63 rows
+        return {
+            color: 'rgba(0, 0, 0, 0)', // Transparent fill
+            line: {
+                color: specialOutlineColor, // Special outline color
+                width: 1 // Width of the outline
+            },
+            size: 8 // Size of the marker
+        };
+    } else {
+        // Standard style for other rows
+        return {
+            color: regularColor, // Regular color
+            line: {
+                color: regularColor, // Regular line color (same as the fill color)
+                width: 1 // Standard width of the outline
+            },
+            size: 8 // Standard size of the marker
+        };
+    }
+}
+
 export function isM20NonEmpty(row) {
     // Check if 'm20 pass' or 'm20 fail' is not an empty string
     let nonEmpty = row['m20 pass'] !== "" || row['m20 fail'] !== "";
@@ -742,7 +766,7 @@ export function plotGraph(ticker) {
 export function processSectorData() {
     // Assuming 'currentTicker' is defined and accessible
     // const tickerData = sectorDataCache.find(row => row.Symbol === currentTicker);
-    const tickerData = sectorDataCache.find(row => row["\uFEFFSymbol"] === currentTicker);
+    let tickerData = sectorDataCache.find(row => row["\uFEFFSymbol"] === currentTicker);
     if (tickerData) {
         document.getElementById('sectormerrill').textContent = tickerData.Sector;
         document.getElementById('companyname').textContent = tickerData.Name;
