@@ -25,70 +25,21 @@ let globalData = []; // This will hold the data fetched from /get-m20-data
 
 let minute_data_shown = false;
 
-// auth0.createAuth0Client({
-//     domain: "dev-ls0yufjhxj01r8uw.us.auth0.com",
-//     clientId: "h3ExHdMvqjRSlEi16l35zKPlxtBxee5F",
-//     authorizationParams: {
-//       redirect_uri: window.location.origin
-//     }
-//   }).then(async (auth0Client) => {
-//     // Assumes a button with id "login" in the DOM
-//     const loginButton = document.getElementById("login");
-  
-//     loginButton.addEventListener("click", (e) => {
-//       e.preventDefault();
-//       auth0Client.loginWithRedirect();
-//     });
-  
-//     if (location.search.includes("state=") && 
-//         (location.search.includes("code=") || 
-//         location.search.includes("error="))) {
-//       await auth0Client.handleRedirectCallback();
-//       window.history.replaceState({}, document.title, "/");
-//     }
-  
-//     // Assumes a button with id "logout" in the DOM
-//     const logoutButton = document.getElementById("logout");
-  
-//     logoutButton.addEventListener("click", (e) => {
-//       e.preventDefault();
-//       auth0Client.logout();
-//     });
-  
-//     const isAuthenticated = await auth0Client.isAuthenticated();
-//     const userProfile = await auth0Client.getUser();
-  
-//     // Assumes an element with id "profile" in the DOM
-//     const profileElement = document.getElementById("profile");
-  
-//     if (isAuthenticated) {
-//       profileElement.style.display = "block";
+import { setActiveTicker } from './tickerFunctions.js';
 
-//       loginButton.style.display = "none";
-//       logoutButton.style.display = "block";
-//     //   profileElement.innerHTML = `
-//     //           <p>${userProfile.name}</p>
-//     //           <img src="${userProfile.picture}" />
-//     //         `;
-//     } else {
-//       profileElement.style.display = "none";
+// function setActiveTicker(index) {
+//     currentTicker = tickerItems[index].textContent.trim()
+//     // console.log(currentTicker)
+//     tickerItems[currentTickerIndex].classList.remove('active');
+//     tickerItems[index].classList.add('active');
+//     tickerItems[index].scrollIntoView({ inline: 'center', block: 'nearest' });
+//     // showImagesForTicker(tickerItems[index].textContent.trim());  // Update the images based on the active ticker
+//     plotGraph(tickerItems[index].textContent.trim())
+//     turnCalendarIconWhite() // if a ticker was set active from the ticker tape, it will not be in rollback mode
+//     currentTickerIndex = index;
 
-//     }
-//   });
-
-function setActiveTicker(index) {
-    currentTicker = tickerItems[index].textContent.trim()
-    // console.log(currentTicker)
-    tickerItems[currentTickerIndex].classList.remove('active');
-    tickerItems[index].classList.add('active');
-    tickerItems[index].scrollIntoView({ inline: 'center', block: 'nearest' });
-    // showImagesForTicker(tickerItems[index].textContent.trim());  // Update the images based on the active ticker
-    plotGraph(tickerItems[index].textContent.trim())
-    turnCalendarIconWhite() // if a ticker was set active from the ticker tape, it will not be in rollback mode
-    currentTickerIndex = index;
-
-    processSectorData()
-}
+//     processSectorData()
+// }
 
 // Create Ticker Tape
 
