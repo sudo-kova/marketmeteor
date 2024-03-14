@@ -2419,7 +2419,7 @@ function editPortfolio() {
         const cells = row.querySelectorAll('td');
         cells.forEach((cell, index) => {
             // Check if cell is in a column that should be editable
-            const isEditableColumn = [0, 1, 2, 7, 8].includes(index);
+            const isEditableColumn = [0, 1, 2, 4, 7, 8].includes(index);
 
             if (cell.isContentEditable) {
                 // If already editable, make it non-editable
@@ -2430,6 +2430,7 @@ function editPortfolio() {
                     cell.textContent = '';
                 }
             } else if (isEditableColumn) {
+                // !! doesn't appear to be working
                 // If not editable and it's an editable column, make it editable
                 cell.contentEditable = 'true';
                 cell.classList.add('editable-cell');
