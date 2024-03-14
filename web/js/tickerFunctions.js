@@ -1,5 +1,5 @@
 import { plotGraph, turnCalendarIconWhite } from './commonFunctions.js';
-import { tickerItems } from './script_parallax.js';
+import { tickerItems, currentTicker} from './script_parallax.js';
 
 
 export function setActiveTicker(index) {

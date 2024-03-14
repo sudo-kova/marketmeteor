@@ -3,7 +3,7 @@
 export let tickerItems;
 export let minute_data_shown = false;
 
-let currentTicker;
+export let currentTicker;
 let tickerlist;
 let tickerDataSummary = {};
 let initialTableData = {}; // save summary data once saved
