@@ -1,6 +1,4 @@
-export let tickerItems;
-export let minute_data_shown = false;
-
+// get and set functions
 let currentTicker;
 export function setCurrentTicker(newTicker) {
     currentTicker = newTicker;
@@ -25,21 +23,19 @@ export function getSectorDataCache() {
     return sectorDataCache;
 }
 
+export let tickerItems;
+export let minute_data_shown = false;
+
 let tickerlist;
 let tickerDataSummary = {};
 let initialTableData = {}; // save summary data once saved
 let currentTableData = {}; // to maintaine state of currently filtered data
-
 
 let isSummaryFetched = false;
 let isFilterModalOpen = false;
 const columnNames = ['Ticker', 'Record', 'Minimum M20', 'Latest Earnings Offset'];
 
 let sortDirection = 'ascending'; // default direction of rows
-
-
-
-
 
 let globalData = []; // This will hold the data fetched from /get-m20-data
 
