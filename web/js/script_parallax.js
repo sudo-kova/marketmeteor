@@ -2468,3 +2468,15 @@ window.onload = function() {
 //         fetchAndDisplayData();
 //     }, 3000); // 3000 milliseconds = 3 seconds
 // };
+
+document.addEventListener('DOMContentLoaded', () => {
+    const refreshButton = document.getElementById('refresh_m20');
+    if (refreshButton) {
+        refreshButton.addEventListener('click', fetchAndDisplayData);
+    }
+
+    const applyFilterButton = document.getElementById('applyfilter_m20');
+    if (applyFilterButton) {
+        applyFilterButton.addEventListener('click', applyFilter_m20data);
+    }
+});
