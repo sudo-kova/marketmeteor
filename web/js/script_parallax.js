@@ -25,7 +25,7 @@ let globalData = []; // This will hold the data fetched from /get-m20-data
 
 let minute_data_shown = false;
 
-import { setActiveTicker } from './tickerFunctions.js';
+
 
 // function setActiveTicker(index) {
 //     currentTicker = tickerItems[index].textContent.trim()
@@ -93,66 +93,6 @@ fetch('/api/tickers.json', {
     // populateTable_array(tickers);
 });
 
-function showImagesForTicker(ticker) {
-    const imageDisplayDiv = document.querySelector('.image-display');
-    imageDisplayDiv.innerHTML = '';  // Clear previous images
-
-    for (let i = 1; i <= 2; i++) {
-        const img = document.createElement('img');
-        img.src = `imgs/${ticker}_chart_${i}.png`;
-        imageDisplayDiv.appendChild(img);
-    }
-}
-
-let isCalendarActive = false;
-let isSearchActive = true;
-
-document.querySelector('.calendar-icon').addEventListener('click', function() {
-
-    console.log('clicked calendar')
-
-    const overlay_rb = document.getElementById('rollback-overlay');
-    const searchBox_rb = document.getElementById('rollback-box');
-
-    accumulatedString = '';
-    searchBox_rb.value = '';
-
-    overlay_rb.style.display = 'flex'; // Display the overlay
-
-    isCalendarActive = true;
-    isSearchActive = false;
-
-});
-
-// for clicking search icon
-document.querySelector('.search-icon').addEventListener('click', function() {
-    const overlay = document.getElementById('search-overlay');
-    const searchBox = document.getElementById('search-box');
-    
-    // Reset the accumulated string and search box value
-    accumulatedString = '';
-    searchBox.value = '';
-
-    overlay.style.display = 'flex'; // Display the overlay
-
-    isSearchActive = true;
-    isCalendarActive = false;
-
-});
-
-function turnCalendarIconPurple() {
-    // Get the calendar icon div
-    var calendarIcon = document.querySelector('.calendar-icon');
-
-    // Get all SVG elements that have a stroke attribute
-    var svgElements = calendarIcon.querySelectorAll('svg [stroke]');
-
-    // Change the stroke color to purple
-    svgElements.forEach(function(element) {
-        element.setAttribute('stroke', '#7a76ff');
-    });
-}
-
 function turnCalendarIconWhite() {
     // Get the calendar icon div
     var calendarIcon = document.querySelector('.calendar-icon');
@@ -166,168 +106,20 @@ function turnCalendarIconWhite() {
     });
 }
 
-// for typing anywhere to begin a search
-let accumulatedString = '';
-let resetTimer;
-
-document.addEventListener('keydown', function(event) {
-
-    if (isFilterModalOpen) {
-        return;
-    }
-
-    const overlay = document.getElementById('search-overlay');
-    const searchBox = document.getElementById('search-box');
-    const searchBox_rb = document.getElementById('rollback-box'); // for calendar
-    const overlay_rb = document.getElementById('rollback-overlay');
-
-    // Clear the previous reset timer
-    clearTimeout(resetTimer);
-
-    if (isSearchActive) {
-        // Handle backspace key
-        if (event.key === 'Backspace') {
-            accumulatedString = accumulatedString.slice(0, -1).toUpperCase(); // Remove the last character
-            searchBox.value = accumulatedString; // Display in uppercase
-            return; // Exit the function here since we don't want to continue with the other logic
-        }
-
-        // If the current value is the placeholder text, reset the accumulated string
-        if (searchBox.value === '') {
-            accumulatedString = '';
-        }
-
-        if (event.key === 'Enter') {
-            if (accumulatedString) {
-                // Show images for the searched ticker
-                // showImagesForTicker(accumulatedString);
-                plotGraph(accumulatedString.toUpperCase())
-        
-                // Highlight the ticker in the ticker tape
-                const tickerItemsArray = Array.from(tickerItems);
-                const index = tickerItemsArray.findIndex(item => item.textContent.trim() === accumulatedString.toUpperCase());
-                
-                if (index !== -1) {
-                    setActiveTicker(index);
-                }
-        
-                accumulatedString = '';
-            }
-            overlay.style.display = 'none'; // Hide the overlay
-        } else if (event.key.length === 1) { // Check if a single character key was pressed (exclude special keys like Shift, Ctrl, etc.)
-            overlay.style.display = 'flex'; // Display the overlay
-
-            // Accumulate the typed characters
-            accumulatedString += event.key;
-            searchBox.value = accumulatedString.toUpperCase(); // Display the accumulated string in uppercase
-
-            // Set a timer to reset the accumulated string and hide the overlay after 2 seconds of inactivity
-            resetTimer = setTimeout(function() {
-                accumulatedString = '';
-                overlay.style.display = 'none';
-            }, 2000); // 2 seconds
-        }
-        // isSearchActive = false;
-
-    } else if (isCalendarActive) {
-
-        // Handle backspace key
-        if (event.key === 'Backspace') {
-            accumulatedString = accumulatedString.slice(0, -1); // Remove the last character
-            searchBox_rb.value = accumulatedString.toUpperCase(); // Display in uppercase
-            return; // Exit the function here since we don't want to continue with the other logic
-        }
-
-        // If the current value is the placeholder text, reset the accumulated string
-        if (searchBox_rb.value === 'Enter Rollback Date...') {
-            accumulatedString = '';
-        }
-
-        if (event.key === 'Enter') {
-            if (accumulatedString) {
-                console.log('accumulatedString: ', accumulatedString);
-        
-                    // potential issue iwth keyup staying attached to this block instead of the 
-                    // search..
-
-                // Send the accumulatedString to the server
-                fetch('/api/process-date', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ 
-                        date: accumulatedString,
-                        ticker: currentTicker
-                     }),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Response from server:', data);
-                    // load new CSV file and replot
-                    plotGraph_rollback(currentTicker)
-                    turnCalendarIconPurple();
-
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        
-                accumulatedString = '';
-            }
-            overlay_rb.style.display = 'none'; // Hide the overlay
-            isCalendarActive = false; // Disable Calendar doPOST until it is clicked again
-            isSearchActive = true; // Enable Search
-
-        } else if (event.key.length === 1) { // Check if a single character key was pressed (exclude special keys like Shift, Ctrl, etc.)
-            overlay_rb.style.display = 'flex'; // Display the overlay
-
-            // Accumulate the typed characters
-            accumulatedString += event.key;
-            searchBox_rb.value = accumulatedString.toUpperCase(); // Display the accumulated string in uppercase
-
-            // Set a timer to reset the accumulated string and hide the overlay after 2 seconds of inactivity
-            resetTimer = setTimeout(function() {
-                accumulatedString = '';
-                overlay_rb.style.display = 'none';
-            }, 10000); // 2 seconds
-        }
-        // isCalendarActive = false;
-
-    }
-
-});
-
-function isM20NonEmpty(row) {
-    // Check if 'm20 pass' or 'm20 fail' is not an empty string
-    let nonEmpty = row['m20 pass'] !== "" || row['m20 fail'] !== "";
-    // console.log("row:", row);
-    // console.log("isM20NonEmpty:", nonEmpty);
-    return nonEmpty;
-}
-
-function getMarkerStyle(rowIndex, totalRows, regularColor, specialOutlineColor) {
-    if (rowIndex >= totalRows - 63) {
-        // Special style for last 63 rows
-        return {
-            color: 'rgba(0, 0, 0, 0)', // Transparent fill
-            line: {
-                color: specialOutlineColor, // Special outline color
-                width: 1 // Width of the outline
-            },
-            size: 8 // Size of the marker
-        };
+function processSectorData() {
+    // Assuming 'currentTicker' is defined and accessible
+    // const tickerData = sectorDataCache.find(row => row.Symbol === currentTicker);
+    const tickerData = sectorDataCache.find(row => row["\uFEFFSymbol"] === currentTicker);
+    if (tickerData) {
+        document.getElementById('sectormerrill').textContent = tickerData.Sector;
+        document.getElementById('companyname').textContent = tickerData.Name;
+        document.getElementById('companyscountry').textContent = tickerData.Country;
     } else {
-        // Standard style for other rows
-        return {
-            color: regularColor, // Regular color
-            line: {
-                color: regularColor, // Regular line color (same as the fill color)
-                width: 1 // Standard width of the outline
-            },
-            size: 8 // Standard size of the marker
-        };
+        document.getElementById('sectormerrill').textContent = 'Unknown';
+        document.getElementById('companyname').textContent = 'Unknown';
+        document.getElementById('companyscountry').textContent = 'Unknown';
     }
+
 }
 
 function plotGraph(ticker) {
@@ -1030,6 +822,225 @@ function plotGraph(ticker) {
         });
     });
 }
+
+import { setActiveTicker } from './tickerFunctions.js';
+
+let isCalendarActive = false;
+let isSearchActive = true;
+
+document.querySelector('.calendar-icon').addEventListener('click', function() {
+
+    console.log('clicked calendar')
+
+    const overlay_rb = document.getElementById('rollback-overlay');
+    const searchBox_rb = document.getElementById('rollback-box');
+
+    accumulatedString = '';
+    searchBox_rb.value = '';
+
+    overlay_rb.style.display = 'flex'; // Display the overlay
+
+    isCalendarActive = true;
+    isSearchActive = false;
+
+});
+
+// for clicking search icon
+document.querySelector('.search-icon').addEventListener('click', function() {
+    const overlay = document.getElementById('search-overlay');
+    const searchBox = document.getElementById('search-box');
+    
+    // Reset the accumulated string and search box value
+    accumulatedString = '';
+    searchBox.value = '';
+
+    overlay.style.display = 'flex'; // Display the overlay
+
+    isSearchActive = true;
+    isCalendarActive = false;
+
+});
+
+function turnCalendarIconPurple() {
+    // Get the calendar icon div
+    var calendarIcon = document.querySelector('.calendar-icon');
+
+    // Get all SVG elements that have a stroke attribute
+    var svgElements = calendarIcon.querySelectorAll('svg [stroke]');
+
+    // Change the stroke color to purple
+    svgElements.forEach(function(element) {
+        element.setAttribute('stroke', '#7a76ff');
+    });
+}
+
+
+
+// for typing anywhere to begin a search
+let accumulatedString = '';
+let resetTimer;
+
+document.addEventListener('keydown', function(event) {
+
+    if (isFilterModalOpen) {
+        return;
+    }
+
+    const overlay = document.getElementById('search-overlay');
+    const searchBox = document.getElementById('search-box');
+    const searchBox_rb = document.getElementById('rollback-box'); // for calendar
+    const overlay_rb = document.getElementById('rollback-overlay');
+
+    // Clear the previous reset timer
+    clearTimeout(resetTimer);
+
+    if (isSearchActive) {
+        // Handle backspace key
+        if (event.key === 'Backspace') {
+            accumulatedString = accumulatedString.slice(0, -1).toUpperCase(); // Remove the last character
+            searchBox.value = accumulatedString; // Display in uppercase
+            return; // Exit the function here since we don't want to continue with the other logic
+        }
+
+        // If the current value is the placeholder text, reset the accumulated string
+        if (searchBox.value === '') {
+            accumulatedString = '';
+        }
+
+        if (event.key === 'Enter') {
+            if (accumulatedString) {
+                // Show images for the searched ticker
+                // showImagesForTicker(accumulatedString);
+                plotGraph(accumulatedString.toUpperCase())
+        
+                // Highlight the ticker in the ticker tape
+                const tickerItemsArray = Array.from(tickerItems);
+                const index = tickerItemsArray.findIndex(item => item.textContent.trim() === accumulatedString.toUpperCase());
+                
+                if (index !== -1) {
+                    setActiveTicker(index);
+                }
+        
+                accumulatedString = '';
+            }
+            overlay.style.display = 'none'; // Hide the overlay
+        } else if (event.key.length === 1) { // Check if a single character key was pressed (exclude special keys like Shift, Ctrl, etc.)
+            overlay.style.display = 'flex'; // Display the overlay
+
+            // Accumulate the typed characters
+            accumulatedString += event.key;
+            searchBox.value = accumulatedString.toUpperCase(); // Display the accumulated string in uppercase
+
+            // Set a timer to reset the accumulated string and hide the overlay after 2 seconds of inactivity
+            resetTimer = setTimeout(function() {
+                accumulatedString = '';
+                overlay.style.display = 'none';
+            }, 2000); // 2 seconds
+        }
+        // isSearchActive = false;
+
+    } else if (isCalendarActive) {
+
+        // Handle backspace key
+        if (event.key === 'Backspace') {
+            accumulatedString = accumulatedString.slice(0, -1); // Remove the last character
+            searchBox_rb.value = accumulatedString.toUpperCase(); // Display in uppercase
+            return; // Exit the function here since we don't want to continue with the other logic
+        }
+
+        // If the current value is the placeholder text, reset the accumulated string
+        if (searchBox_rb.value === 'Enter Rollback Date...') {
+            accumulatedString = '';
+        }
+
+        if (event.key === 'Enter') {
+            if (accumulatedString) {
+                console.log('accumulatedString: ', accumulatedString);
+        
+                    // potential issue iwth keyup staying attached to this block instead of the 
+                    // search..
+
+                // Send the accumulatedString to the server
+                fetch('/api/process-date', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        date: accumulatedString,
+                        ticker: currentTicker
+                     }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Response from server:', data);
+                    // load new CSV file and replot
+                    plotGraph_rollback(currentTicker)
+                    turnCalendarIconPurple();
+
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        
+                accumulatedString = '';
+            }
+            overlay_rb.style.display = 'none'; // Hide the overlay
+            isCalendarActive = false; // Disable Calendar doPOST until it is clicked again
+            isSearchActive = true; // Enable Search
+
+        } else if (event.key.length === 1) { // Check if a single character key was pressed (exclude special keys like Shift, Ctrl, etc.)
+            overlay_rb.style.display = 'flex'; // Display the overlay
+
+            // Accumulate the typed characters
+            accumulatedString += event.key;
+            searchBox_rb.value = accumulatedString.toUpperCase(); // Display the accumulated string in uppercase
+
+            // Set a timer to reset the accumulated string and hide the overlay after 2 seconds of inactivity
+            resetTimer = setTimeout(function() {
+                accumulatedString = '';
+                overlay_rb.style.display = 'none';
+            }, 10000); // 2 seconds
+        }
+        // isCalendarActive = false;
+
+    }
+
+});
+
+function isM20NonEmpty(row) {
+    // Check if 'm20 pass' or 'm20 fail' is not an empty string
+    let nonEmpty = row['m20 pass'] !== "" || row['m20 fail'] !== "";
+    // console.log("row:", row);
+    // console.log("isM20NonEmpty:", nonEmpty);
+    return nonEmpty;
+}
+
+function getMarkerStyle(rowIndex, totalRows, regularColor, specialOutlineColor) {
+    if (rowIndex >= totalRows - 63) {
+        // Special style for last 63 rows
+        return {
+            color: 'rgba(0, 0, 0, 0)', // Transparent fill
+            line: {
+                color: specialOutlineColor, // Special outline color
+                width: 1 // Width of the outline
+            },
+            size: 8 // Size of the marker
+        };
+    } else {
+        // Standard style for other rows
+        return {
+            color: regularColor, // Regular color
+            line: {
+                color: regularColor, // Regular line color (same as the fill color)
+                width: 1 // Standard width of the outline
+            },
+            size: 8 // Standard size of the marker
+        };
+    }
+}
+
+
 
 function plotGraph_rollback(ticker) {
     return new Promise((resolve, reject) => {
@@ -2886,21 +2897,7 @@ function loadSectorData() {
     }
 }
 
-function processSectorData() {
-    // Assuming 'currentTicker' is defined and accessible
-    // const tickerData = sectorDataCache.find(row => row.Symbol === currentTicker);
-    const tickerData = sectorDataCache.find(row => row["\uFEFFSymbol"] === currentTicker);
-    if (tickerData) {
-        document.getElementById('sectormerrill').textContent = tickerData.Sector;
-        document.getElementById('companyname').textContent = tickerData.Name;
-        document.getElementById('companyscountry').textContent = tickerData.Country;
-    } else {
-        document.getElementById('sectormerrill').textContent = 'Unknown';
-        document.getElementById('companyname').textContent = 'Unknown';
-        document.getElementById('companyscountry').textContent = 'Unknown';
-    }
 
-}
 
 function csvToJSON(csv) {
     // Adjusting the split method to handle different types of line breaks
