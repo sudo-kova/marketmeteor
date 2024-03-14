@@ -1,3 +1,7 @@
+import { plotGraph, turnCalendarIconWhite } from './commonFunctions.js';
+import { tickerItems } from './script_parallax.js';
+
+
 export function setActiveTicker(index) {
 
     // assumes that it is called when all dependencies are avaialble in scope of script_parallax.js
