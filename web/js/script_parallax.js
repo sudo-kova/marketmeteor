@@ -2279,4 +2279,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (applyFilterButton) {
         applyFilterButton.addEventListener('click', applyFilter_m20data);
     }
+
+    const refreshholdings = document.getElementById('refreshholdings');
+    if (refreshholdings) {
+        refreshholdings.addEventListener('click', fetchPortData);
+    }
+
 });
