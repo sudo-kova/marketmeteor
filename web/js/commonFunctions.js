@@ -1,5 +1,6 @@
 import { currentTicker, minute_data_shown, sectorDataCache } from './script_parallax.js';
 import { csvToJSON} from './file.js';
+import { palette_purple, palette_red, palette_yellow, palette_green } from './colors.js';
 
 export function loadDataForTicker(ticker) {
     // added parsing for Last-Modified http header

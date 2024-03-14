@@ -9,12 +9,6 @@ let tickerDataSummary = {};
 let initialTableData = {}; // save summary data once saved
 let currentTableData = {}; // to maintaine state of currently filtered data
 
-// colors
-let palette_purple = '#7A76FF' // linked
-let palette_red = '#FF76B7'
-let palette_yellow = '#FBFF76'
-let palette_green = '#76FFBF'
-
 
 let isSummaryFetched = false;
 let isFilterModalOpen = false;
