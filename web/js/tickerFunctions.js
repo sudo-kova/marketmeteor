@@ -1,12 +1,13 @@
 import { plotGraph, turnCalendarIconWhite } from './commonFunctions.js';
-import { tickerItems, currentTicker} from './script_parallax.js';
-
+import { tickerItems} from './script_parallax.js';
+import { setCurrentTicker, getCurrentTicker } from './script_parallax.js';
 
 export function setActiveTicker(index) {
 
     // assumes that it is called when all dependencies are avaialble in scope of script_parallax.js
 
-    currentTicker = tickerItems[index].textContent.trim()
+    // currentTicker = tickerItems[index].textContent.trim()
+    setCurrentTicker(tickerItems[index].textContent.trim())
     // console.log(currentTicker)
     tickerItems[currentTickerIndex].classList.remove('active');
     tickerItems[index].classList.add('active');

@@ -3,7 +3,15 @@
 export let tickerItems;
 export let minute_data_shown = false;
 
-export let currentTicker;
+let currentTicker;
+export function setCurrentTicker(newTicker) {
+    currentTicker = newTicker;
+}
+
+export function getCurrentTicker() {
+    return currentTicker;
+}
+
 let tickerlist;
 let tickerDataSummary = {};
 let initialTableData = {}; // save summary data once saved
@@ -19,8 +27,6 @@ let currentTickerIndex = 0; // keep track of active ticker in ticker-tape
 
 export let sectorDataCache = null;
 let globalData = []; // This will hold the data fetched from /get-m20-data
-
-
 
 // Create Ticker Tape
 
@@ -52,7 +58,7 @@ fetch('/api/tickers.json', {
     });
 
     // Set the initial active ticker and its behavior
-    let currentTickerIndex = 0;
+    currentTickerIndex = 0;
     // const tickerItems = document.querySelectorAll('.ticker-item');
     tickerItems = document.querySelectorAll('.ticker-item');
     
@@ -263,29 +269,7 @@ document.addEventListener('keydown', function(event) {
 
 
 
-function getMarkerStyle(rowIndex, totalRows, regularColor, specialOutlineColor) {
-    if (rowIndex >= totalRows - 63) {
-        // Special style for last 63 rows
-        return {
-            color: 'rgba(0, 0, 0, 0)', // Transparent fill
-            line: {
-                color: specialOutlineColor, // Special outline color
-                width: 1 // Width of the outline
-            },
-            size: 8 // Size of the marker
-        };
-    } else {
-        // Standard style for other rows
-        return {
-            color: regularColor, // Regular color
-            line: {
-                color: regularColor, // Regular line color (same as the fill color)
-                width: 1 // Standard width of the outline
-            },
-            size: 8 // Standard size of the marker
-        };
-    }
-}
+
 
 
 

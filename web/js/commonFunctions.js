@@ -1,6 +1,7 @@
-import { currentTicker, minute_data_shown, sectorDataCache } from './script_parallax.js';
+import { minute_data_shown, sectorDataCache } from './script_parallax.js';
 import { csvToJSON} from './file.js';
 import { palette_purple, palette_red, palette_yellow, palette_green } from './colors.js';
+import { setCurrentTicker, getCurrentTicker } from './script_parallax.js';
 
 export function getMarkerStyle(rowIndex, totalRows, regularColor, specialOutlineColor) {
     if (rowIndex >= totalRows - 63) {
@@ -766,7 +767,7 @@ export function plotGraph(ticker) {
 export function processSectorData() {
     // Assuming 'currentTicker' is defined and accessible
     // const tickerData = sectorDataCache.find(row => row.Symbol === currentTicker);
-    let tickerData = sectorDataCache.find(row => row["\uFEFFSymbol"] === currentTicker);
+    let tickerData = sectorDataCache.find(row => row["\uFEFFSymbol"] === getCurrentTicker());
     if (tickerData) {
         document.getElementById('sectormerrill').textContent = tickerData.Sector;
         document.getElementById('companyname').textContent = tickerData.Name;
