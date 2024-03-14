@@ -1,4 +1,4 @@
-import { plotGraph, turnCalendarIconWhite, processSectorData } from './commonFunctions.js';
+import { plotGraph, turnCalendarIconWhite } from './commonFunctions.js';
 import { tickerItems } from './script_parallax.js';
 import { setCurrentTicker, getCurrentTicker, setCurrentTickerIndex, getCurrentTickerIndex } from './script_parallax.js';
 import { loadSectorData, processSectorData } from './sectors.js';
