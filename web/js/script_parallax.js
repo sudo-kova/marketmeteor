@@ -261,13 +261,7 @@ document.addEventListener('keydown', function(event) {
 
 });
 
-function isM20NonEmpty(row) {
-    // Check if 'm20 pass' or 'm20 fail' is not an empty string
-    let nonEmpty = row['m20 pass'] !== "" || row['m20 fail'] !== "";
-    // console.log("row:", row);
-    // console.log("isM20NonEmpty:", nonEmpty);
-    return nonEmpty;
-}
+
 
 function getMarkerStyle(rowIndex, totalRows, regularColor, specialOutlineColor) {
     if (rowIndex >= totalRows - 63) {

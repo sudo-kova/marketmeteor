@@ -2,6 +2,14 @@ import { currentTicker, minute_data_shown, sectorDataCache } from './script_para
 import { csvToJSON} from './file.js';
 import { palette_purple, palette_red, palette_yellow, palette_green } from './colors.js';
 
+export function isM20NonEmpty(row) {
+    // Check if 'm20 pass' or 'm20 fail' is not an empty string
+    let nonEmpty = row['m20 pass'] !== "" || row['m20 fail'] !== "";
+    // console.log("row:", row);
+    // console.log("isM20NonEmpty:", nonEmpty);
+    return nonEmpty;
+}
+
 export function loadDataForTicker(ticker) {
     // added parsing for Last-Modified http header
     return fetch(`/api/chartdata/${ticker}.csv`, {
