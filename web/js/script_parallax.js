@@ -7,7 +7,6 @@ let currentTicker;
 export function setCurrentTicker(newTicker) {
     currentTicker = newTicker;
 }
-
 export function getCurrentTicker() {
     return currentTicker;
 }
@@ -23,7 +22,15 @@ let isFilterModalOpen = false;
 const columnNames = ['Ticker', 'Record', 'Minimum M20', 'Latest Earnings Offset'];
 
 let sortDirection = 'ascending'; // default direction of rows
-let currentTickerIndex = 0; // keep track of active ticker in ticker-tape
+
+let currentTickerIndex;  //  // keep track of active ticker in ticker-tape
+export function setCurrentTickerIndex(newIndex) {
+    currentTickerIndex = newIndex;
+}
+export function getCurrentTickerIndex() {
+    return currentTickerIndex;
+}
+
 
 export let sectorDataCache = null;
 let globalData = []; // This will hold the data fetched from /get-m20-data
@@ -58,7 +65,9 @@ fetch('/api/tickers.json', {
     });
 
     // Set the initial active ticker and its behavior
-    currentTickerIndex = 0;
+    // currentTickerIndex = 0;
+    setCurrentTickerIndex(0)
+
     // const tickerItems = document.querySelectorAll('.ticker-item');
     tickerItems = document.querySelectorAll('.ticker-item');
     
