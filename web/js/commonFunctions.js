@@ -1,4 +1,6 @@
-import { minute_data_shown, sectorDataCache } from './script_parallax.js';
+import { minute_data_shown } from './script_parallax.js';
+import { setSectorDataCache, getSectorDataCache } from './script_parallax.js';
+
 import { csvToJSON} from './file.js';
 import { palette_purple, palette_red, palette_yellow, palette_green } from './colors.js';
 import { setCurrentTicker, getCurrentTicker } from './script_parallax.js';
@@ -767,7 +769,7 @@ export function plotGraph(ticker) {
 export function processSectorData() {
     // Assuming 'currentTicker' is defined and accessible
     // const tickerData = sectorDataCache.find(row => row.Symbol === currentTicker);
-    let tickerData = sectorDataCache.find(row => row["\uFEFFSymbol"] === getCurrentTicker());
+    let tickerData = getSectorDataCache().find(row => row["\uFEFFSymbol"] === getCurrentTicker());
     if (tickerData) {
         document.getElementById('sectormerrill').textContent = tickerData.Sector;
         document.getElementById('companyname').textContent = tickerData.Name;
@@ -782,13 +784,14 @@ export function processSectorData() {
 
 export function loadSectorData() {
     // Check if data is already fetched and stored in cache
-    if (sectorDataCache) {
+    if (getSectorDataCache()) {
         processSectorData();
     } else {
         fetch('/api/sectors-data')
             .then(response => response.json())
             .then(data => {
-                sectorDataCache = data; // Store data in cache
+                // sectorDataCache = data; // Store data in cache
+                setSectorDataCache(data)
                 processSectorData();
             })
             .catch(error => {

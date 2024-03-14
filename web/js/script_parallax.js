@@ -1,5 +1,3 @@
-// new ui
-// let tickerItems;
 export let tickerItems;
 export let minute_data_shown = false;
 
@@ -9,6 +7,22 @@ export function setCurrentTicker(newTicker) {
 }
 export function getCurrentTicker() {
     return currentTicker;
+}
+
+let currentTickerIndex;  //  // keep track of active ticker in ticker-tape
+export function setCurrentTickerIndex(newIndex) {
+    currentTickerIndex = newIndex;
+}
+export function getCurrentTickerIndex() {
+    return currentTickerIndex;
+}
+
+export let sectorDataCache = null;  // Initially null or set to some default value
+export function setSectorDataCache(newCache) {
+    sectorDataCache = newCache;
+}
+export function getSectorDataCache() {
+    return sectorDataCache;
 }
 
 let tickerlist;
@@ -23,16 +37,10 @@ const columnNames = ['Ticker', 'Record', 'Minimum M20', 'Latest Earnings Offset'
 
 let sortDirection = 'ascending'; // default direction of rows
 
-let currentTickerIndex;  //  // keep track of active ticker in ticker-tape
-export function setCurrentTickerIndex(newIndex) {
-    currentTickerIndex = newIndex;
-}
-export function getCurrentTickerIndex() {
-    return currentTickerIndex;
-}
 
 
-export let sectorDataCache = null;
+
+
 let globalData = []; // This will hold the data fetched from /get-m20-data
 
 // Create Ticker Tape
