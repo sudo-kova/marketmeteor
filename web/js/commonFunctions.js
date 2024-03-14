@@ -1,5 +1,4 @@
 import { minute_data_shown } from './script_parallax.js';
-import { setSectorDataCache, getSectorDataCache } from './script_parallax.js';
 
 import { csvToJSON} from './file.js';
 import { palette_purple, palette_red, palette_yellow, palette_green } from './colors.js';

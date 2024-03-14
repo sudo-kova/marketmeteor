@@ -1,3 +1,5 @@
+import { setSectorDataCache, getSectorDataCache } from './script_parallax.js';
+
 export function loadSectorData() {
     // Check if data is already fetched and stored in cache
     if (getSectorDataCache()) {
