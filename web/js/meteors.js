@@ -1,4 +1,5 @@
 import { setglobalData, getglobalData } from './script_parallax.js';
+import { setMinuteDataShown, getMinuteDataShown } from './script_parallax.js';
 
 export function fetchAndDisplayData() {
 
@@ -193,7 +194,8 @@ export function fetchAndDisplayData() {
                         // Render the plot
                         Plotly.newPlot('graphDiv6', [trace], layout, config);
 
-                        minute_data_shown = true;
+                        // minute_data_shown = true;
+                        setMinuteDataShown(true)
                 
                     })
                     .catch(error => console.error('Error fetching data for ticker', ticker, ':', error));

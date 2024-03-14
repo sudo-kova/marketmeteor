@@ -31,9 +31,15 @@ export function getglobalData() {
     return globalData;
 }
 
+let minuteDataShown = false;  // Private variable
+export function getMinuteDataShown() {
+    return minuteDataShown;
+}
+export function setMinuteDataShown(value) {
+    minuteDataShown = value;
+}
 
 export let tickerItems;
-export let minute_data_shown = false;
 
 let tickerlist;
 let tickerDataSummary = {};
