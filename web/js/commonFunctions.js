@@ -1,4 +1,4 @@
-import { minute_data_shown } from './script_parallax.js';
+import { currentTicker, minute_data_shown, sectorDataCache } from './script_parallax.js';
 import { csvToJSON} from './file.js';
 
 export function loadDataForTicker(ticker) {
@@ -67,7 +67,7 @@ export function plotGraph(ticker) {
             displaylogo: false}
 
             data = data.slice(63); // full data, ignores first 63 rows
-            inplay_data = data.slice(-63); // in play data, last 63 rows
+            let inplay_data = data.slice(-63); // in play data, last 63 rows
             const totalRows = data.length;
 
             // ---- Information Bar ----
@@ -106,15 +106,15 @@ export function plotGraph(ticker) {
             // > Overall Team Record (includes in play)
             const m20PassCount = data.filter(row => row['m20 pass'] !== null && row['m20 pass'] !== "").length;
             const m20FailCount = data.filter(row => row['m20 fail'] !== null && row['m20 fail'] !== "").length;
-            Pwin =  (m20PassCount / (m20PassCount + m20FailCount) * 100).toFixed(2)
-            recordValue = m20PassCount + " - " + m20FailCount + " (" + Pwin + "%)"
+            let Pwin =  (m20PassCount / (m20PassCount + m20FailCount) * 100).toFixed(2)
+            let recordValue = m20PassCount + " - " + m20FailCount + " (" + Pwin + "%)"
             document.getElementById('recordValue').textContent = recordValue;
 
             // > In-Play Team Record (last 63 rows)
             const m20PassCount_inplay = inplay_data.filter(row => row['m20 pass'] !== null && row['m20 pass'] !== "").length;
             const m20FailCount_inplay = inplay_data.filter(row => row['m20 fail'] !== null && row['m20 fail'] !== "").length;
             Pwin =  (m20PassCount_inplay / (m20PassCount_inplay + m20FailCount_inplay) * 100).toFixed(2)
-            inPlayValue = m20PassCount_inplay + " - " + m20FailCount_inplay + " (" + Pwin + "%)"
+            let inPlayValue = m20PassCount_inplay + " - " + m20FailCount_inplay + " (" + Pwin + "%)"
             document.getElementById('inPlayValue').textContent = inPlayValue;
 
             // document.getElementById('m20FailCount').textContent = m20FailCount;
@@ -728,6 +728,40 @@ export function plotGraph(ticker) {
             reject(error);
         });
     });
+}
+
+export function processSectorData() {
+    // Assuming 'currentTicker' is defined and accessible
+    // const tickerData = sectorDataCache.find(row => row.Symbol === currentTicker);
+    const tickerData = sectorDataCache.find(row => row["\uFEFFSymbol"] === currentTicker);
+    if (tickerData) {
+        document.getElementById('sectormerrill').textContent = tickerData.Sector;
+        document.getElementById('companyname').textContent = tickerData.Name;
+        document.getElementById('companyscountry').textContent = tickerData.Country;
+    } else {
+        document.getElementById('sectormerrill').textContent = 'Unknown';
+        document.getElementById('companyname').textContent = 'Unknown';
+        document.getElementById('companyscountry').textContent = 'Unknown';
+    }
+
+}
+
+export function loadSectorData() {
+    // Check if data is already fetched and stored in cache
+    if (sectorDataCache) {
+        processSectorData();
+    } else {
+        fetch('/api/sectors-data')
+            .then(response => response.json())
+            .then(data => {
+                sectorDataCache = data; // Store data in cache
+                processSectorData();
+            })
+            .catch(error => {
+                console.error('Error fetching sector data:', error);
+                document.getElementById('sectormerrill').textContent = 'Error loading data';
+            });
+    }
 }
 
 export function turnCalendarIconWhite() {

@@ -23,7 +23,7 @@ const columnNames = ['Ticker', 'Record', 'Minimum M20', 'Latest Earnings Offset'
 let sortDirection = 'ascending'; // default direction of rows
 let currentTickerIndex = 0; // keep track of active ticker in ticker-tape
 
-let sectorDataCache = null;
+export let sectorDataCache = null;
 let globalData = []; // This will hold the data fetched from /get-m20-data
 
 
@@ -79,26 +79,6 @@ fetch('/api/tickers.json', {
     // populateTable(tickers);
     // populateTable_array(tickers);
 });
-
-
-
-function processSectorData() {
-    // Assuming 'currentTicker' is defined and accessible
-    // const tickerData = sectorDataCache.find(row => row.Symbol === currentTicker);
-    const tickerData = sectorDataCache.find(row => row["\uFEFFSymbol"] === currentTicker);
-    if (tickerData) {
-        document.getElementById('sectormerrill').textContent = tickerData.Sector;
-        document.getElementById('companyname').textContent = tickerData.Name;
-        document.getElementById('companyscountry').textContent = tickerData.Country;
-    } else {
-        document.getElementById('sectormerrill').textContent = 'Unknown';
-        document.getElementById('companyname').textContent = 'Unknown';
-        document.getElementById('companyscountry').textContent = 'Unknown';
-    }
-
-}
-
-
 
 import { plotGraph, turnCalendarIconWhite } from './commonFunctions.js';
 import { setActiveTicker } from './tickerFunctions.js';
@@ -2131,23 +2111,7 @@ function loadRollbackDataForTicker(ticker) {
         });
 }
 
-function loadSectorData() {
-    // Check if data is already fetched and stored in cache
-    if (sectorDataCache) {
-        processSectorData();
-    } else {
-        fetch('/api/sectors-data')
-            .then(response => response.json())
-            .then(data => {
-                sectorDataCache = data; // Store data in cache
-                processSectorData();
-            })
-            .catch(error => {
-                console.error('Error fetching sector data:', error);
-                document.getElementById('sectormerrill').textContent = 'Error loading data';
-            });
-    }
-}
+
 
 
 function adjustGraphHeights() {
