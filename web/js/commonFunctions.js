@@ -1,3 +1,5 @@
+import { minute_data_shown } from './script_parallax.js';
+
 export function loadDataForTicker(ticker) {
     // added parsing for Last-Modified http header
     return fetch(`/api/chartdata/${ticker}.csv`, {
