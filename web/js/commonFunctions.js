@@ -1,4 +1,5 @@
-import { minute_data_shown } from './script_parallax.js';
+// import { minute_data_shown } from './script_parallax.js';
+import { setMinuteDataShown, getMinuteDataShown } from './script_parallax.js';
 
 import { csvToJSON} from './file.js';
 import { palette_purple, palette_red, palette_yellow, palette_green } from './colors.js';
@@ -74,7 +75,7 @@ export function plotGraph(ticker) {
 
             // console.log('inside plotGraph')
 
-            if (minute_data_shown) {
+            if (getMinuteDataShown()) {
 
                 // remove showdiv class from div with id = rd_oneminute
                 // add hidediv class from div with id = rd_oneminute
@@ -94,7 +95,8 @@ export function plotGraph(ticker) {
                 });
 
                 // Update the minute_data_shown state
-                minute_data_shown = false;
+                // minute_data_shown = false;
+                setMinuteDataShown(false)
 
             }
             // ---- finished ensuring that the 1 minute plot is hiddden
