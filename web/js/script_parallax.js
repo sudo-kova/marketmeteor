@@ -1,4 +1,4 @@
-// get and set functions
+// GET AND SET FUNCTIONS
 let currentTicker;
 export function setCurrentTicker(newTicker) {
     currentTicker = newTicker;
@@ -31,7 +31,7 @@ export function getglobalData() {
     return globalData;
 }
 
-let minuteDataShown = false;  // Private variable
+let minuteDataShown = false;
 export function getMinuteDataShown() {
     return minuteDataShown;
 }
@@ -45,11 +45,9 @@ let tickerlist;
 let tickerDataSummary = {};
 let initialTableData = {}; // save summary data once saved
 let currentTableData = {}; // to maintaine state of currently filtered data
-
 let isSummaryFetched = false;
 let isFilterModalOpen = false;
 const columnNames = ['Ticker', 'Record', 'Minimum M20', 'Latest Earnings Offset'];
-
 let sortDirection = 'ascending'; // default direction of rows
 
 // Create Ticker Tape
@@ -105,6 +103,8 @@ fetch('/api/tickers.json', {
     // populateTable(tickers);
     // populateTable_array(tickers);
 });
+
+// import dependencies
 
 import { plotGraph, turnCalendarIconWhite } from './commonFunctions.js';
 import { setActiveTicker } from './tickerFunctions.js';
