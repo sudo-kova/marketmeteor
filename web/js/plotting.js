@@ -2,6 +2,7 @@ import { palette_purple, palette_red, palette_yellow, palette_green } from './co
 import { isM20NonEmpty } from './commonFunctions.js';
 import { setMinuteDataShown, getMinuteDataShown } from './script_parallax.js';
 import { loadSectorData, processSectorData } from './sectors.js';
+import { loadDataForTicker } from './tickerFunctions.js';
 
 export function getMarkerStyle(rowIndex, totalRows, regularColor, specialOutlineColor) {
     if (rowIndex >= totalRows - 63) {
