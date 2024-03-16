@@ -46,7 +46,8 @@ base_paths = [
     # "sweep/Unique_Pwin80plus_earnings_neg63to14_avrgdurationLT21_GTnegpt5dd_mmGTnegpt35/start10000/",
     "sweep/Unique_Pwin80plus_earnings_neg63to40_avrgdurationLT21_GTnegpt5dd_mmGTnegpt35/start10000/",
     "sweep/dads_filter/start10000/",
-    "sweep/dads_filter_80/start10000/"
+    "sweep/dads_filter_80/start10000/",
+    "sweep/dads_filter_earn/start10000/"
 ]
 
 # base_paths = ["../../../data/PortSim/" + base_path for i in base_paths]

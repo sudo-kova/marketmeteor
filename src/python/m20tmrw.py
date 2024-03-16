@@ -44,7 +44,8 @@ else:
     validated_tickers_file = os.path.join(base_path, 'raw_stock_data', 'tickerlists', 'watchlist.txt')
 
 daily_data_directory = os.path.join(base_path, 'raw_stock_data', 'daily_data')
-chart_data_directory = os.path.join(base_path, 'm20perf_L2016', 'charts', 'repo', 'm20', 'R08', 'chartdata2')
+# chart_data_directory = os.path.join(base_path, 'm20perf_L2016', 'charts', 'repo', 'm20', 'R08', 'chartdata2')
+chart_data_directory = os.path.join(base_path, 'm20perf_L2016', 'charts', 'repo', 'm20', 'R08', 'chartdata2_filter6')
 
 print(f'tickers: {validated_tickers_file}')
 
@@ -135,7 +136,9 @@ class IndividualTicker:
                 '63d peak': peak_63d,
                 'chance': data['chance'].values[0],
                 'Earnings Offset Closest': data['Earnings Offset Closest'].values[0],
-                'Overall Record': record_value
+                'Overall Record': record_value,
+                'average_duration': data['average_duration'].values[0],
+                'total_days_below_threshold': data['total_days_below_threshold'].values[0],
             }
         except Exception as e:
             print(f"Failed to get additional details for {ticker}: {e}")
@@ -182,7 +185,7 @@ def calculate_m20tmrw(ticker, daily_data_directory, chart_data_directory, result
             results[ticker].update(additional_details)
         else:
             # In case additional details couldn't be fetched, populate with None
-            for col in ['Close', '63d %', 'daily delta', 'previous daily delta', '63d peak', 'chance', 'Earnings Offset Closest']:
+            for col in ['Close', '63d %', 'daily delta', 'previous daily delta', '63d peak', 'chance', 'Earnings Offset Closest', 'average_duration', 'total_days_below_threshold']:
                 results[ticker][col] = None
 
         # Assume additional_details is a list of dictionaries, each representing a day's data for the ticker
@@ -201,7 +204,9 @@ def calculate_m20tmrw(ticker, daily_data_directory, chart_data_directory, result
             'previous daily delta': None,
             '63d peak': None,
             'chance': None,
-            'Earnings Offset Closest': None
+            'Earnings Offset Closest': None,
+            'average_duration': None,
+            'total_days_below_threshold': None
         }
 
         results[ticker]['Overall Record'] = "N/A"
@@ -238,7 +243,7 @@ csv_filename = "../../data/marketmeteors/m20tmrw_prices.csv"
 
 with open(csv_filename, mode='w', newline='') as file:
     writer = csv.writer(file)
-    writer.writerow(["Ticker", "m20tmrw", "Close", "63d %", "daily delta", "previous daily delta", "63d peak", "chance", "Earnings Offset Closest", "Overall Record"])
+    writer.writerow(["Ticker", "m20tmrw", "Close", "63d %", "daily delta", "previous daily delta", "63d peak", "chance", "Earnings Offset Closest", "Overall Record", "average_duration", "total_days_below_threshold"])
 
     for ticker, details in m20tmrw_results.items():
         writer.writerow([
@@ -251,5 +256,7 @@ with open(csv_filename, mode='w', newline='') as file:
             details.get('63d peak'),
             details.get('chance'),
             details.get('Earnings Offset Closest'),
-            details.get('Overall Record')  # Add 'Overall Record' to the output
+            details.get('Overall Record'),  # Add 'Overall Record' to the output
+            details.get('average_duration'),
+            details.get('total_days_below_threshold')
         ])
