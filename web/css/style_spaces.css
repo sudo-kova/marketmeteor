@@ -46,3 +46,8 @@ body {
     background-color: #ddd;
     border-radius: 16px;
 }
+
+li {
+    font-size: 12px !important;
+    margin: 0 !important; /* Override margin */
+}
