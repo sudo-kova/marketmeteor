@@ -184,7 +184,7 @@ export function plotGraph(ticker) {
                 text: data.map(row => {
                     let sixtyThreeDPercent = (parseFloat(row['63d %']) * 100).toFixed(2);
                     let oneDPercent = (parseFloat(row['daily delta']) * 100).toFixed(2);
-                    return `Date: ${row['Date']}<br>63d %: ${sixtyThreeDPercent}%<br>1d %: ${oneDPercent}%<br>Close: ${row['Close']}<br>Chances: ${row['chance']}<br>Earnings Offset Closest: ${row['Earnings Offset Closest']}`;
+                    return `Date: ${row['Date']}<br>63d %: ${sixtyThreeDPercent}%<br>1d %: ${oneDPercent}%<br>Close: ${row['Close']}<br>Chances: ${row['chance']}<br>Earnings Offset Closest: ${row['Earnings Offset Closest']}<br>Avrg Days Below Threshold: ${row['average_duration']}<br>Total Days Below Threshold: ${row['total_days_below_threshold']}`;
                 }),
                 type: 'scatter',
                 mode: 'lines',
@@ -218,7 +218,7 @@ export function plotGraph(ticker) {
                 text: data.map(row => {
                     let sixtyThreeDPercent = (parseFloat(row['63d %']) * 100).toFixed(2); // Format 63d % value
                     let oneDPercent = (parseFloat(row['daily delta']) * 100).toFixed(2); // Format 1d % value
-                    return `Date: ${row['Date']}<br>63d %: ${sixtyThreeDPercent}%<br>1d %: ${oneDPercent}%<br>Close: ${row['Close']}<br>Chances: ${row['chance']}<br>Earnings Offset Closest: ${row['Earnings Offset Closest']}`;
+                    return `Date: ${row['Date']}<br>63d %: ${sixtyThreeDPercent}%<br>1d %: ${oneDPercent}%<br>Close: ${row['Close']}<br>Chances: ${row['chance']}<br>Earnings Offset Closest: ${row['Earnings Offset Closest']}<br>Avrg Days Below Threshold: ${row['average_duration']}<br>Total Days Below Threshold: ${row['total_days_below_threshold']}`;
                 }),
                 type: 'scatter',
                 mode: 'lines',
@@ -729,6 +729,8 @@ export function plotGraph(ticker) {
         });
     });
 }
+
+// note that rollback does not have access to the two new columns until rollback_v2.py is updated
 
 export function plotGraph_rollback(ticker) {
     return new Promise((resolve, reject) => {
