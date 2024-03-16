@@ -115,6 +115,8 @@ export function fetchAndDisplayData() {
                 row.insertCell().textContent = oneDayPct;       // Add 1d %
                 row.insertCell().textContent = live_63d_peak;       // was sixtyThreeDayPct
                 row.insertCell().textContent = earningsOffsetClosest;
+                row.insertCell().textContent = item['average_duration'];
+                row.insertCell().textContent = item['total_days_below_threshold'];
                 row.insertCell().textContent = pulledAt;     // Changed from item.lastUpdated
 
 
@@ -319,6 +321,8 @@ export function applyFilter_m20data() {
                 row.insertCell().textContent = oneDayPct;       // Add 1d %
                 row.insertCell().textContent = live_63d_peak;       // was sixtyThreeDayPct
                 row.insertCell().textContent = earningsOffsetClosest;
+                row.insertCell().textContent = item['average_duration'];
+                row.insertCell().textContent = item['total_days_below_threshold'];
                 row.insertCell().textContent = pulledAt;     // Changed from item.lastUpdated
 
 

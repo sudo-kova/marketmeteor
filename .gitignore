@@ -1,4 +1,4 @@
-
+src/log
 data/chartdata/historic/*
 data/chartdata/rollback/*
 !data/chartdata/rollback/.gitkeep
