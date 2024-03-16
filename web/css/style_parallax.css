@@ -1157,6 +1157,10 @@ li {
   margin-right: 12px;
 }
 
+.highprobability{
+  color: #76FFBF
+}
+
 /* MEDIA QUERY for smaller screens (e.g., phones) */
 @media (max-width: 1000px) {
   .meteor-ui .row {
