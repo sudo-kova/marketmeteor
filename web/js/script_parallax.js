@@ -50,7 +50,7 @@ let isFilterModalOpen = false;
 const columnNames = ['Ticker', 'Record', 'Minimum M20', 'Latest Earnings Offset'];
 let sortDirection = 'ascending'; // default direction of rows
 
-// Create Ticker Tape
+// CREATE TICKER TAPE
 
 fetch('/api/tickers.json', {
     cache: 'no-cache', // or 'reload'
@@ -107,13 +107,15 @@ fetch('/api/tickers.json', {
 // IMPORT DEPENDENCIES
 
 import { turnCalendarIconWhite } from './commonFunctions.js';
-import { plotGraph, plotGraph_rollback } from './plotting.js';
-import { setActiveTicker } from './tickerFunctions.js';
 import { csvToJSON } from './file.js';
 import { palette_purple, palette_red, palette_yellow, palette_green } from './colors.js';
+import { plotGraph, plotGraph_rollback } from './plotting.js';
+import { setActiveTicker } from './tickerFunctions.js';
 import { fetchPortData } from './holdings.js';
 import { applyFilter_m20data, fetchAndDisplayData } from './meteors.js';
 import { setupTitlesInteraction, setupWalkaround } from './tutorial.js';
+
+// SETUP MAIN BUTTONS (CALENDAR AND SEARCH)
 
 let isCalendarActive = false;
 let isSearchActive = true;
@@ -164,9 +166,8 @@ function turnCalendarIconPurple() {
     });
 }
 
+// SETUP FOR TYPE ANYWHERE SEARCH
 
-
-// for typing anywhere to begin a search
 let accumulatedString = '';
 let resetTimer;
 
@@ -300,7 +301,7 @@ document.addEventListener('keydown', function(event) {
 
 
 
-
+// SETUP FOR PLOT RESIZE WHEN WINDOW CHANGES SIZE
 
 function resizePlotlyGraphs() {
     // removed 'graphDiv5' since it is a table not a plot
@@ -323,11 +324,10 @@ window.addEventListener('resize', function() {
     resizePlotlyGraphs();
 });
 
+// TOGGLE SETTINGS OF MARKETMETORS/HOLDINGS TABLE
 
-
-
-// Function to toggle the 'hidediv' class
 function toggleHiddenTableMenu() {
+    // toggle the 'hidediv' class
     var elements = document.querySelectorAll('.hiddentablemenu');
     elements.forEach(function(element) {
         element.classList.toggle('hidediv');
@@ -413,7 +413,7 @@ function handlePath() {
 }
 
 
-
+// SETUP EVENT LISTENERS FOR EACH OF THE FIVE GRIDS FOR FULL SCREEN
 function setUpEventListeners() {
 
     document.getElementById('watchlist').addEventListener('dblclick', function(event) {
@@ -659,9 +659,6 @@ function setUpEventListeners() {
     });
 
 }
-
-// window.onload = adjustGraphHeights;
-// window.onresize = adjustGraphHeights;
 
 window.onload = function() {
     handlePath();
