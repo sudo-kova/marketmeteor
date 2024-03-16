@@ -106,7 +106,8 @@ fetch('/api/tickers.json', {
 
 // import dependencies
 
-import { plotGraph, turnCalendarIconWhite } from './commonFunctions.js';
+import { turnCalendarIconWhite } from './commonFunctions.js';
+import { plotGraph } from './plotting.js';
 import { setActiveTicker } from './tickerFunctions.js';
 import { csvToJSON } from './file.js';
 import { palette_purple, palette_red, palette_yellow, palette_green } from './colors.js';
