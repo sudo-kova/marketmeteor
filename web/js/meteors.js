@@ -87,6 +87,10 @@ export function fetchAndDisplayData() {
                   'N/A';
 
 
+            const averageDuration = parseFloat(item['average_duration']);
+            const totalDaysBelowThreshold = parseFloat(item['total_days_below_threshold']);
+            const earningsInRangeFilt6 = !isNaN(earningsValue) && earningsValue >= -63 && earningsValue <= 14;
+
             // console.log(`Ticker: ${item['Ticker']}, Current Price: ${currentPrice}, m20 Price: ${m20Price}, Price Diff: ${pricediff}, Price Diff Pct: ${pricediffpct}, Overall Record Pct: ${overallRecordPct}, One Day Pct Val: ${oneDayPctVal}, Earnings In Range: ${earningsInRange}`);
 
             if (pricediffpct >= minPriceDiffPct && 
@@ -104,6 +108,20 @@ export function fetchAndDisplayData() {
                     row.classList.add('purple-glow');
                 }
 
+                let category = ''
+                // earningsValue between -63 and 14 (including -63 but not including 14)
+                // average_duration <= 7
+                // total_days_below_threshold < 126
+                // live_63d_peak >= -35
+                // live_1d >= -5
+                if(averageDuration <= 7 && 
+                    totalDaysBelowThreshold < 126 &&
+                    earningsInRangeFilt6 &&
+                    parseFloat(live_63d_peak) >= -35 &&  // Ensure proper parsing for comparison
+                    parseFloat(live_1d) >= -5) {         // Ensure proper parsing for comparison
+                     category = 'High Probability';      // Renamed for clarity
+                 }
+
                 // console.log("Adding row for:", item['Ticker'], item[overallRecordKey], pulledAt); // Debugging line
 
                 row.insertCell().textContent = item['Ticker'];        // Changed from item.ticker
@@ -118,6 +136,7 @@ export function fetchAndDisplayData() {
                 row.insertCell().textContent = earningsOffsetClosest;
                 row.insertCell().textContent = item['average_duration'];
                 row.insertCell().textContent = item['total_days_below_threshold'];
+                row.insertCell().textContent = category;
                 row.insertCell().textContent = pulledAt;     // Changed from item.lastUpdated
 
 
