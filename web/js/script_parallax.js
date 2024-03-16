@@ -726,10 +726,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
 
     // Initialize on the first active link
-    const activeLink = document.querySelector('.nav-link.active');
-    if (activeLink) {
-        moveHighlightTo(activeLink);
-    }
+    // const activeLink = document.querySelector('.nav-link.active');
+    // if (activeLink) {
+    //     moveHighlightTo(activeLink);
+    // }
 
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
