@@ -110,7 +110,7 @@ import { plotGraph, turnCalendarIconWhite } from './commonFunctions.js';
 import { setActiveTicker } from './tickerFunctions.js';
 import { csvToJSON } from './file.js';
 import { palette_purple, palette_red, palette_yellow, palette_green } from './colors.js';
-import { fetchPortData } from './holdings.js';
+import { fetchPortData, applyFilter_m20data } from './holdings.js';
 
 let isCalendarActive = false;
 let isSearchActive = true;
