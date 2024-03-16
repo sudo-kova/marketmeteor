@@ -175,3 +175,239 @@ export function fetchPortData() {
     })
     .catch(error => console.error('Error fetching data:', error));
 }
+
+export function createPortfolio_row() {
+    // Get the table element
+    const table = document.getElementById('port-table');
+    let tbody = table.getElementsByTagName('tbody')[0];
+
+    // If tbody doesn't exist, create it and append it to the table
+    if (!tbody) {
+        tbody = document.createElement('tbody');
+        table.appendChild(tbody);
+    }
+
+    // Create a new row
+    const newRow = document.createElement('tr');
+
+    // Define the cell properties
+    const cellProperties = [
+        { editable: true, required: true, placeholder: 'AAPL (in caps)' }, // Ticker
+        { editable: true, required: true, placeholder: 'MM/DD/YYYY' },     // Buy Date
+        { editable: true, required: true, placeholder: '0.00' },           // Buy Price
+        { editable: false },                                               // Last
+        { editable: true, required: false, placeholder: '0.00' },          // Target
+        { editable: false },                                               // 1d %
+        { editable: false },                                               // 63d %
+        { editable: true, required: false, placeholder: 'MM/DD/YYYY' },    // Sell Date
+        { editable: true, required: false, placeholder: '0.00' },          // Sell Price
+        { editable: false },                                               // RTD
+        { editable: false },                                               // RTD (GSPC)
+        { editable: false }                                                // Earnings
+    ];
+
+    // Create cells based on properties
+    cellProperties.forEach((prop, i) => {
+        const newCell = document.createElement('td');
+        newCell.contentEditable = prop.editable;
+
+        if (prop.editable) {
+            if (prop.required) {
+                newCell.classList.add('required-cell');
+                newCell.setAttribute('data-placeholder', prop.placeholder);
+                // Placeholder text and event listeners as before
+                newCell.innerText = prop.placeholder; 
+                newCell.classList.add('placeholder');
+                newCell.addEventListener('focus', function() {
+                    if (this.classList.contains('placeholder')) {
+                        this.innerText = '';
+                        this.classList.remove('placeholder');
+                    }
+                });
+                newCell.addEventListener('blur', function() {
+                    if (this.innerText === '') {
+                        this.innerText = prop.placeholder;
+                        this.classList.add('placeholder');
+                    }
+                });
+            } else {
+                newCell.setAttribute('data-placeholder', prop.placeholder);
+                newCell.innerText = prop.placeholder;
+                newCell.classList.add('placeholder');
+                newCell.addEventListener('focus', function() {
+                    if (this.classList.contains('placeholder')) {
+                        this.innerText = '';
+                        this.classList.remove('placeholder');
+                    }
+                });
+                newCell.addEventListener('blur', function() {
+                    if (this.innerText === '') {
+                        this.innerText = prop.placeholder;
+                        this.classList.add('placeholder');
+                    }
+                });
+            }
+        }
+        newRow.appendChild(newCell);
+    });
+
+    // Append the row to the table
+    tbody.appendChild(newRow);
+}
+
+export function editPortfolio() {
+    // Get all the rows in the tbody of the port-table
+    const rows = document.querySelectorAll('#port-table tbody tr');
+
+    // Toggle the edit mode
+    rows.forEach(row => {
+        const cells = row.querySelectorAll('td');
+        cells.forEach((cell, index) => {
+            // Check if cell is in a column that should be editable
+            const isEditableColumn = [0, 1, 2, 4, 7, 8].includes(index);
+
+            if (cell.isContentEditable) {
+                // If already editable, make it non-editable
+                cell.contentEditable = 'false';
+                cell.classList.remove('editable-cell');
+                if (!isEditableColumn) {
+                    // If it's not an editable column, clear the content
+                    cell.textContent = '';
+                }
+            } else if (isEditableColumn) {
+                // !! doesn't appear to be working
+                // If not editable and it's an editable column, make it editable
+                cell.contentEditable = 'true';
+                cell.classList.add('editable-cell');
+            }
+        });
+    });
+}
+
+export function savePortfolio(){
+
+    validateTable()
+
+    let temphideholdingsSettingsMenu = document.querySelector('.holdingsettingsmenu');
+    temphideholdingsSettingsMenu.classList.add('button-disabled');
+    // disabled all holding settings while saving temporarily
+
+    const userEmail = globalUserEmail; 
+    let portfolioName = document.getElementById('newPortfolioName').value;
+    const table = document.getElementById('port-table');
+    const rows = table.rows;
+    const portfolioData = [];
+
+    // ---- DATA validation ----
+    // Replace spaces with underscores
+    portfolioName = portfolioName.replace(/\s+/g, '_');
+    // Remove special characters, allow only alphanumeric and underscores
+    portfolioName = portfolioName.replace(/[^a-zA-Z0-9_]/g, '');
+    // ---- end of validation ----
+
+    let tickerIndex = -1; // Index of the "Ticker" column
+
+    // Process header row separately to find the "Ticker" column index
+    if (rows.length > 0) {
+        const headerCells = rows[0].cells;
+        const headerData = [];
+        for (let j = 0; j < headerCells.length; j++) {
+            const cellText = headerCells[j].innerText || headerCells[j].textContent;
+            if (cellText === "Ticker") {
+                tickerIndex = j;
+                headerData.push("symbol");
+            } else {
+                headerData.push(cellText);
+            }
+        }
+        portfolioData.push(headerData);
+    }
+
+    // Process remaining rows
+    for (let i = 1; i < rows.length; i++) {
+        const cells = rows[i].cells;
+        const rowData = [];
+        for (let j = 0; j < cells.length; j++) {
+            // if (j === tickerIndex) {
+            //     // Replace "Ticker" with "symbol" in data rows
+            //     rowData.push("symbol");
+            // } else {
+            //     rowData.push(cells[j].innerText || cells[j].textContent);
+            // }
+            rowData.push(cells[j].innerText || cells[j].textContent);
+        }
+        portfolioData.push(rowData);
+    }
+
+    const portfolio = {
+        token: globalToken,
+        user: userEmail,
+        name: portfolioName,
+        data: portfolioData
+    };
+
+    console.log(JSON.stringify(portfolio)); // For demonstration
+
+    // Send JSON to webserver
+    fetch('/api/savePortfolio', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(portfolio)
+    }).then(async response => {
+        // Handle response
+        console.log('Portfolio saved:', response);
+
+        // Check if the response is ok (status code in the range 200-299)
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const responseData = await response.json();
+        console.log('User data:', responseData);
+        
+        const allWatchlists = [...responseData['public_watchlists'], ...responseData['user_watchlists']];
+        updateDropdown(allWatchlists);
+
+    }).catch(error => {
+        // Handle error
+        console.error('Error:', error);
+
+    }).finally(() => {
+        // spinner.style.display = 'none'; // Hide the spinner once the fetch is complete
+        temphideholdingsSettingsMenu.classList.remove('button-disabled');
+    });
+}
+
+// Function to validate the required cells
+export function validateTable() {
+    const requiredCells = document.querySelectorAll('.required-cell');
+    let isValid = true;
+
+    requiredCells.forEach(cell => {
+        // Check if the cell's content is only the placeholder or is empty
+        const isPlaceholderOrEmpty = cell.classList.contains('placeholder') || !cell.textContent.trim();
+
+        if (isPlaceholderOrEmpty) {
+            isValid = false;
+            cell.classList.add('error'); // Highlight or indicate error
+        } else {
+            cell.classList.remove('error');
+        }
+    });
+
+    return isValid;
+}
+
+export const updateDropdown = (watchlists) => {
+    const dropdown = document.getElementById('optionsDropdown');
+    dropdown.innerHTML = ''; // Clear existing options
+
+    watchlists.forEach(watchlist => {
+        const option = document.createElement('option');
+        option.value = watchlist;
+        option.text = watchlist;
+        dropdown.appendChild(option);
+    });
+};
