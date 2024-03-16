@@ -23,10 +23,14 @@ body {
     outline: 1px solid #343437;
     border-radius: 18px;
     /* width: 20px; */
+    position: relative; /* For absolute positioning of highlight */
+
 }
 
 .nav-item {
     display: block;
+    position: relative; /* For stacking context */
+    z-index: 1; /* Above highlight */
 }
 
 .nav-link {
@@ -37,11 +41,6 @@ body {
     display: block;
 }
 
-.nav-link:hover {
-    background-color: #ddd;
-	border-radius: 16px;
-}
-
 .nav-link.active {
     background-color: #ddd;
     border-radius: 16px;
@@ -50,4 +49,14 @@ body {
 li {
     font-size: 12px !important;
     margin: 0 !important; /* Override margin */
+}
+
+.highlight {
+    position: absolute;
+    height: 100%;
+    width: 0; /* Initial width */
+    background-color: #ddd; /* Same as active link background */
+    border-radius: 16px;
+    transition: all 0.3s ease; /* Smooth transition */
+    z-index: 0;
 }

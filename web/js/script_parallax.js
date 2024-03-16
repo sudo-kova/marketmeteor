@@ -697,6 +697,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const navLinks = document.querySelectorAll('.nav-link');
+    const highlight = document.querySelector('.highlight');
+
+    function moveHighlightTo(link) {
+        // Update highlight position and width
+        highlight.style.width = `${link.offsetWidth}px`;
+        highlight.style.left = `${link.offsetLeft}px`;
+    }
+
+    // Initialize on the first active link
+    const activeLink = document.querySelector('.nav-link.active');
+    if (activeLink) {
+        moveHighlightTo(activeLink);
+    }
 
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
@@ -705,6 +718,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Add 'active' class to the clicked link
             this.classList.add('active');
+
+            // Move highlight
+            moveHighlightTo(this);
         });
     });
 
