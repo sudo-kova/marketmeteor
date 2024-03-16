@@ -581,7 +581,8 @@ def main():
     # signals_table_file_name = "Unique_Pwin80plus_earnings_neg63to14_avrgdurationLT21_GTnegpt5dd_mmGTnegpt35"
     # signals_table_file_name = "Unique_Pwin80plus_earnings_neg63to40_avrgdurationLT21_GTnegpt5dd_mmGTnegpt35"
     # signals_table_file_name = "dads_filter"
-    signals_table_file_name = "dads_filter_80"
+    # signals_table_file_name = "dads_filter_80"
+    signals_table_file_name = "dads_filter_earn"
 
     signals_df_full = pd.read_csv(f'../../../data/signal_lists/portfolio_simulation/{signals_table_file_name}.csv')
     nr_signals = len(signals_df_full)

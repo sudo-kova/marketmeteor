@@ -19,7 +19,7 @@ export function fetchAndDisplayData() {
     .then(response => response.json())
     .then(data => {
 
-        // console.log(data); // verified that json file contains all columns
+        console.log(data); // verified that json file contains all columns
         // globalData = data; // store for applyFilter_m20data() later
         setglobalData(data)
 
@@ -237,7 +237,7 @@ export function applyFilter_m20data() {
     const tableBody = document.getElementById('m20-table').getElementsByTagName('tbody')[0];
     tableBody.innerHTML = ''; // Clear existing rows
 
-    globalData.forEach(item => {
+    getglobalData().forEach(item => {
             
             // Handle potentially undefined or malformed 'Overall Record'
 

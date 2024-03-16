@@ -36,7 +36,8 @@ import pandas as pd
 # base_path = "sweep/Unique_Pwin80plus_earnings_neg63to14_avrgdurationLT21_GTnegpt5dd_mmGTnegpt35/start10000/"
 # base_path = "sweep/Unique_Pwin80plus_earnings_neg63to40_avrgdurationLT21_GTnegpt5dd_mmGTnegpt35/start10000/"
 # base_path = "sweep/dads_filter/start10000/"
-base_path = "sweep/dads_filter_80/start10000/"
+# base_path = "sweep/dads_filter_80/start10000/"
+base_path = "sweep/dads_filter_earn/start10000/"
 
 base_path = "../../../data/PortSim/" + base_path
 summary_data = []

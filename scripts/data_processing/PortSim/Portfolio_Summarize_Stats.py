@@ -63,7 +63,8 @@ text_names = [
     # "UNIQUE POSITIONS Pwin >= 80 and earnings [-63,40), average duration <=21, daily delta >= -0.05, 63 d% >= -0.36, <126 days below threshold",
     "UNIQUE POSITIONS Pwin >= 80 and earnings [-63,40), average duration <=21, daily delta >= -0.05, 63 d% >= -0.36, <126 days below threshold",
     "dads filter",
-    "dads filter 80"
+    "dads filter 80",
+    "dads filter earn"
 ]
 
 combined_all_df = pd.DataFrame()
