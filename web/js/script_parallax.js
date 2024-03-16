@@ -697,32 +697,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const navLinks = document.querySelectorAll('.nav-link');
-    const highlight = document.querySelector('.highlight');
+    // const highlight = document.querySelector('.highlight');
 
-    function moveHighlightTo(link) {
-        const highlightWidth = highlight.offsetWidth; // Get the current width of the highlight
-        const startLeft = highlight.offsetLeft; // Get the current left position of the highlight
-        const endLeft = link.offsetLeft; // Get the left position of the target link
-        const endWidth = link.offsetWidth; // Get the width of the target link
+    // function moveHighlightTo(link) {
+    //     const highlightWidth = highlight.offsetWidth; // Get the current width of the highlight
+    //     const startLeft = highlight.offsetLeft; // Get the current left position of the highlight
+    //     const endLeft = link.offsetLeft; // Get the left position of the target link
+    //     const endWidth = link.offsetWidth; // Get the width of the target link
     
-        // Calculate the difference in left position
-        const leftDiff = endLeft - startLeft;
+    //     // Calculate the difference in left position
+    //     const leftDiff = endLeft - startLeft;
     
-        // Calculate the necessary adjustment in width
-        const widthAdjustment = highlightWidth - endWidth;
+    //     // Calculate the necessary adjustment in width
+    //     const widthAdjustment = highlightWidth - endWidth;
     
-        // Animate the highlight
-        highlight.style.transition = 'none'; // Disable transitions temporarily
-        highlight.style.left = `${startLeft}px`;
-        highlight.style.width = `${highlightWidth + leftDiff + widthAdjustment}px`;
+    //     // Animate the highlight
+    //     highlight.style.transition = 'none'; // Disable transitions temporarily
+    //     highlight.style.left = `${startLeft}px`;
+    //     highlight.style.width = `${highlightWidth + leftDiff + widthAdjustment}px`;
     
-        // Allow for the browser to render the frame
-        requestAnimationFrame(() => {
-            highlight.style.transition = 'left 0.3s ease, width 0.3s ease'; // Re-enable transitions
-            highlight.style.left = `${endLeft}px`;
-            highlight.style.width = `${endWidth}px`;
-        });
-    }
+    //     // Allow for the browser to render the frame
+    //     requestAnimationFrame(() => {
+    //         highlight.style.transition = 'left 0.3s ease, width 0.3s ease'; // Re-enable transitions
+    //         highlight.style.left = `${endLeft}px`;
+    //         highlight.style.width = `${endWidth}px`;
+    //     });
+    // }
     
 
     // Initialize on the first active link
