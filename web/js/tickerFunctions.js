@@ -50,3 +50,32 @@ export function loadDataForTicker(ticker) {
             console.error('Error loading data:', error);
         });
 }
+
+export function loadRollbackDataForTicker(ticker) {
+    // added parsing for Last-Modified http header
+    // return fetch(`rollback_chartdata/${ticker}.csv`)
+    return fetch(`/api/rollback_chartdata/${ticker}.csv`, {
+        cache: 'no-cache', // or 'reload'
+        })
+        .then(response => {
+            console.log('Fetch response:', response);
+
+            // Check for last-modified header
+            const lastModified = response.headers.get('Last-Modified');
+            // console.log('Last modified date:', lastModified);
+            document.getElementById('lastmodified').textContent = lastModified;
+
+            // if (lastModified) {
+            //     console.log('Last modified date:', lastModified);
+            // }
+
+            return response.text();
+        })
+        .then(csvText => {
+            // console.log('CSV Text:', csvText);
+            return csvToJSON(csvText);
+        })
+        .catch(error => {
+            console.error('Error loading data:', error);
+        });
+}
