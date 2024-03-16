@@ -36,30 +36,32 @@ from pprint import pprint
 
 
 base_paths = [
-    "sweep/fullset_Pwin90plus/start10000/",
-    "sweep/Pwin90plus_greaterthan50closestabove/start10000/",
-    "sweep/Pwin90plus_earnings_0_to_49/start10000/",
-    "sweep/Pwin90plus_earnings_neg10_to_9/start10000/",
-    "sweep/Pwin90plus_earnings_neg63to7_avrgdurationLT21_GTnegpt3dd_mmGTnegpt25/start10000/",
-    "sweep/Pwin80plus_earnings_neg63to14_avrgdurationLT7_GTnegpt5dd_mmGTnegpt35/start10000/",
-    "sweep/Unique_Pwin80plus_earnings_neg63to14_avrgdurationLT7_GTnegpt5dd_mmGTnegpt35/start10000/",
-    "sweep/Unique_Pwin80plus_earnings_neg63to14_avrgdurationLT21_GTnegpt5dd_mmGTnegpt35/start10000/",
-    "sweep/Unique_Pwin80plus_earnings_neg63to40_avrgdurationLT21_GTnegpt5dd_mmGTnegpt35/start10000/"
+    # "sweep/fullset_Pwin90plus/start10000/",
+    # "sweep/Pwin90plus_greaterthan50closestabove/start10000/",
+    # "sweep/Pwin90plus_earnings_0_to_49/start10000/",
+    # "sweep/Pwin90plus_earnings_neg10_to_9/start10000/",
+    # "sweep/Pwin90plus_earnings_neg63to7_avrgdurationLT21_GTnegpt3dd_mmGTnegpt25/start10000/",
+    # "sweep/Pwin80plus_earnings_neg63to14_avrgdurationLT7_GTnegpt5dd_mmGTnegpt35/start10000/",
+    # "sweep/Unique_Pwin80plus_earnings_neg63to14_avrgdurationLT7_GTnegpt5dd_mmGTnegpt35/start10000/",
+    # "sweep/Unique_Pwin80plus_earnings_neg63to14_avrgdurationLT21_GTnegpt5dd_mmGTnegpt35/start10000/",
+    "sweep/Unique_Pwin80plus_earnings_neg63to40_avrgdurationLT21_GTnegpt5dd_mmGTnegpt35/start10000/",
+    "sweep/dads_filter/start10000/"
 ]
 
 # base_paths = ["../../../data/PortSim/" + base_path for i in base_paths]
 
 text_names = [
-    "Pwin >= 90",
-    "Pwin >= 90 and closest above >-50",
-    "Pwin >= 90 and earnings [0,50)",
-    "Pwin >= 90 and earnings [-10,10)",
-    "Pwin >= 90 and earnings [-63,7), average duration <=21, daily delta >= -0.3, 63 d% >= -0.25",
-    "Pwin >= 80 and earnings [-63,14), average duration <=7, daily delta >= -0.05, 63 d% >= -0.35, <126 days below threshold",
-    "UNIQUE POSITIONS Pwin >= 80 and earnings [-63,14), average duration <=7, daily delta >= -0.05, 63 d% >= -0.36, <126 days below threshold",
-    "UNIQUE POSITIONS Pwin >= 80 and earnings [-63,14), average duration <=21, daily delta >= -0.05, 63 d% >= -0.36, <126 days below threshold",
+    # "Pwin >= 90",
+    # "Pwin >= 90 and closest above >-50",
+    # "Pwin >= 90 and earnings [0,50)",
+    # "Pwin >= 90 and earnings [-10,10)",
+    # "Pwin >= 90 and earnings [-63,7), average duration <=21, daily delta >= -0.3, 63 d% >= -0.25",
+    # "Pwin >= 80 and earnings [-63,14), average duration <=7, daily delta >= -0.05, 63 d% >= -0.35, <126 days below threshold",
+    # "UNIQUE POSITIONS Pwin >= 80 and earnings [-63,14), average duration <=7, daily delta >= -0.05, 63 d% >= -0.36, <126 days below threshold",
+    # "UNIQUE POSITIONS Pwin >= 80 and earnings [-63,14), average duration <=21, daily delta >= -0.05, 63 d% >= -0.36, <126 days below threshold",
+    # "UNIQUE POSITIONS Pwin >= 80 and earnings [-63,40), average duration <=21, daily delta >= -0.05, 63 d% >= -0.36, <126 days below threshold",
     "UNIQUE POSITIONS Pwin >= 80 and earnings [-63,40), average duration <=21, daily delta >= -0.05, 63 d% >= -0.36, <126 days below threshold",
-    "UNIQUE POSITIONS Pwin >= 80 and earnings [-63,40), average duration <=21, daily delta >= -0.05, 63 d% >= -0.36, <126 days below threshold"
+    "dads filter"
 ]
 
 combined_all_df = pd.DataFrame()
@@ -117,4 +119,4 @@ for base_path, text_name in zip(base_paths, text_names):
 
     combined_all_df = pd.concat([combined_all_df, combined_df])
 
-combined_all_df.to_csv(f'../../../data/Portsim/PortSimSummariesPy.csv', index = False)
+combined_all_df.to_csv(f'../../../data/Portsim/PortSimSummariesPy2.csv', index = False)

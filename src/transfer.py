@@ -75,7 +75,8 @@ print('[4] updating portfolios') # -- good on linux
 portfolio_templates = [f for f in os.listdir(farm.web_server_port_folio_directory) if f.endswith('_template.csv')]
 for template in portfolio_templates:
     template_name = template.rsplit('_template.csv', 1)[0]
-    subprocess.run(['python', 'get_portfolio.py', template_name], cwd=farm.web_server_directory)
+    print(f'farm.web_server_directory: {farm.web_server_directory}')
+    subprocess.run(['python', 'get_portfolio.py', template_name, '1'], cwd=farm.web_server_directory)
 
 print('[5] calculating m20tmrw prices')
 # Run m20tmrw.py 0 (0 - full, 1 - watchlist only)

@@ -59,7 +59,7 @@ class Farm:
             return "X:\\Stockland"
         else:
             # Set the Linux base path here
-            return "/path/to/Stockland/on/Linux"
+            return "/media/share/Stockland/"
 
     def _set_tld_base_path(self):
         if self.operating_system == "Windows":

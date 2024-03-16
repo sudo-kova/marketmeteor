@@ -31,8 +31,15 @@ def get_last_price(ticker):
         print(f"An error occurred for ticker: {ticker}. Error: {e}")
         return None
 
-def main(account):   
-    if operating_system == "Windows":
+def main(account, full = '0'):   
+
+    print(full)
+
+    # when run by the C++ server, I only give it the account attribute
+
+    # by default we only update the live price column
+    if full == '1':
+        
 
         runtype = "not_live"
 
@@ -43,6 +50,9 @@ def main(account):
         # Read the portfolio data and the GSPC data
         # portfolio_df = pd.read_csv(Farm.portfolio_template_csv)
         portfolio_df = pd.read_csv(os.path.join(Farm.web_server_port_folio_directory, f'{account}_template.csv'))
+
+        print('template path: ')
+        print(os.path.join(Farm.web_server_port_folio_directory, f'{account}_template.csv'))
 
         GSPC_df = pd.read_csv(Farm.GSPC_data_csv)
         GSPC_last_close = GSPC_df.iloc[-1]['Close']
@@ -146,7 +156,9 @@ def main(account):
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        main(sys.argv[1])
+        arg1 = sys.argv[1]
+        arg2 = sys.argv[2] if len(sys.argv) > 2 else None
+        main(arg1, arg2)
     else:
         print("No account parameter provided.")
         # Handle the error or use a default account value
