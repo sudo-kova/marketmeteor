@@ -74,7 +74,7 @@ function postStartNr(startValue) {
     .catch(error => console.error('Error in POST request:', error));
 }
 
-function createScatterPlot(timeseries) {
+function createScatterPlot_single(timeseries) {
 
     const plotDiv = document.querySelector('.results-top-section');
     plotDiv.id = 'plotly-div'; // Assign a unique ID
@@ -114,6 +114,58 @@ function createScatterPlot(timeseries) {
 
     // Plotly.newPlot('results-top-section', [plotData], layout);
     Plotly.newPlot('plotly-div', [plotData], layout);
+}
+
+function createScatterPlot(timeseries) {
+    const plotDiv = document.querySelector('.results-top-section');
+    plotDiv.id = 'plotly-div'; // Assign a unique ID
+
+    let configport = {
+        modeBarButtonsToRemove: ['toImage', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'toggleSpikelines', 'hoverClosestCartesian', 'hoverCompareCartesian'],
+        displaylogo: false
+    };
+
+    // Ensure timeseries data is available and has more than just the header row
+    if (!timeseries || timeseries.length <= 1) {
+        console.log("Insufficient data for plotting");
+        return;
+    }
+
+    // Assuming date_nr is the first column, Portfolio Value is the second column
+    // and the second-to-last column is the Secondary Metric
+    const plotDataPortfolioValue = {
+        x: timeseries.map(row => row[0]),
+        y: timeseries.map(row => parseFloat(row[1])),
+        type: 'scatter',
+        mode: 'lines+markers',
+        name: 'Portfolio Value',
+        marker: { color: 'blue' },
+    };
+
+    const plotDataSecondaryMetric = {
+        x: timeseries.map(row => row[0]),
+        y: timeseries.map(row => parseFloat(row[row.length - 2])),
+        type: 'scatter',
+        mode: 'lines+markers',
+        name: 'Secondary Metric',
+        marker: { color: 'red' },
+    };
+
+    const layout = {
+        margin: { l: 50, r: 25, b: 25, t: 25 },
+        paper_bgcolor: 'rgb(16 16 16 / 0%)',
+        plot_bgcolor: 'rgb(16 16 16 / 0%)',
+        xaxis: { 
+            color: '#868D98',
+            gridcolor: '#444'
+        },
+        yaxis: { 
+            color: '#868D98',
+            gridcolor: '#444'
+        }
+    };
+
+    Plotly.newPlot('plotly-div', [plotDataPortfolioValue, plotDataSecondaryMetric], layout, configport);
 }
 
 
