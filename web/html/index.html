@@ -190,10 +190,55 @@
 
       <!-- FOR PORTFOLIO RESULTS -->
       <div class="results-wrapper">
-        <div class="results-side-panel"></div>
+        <div class="results-side-panel">
+          <!-- summary of overall portfolio simulation loaded here -->
+          <!-- table of portfolio simulations loaded here -->
+          <h1 id="divTitle">Portfolio Simulations <span style="
+            font-size: 11px;
+            color: #868D98 !important;
+        ">Top 10 and Bottom 10 Simulations</span></h1>
+
+        <div id = "portsimsummarydiv" class="portsummary-scrollable-table-container" style = "display: block;">
+            <table id="portsimsummary-table" class="dark-table">
+              <!-- live on initial load, click refresh for latest -->
+
+              <thead>
+                  <tr style="
+                  position: sticky;
+                  top: 0;
+                  background: #101010;
+                  ">
+                      <th>Start</th>
+                      <th>Total Return</th>
+                      <th>Beta</th>
+                      <th>Alpha</th>
+                      <th>Standard Deviation</th>
+                      <th>Sharpe Ratio</th>
+                      <th>Information Ratio</th>
+                      <th>average_risk_free_rate</th>
+                      <th>GSPC</th>
+                      <th>CD</th>
+                      <th>Sinkhole</th>
+                      <th>Buy Count</th>
+                  </tr>
+              </thead>
+
+              <tbody>
+                  <!-- Data rows will go here -->
+              </tbody>
+              
+            </table>
+        </div>
+
+
+        </div>
         <div class="results-main-panel">
-            <div class="results-top-section"></div>
-            <div class="results-bottom-section"></div>
+            <div class="results-top-section">
+              <!-- plotlyjs of timeseries csv of selected simulation -->
+            </div>
+            <div class="results-bottom-section">
+              <!-- trade history of selected simulation -->
+            </div>
         </div>
       </div>
 

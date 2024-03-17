@@ -35,3 +35,19 @@
 .results-bottom-section {
     margin-top: 1em;
 }
+
+#portsimsummarydiv button:hover {
+    background-color: #555; /* Slightly lighter on hover for interactivity */
+}
+
+#portsimsummarydiv label {
+    color: #f1f1f1; /* Light text for visibility */
+    margin-right: 5px;
+}
+
+.scrollable-table-container {
+    max-height: 70vh; /* Adjust the height as needed */
+    overflow-y: auto;  /* Enables vertical scrolling */
+    /* overflow-x: hidden; */ /* Prevents horizontal scrolling */
+    margin-top: 1vh;
+  }

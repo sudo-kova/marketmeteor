@@ -838,6 +838,25 @@ int main() {
                 }
             }
 
+        } else if (request.find("GET /api/get-portfolio-simulations HTTP") == 0) {
+
+            std::cout << "Reading summary.csv..." << std::endl;
+            auto portsimSummary = readCsv("../../data/PortSim/display/summary.csv");
+            std::cout << "summary.csv read. Number of rows: " << portsimSummary.size() << std::endl;
+
+            std::cout << "Converting merged data to JSON..." << std::endl;
+            nlohmann::json jsonOutput = nlohmann::json(portsimSummary);
+            std::string jsonResponse = jsonOutput.dump();
+            std::cout << "JSON conversion complete. JSON length: " << jsonResponse.length() << std::endl;
+
+            std::ostringstream responseStream;
+            responseStream << "HTTP/1.1 200 OK\r\n"
+                        << "Content-Type: application/json\r\n"
+                        << "Content-Length: " << jsonResponse.length() << "\r\n"
+                        << "\r\n"
+                        << jsonResponse;
+            response = responseStream.str();
+
         } else {
 
             std::string filePath = getFilePath(request);
