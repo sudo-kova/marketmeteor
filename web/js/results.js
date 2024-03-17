@@ -1,3 +1,5 @@
+import { palette_purple, palette_red, palette_yellow, palette_green } from './colors.js';
+
 export function fetch_portfolio_simulations() {
 
     // gets summary.csv and loads it in div named "results-side-panel", beneath the h1
@@ -77,6 +79,9 @@ function createScatterPlot(timeseries) {
     const plotDiv = document.querySelector('.results-top-section');
     plotDiv.id = 'plotly-div'; // Assign a unique ID
 
+    let configport = {modeBarButtonsToRemove: ['toImage', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'toggleSpikelines', 'hoverClosestCartesian', 'hoverCompareCartesian'],
+    displaylogo: false}
+
     // Ensure timeseries data is available and has more than just the header row
     if (!timeseries || timeseries.length <= 1) {
         console.log("Insufficient data for plotting");
@@ -89,13 +94,22 @@ function createScatterPlot(timeseries) {
         y: timeseries.map(row => parseFloat(row[1])), // Assuming Portfolio Value is the second column
         type: 'scatter',
         mode: 'lines+markers',
-        marker: { color: 'blue' },
+        marker: { color: palette_purple },
     };
 
     const layout = {
-        title: 'Portfolio Value Over Time',
-        xaxis: { title: 'Date Number' },
-        yaxis: { title: 'Portfolio Value' }
+        margin: { l: 50, r: 25, b: 25, t: 25 },
+        // title: 'Portfolio Value Over Time',
+        paper_bgcolor: 'rgb(16 16 16 / 0%)', // Dark background color
+        plot_bgcolor: 'rgb(16 16 16 / 0%)', // Dark plot area color
+        xaxis: { 
+            color: '#868D98', // White axis and text color
+            gridcolor: '#444' // Darker grid lines
+        },
+        yaxis: { 
+            color: '#868D98',
+            gridcolor: '#444'
+        }
     };
 
     // Plotly.newPlot('results-top-section', [plotData], layout);
