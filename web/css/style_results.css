@@ -45,7 +45,7 @@
     margin-right: 5px;
 }
 
-.scrollable-table-container {
+.portsummary-scrollable-table-container {
     max-height: 70vh; /* Adjust the height as needed */
     overflow-y: auto;  /* Enables vertical scrolling */
     /* overflow-x: hidden; */ /* Prevents horizontal scrolling */

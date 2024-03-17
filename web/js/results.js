@@ -25,22 +25,19 @@ export function fetch_portfolio_simulations() {
         tableBody.innerHTML = ''; // Clear existing rows
 
         data.forEach(row => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td>${row.Start}</td>
-                <td>${row['Total Return']}</td>
-                <td>${row.Beta}</td>
-                <td>${row.Alpha}</td>
-                <td>${row['Standard Deviation']}</td>
-                <td>${row['Sharpe Ratio']}</td>
-                <td>${row['Information Ratio']}</td>
-                <td>${row.average_risk_free_rate}</td>
-                <td>${row.GSPC}</td>
-                <td>${row.CD}</td>
-                <td>${row.Sinkhole}</td>
-                <td>${row['Buy Count']}</td>
-            `;
-            tableBody.appendChild(tr);
+            let row = tableBody.insertRow();
+            row.insertCell().textContent = item['Start'];
+            row.insertCell().textContent = item['Total Return'];
+            row.insertCell().textContent = item['Beta'];
+            row.insertCell().textContent = item['Alpha'];
+            row.insertCell().textContent = item['Standard Deviation'];
+            row.insertCell().textContent = item['Sharpe Ratio'];
+            row.insertCell().textContent = item['Information Ratio'];
+            row.insertCell().textContent = item['average_risk_free_rate'];
+            row.insertCell().textContent = item['GSPC'];
+            row.insertCell().textContent = item['CD'];
+            row.insertCell().textContent = item['Sinkhole'];
+            row.insertCell().textContent = item['Buy Count'];
         });
 
     })
