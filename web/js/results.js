@@ -73,6 +73,10 @@ function postStartNr(startValue) {
 }
 
 function createScatterPlot(timeseries) {
+
+    const plotDiv = document.querySelector('.results-top-section');
+    plotDiv.id = 'plotly-div'; // Assign a unique ID
+
     // Ensure timeseries data is available and has more than just the header row
     if (!timeseries || timeseries.length <= 1) {
         console.log("Insufficient data for plotting");
@@ -94,7 +98,8 @@ function createScatterPlot(timeseries) {
         yaxis: { title: 'Portfolio Value' }
     };
 
-    Plotly.newPlot('results-top-section', [plotData], layout);
+    // Plotly.newPlot('results-top-section', [plotData], layout);
+    Plotly.newPlot('plotly-div', [plotData], layout);
 }
 
 
