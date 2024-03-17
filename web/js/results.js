@@ -139,7 +139,7 @@ function createScatterPlot(timeseries) {
         type: 'scatter',
         mode: 'lines+markers',
         name: 'Portfolio Value',
-        marker: { color: 'blue' },
+        marker: { color: palette_purple },
     };
 
     const plotDataSecondaryMetric = {
@@ -147,8 +147,8 @@ function createScatterPlot(timeseries) {
         y: timeseries.map(row => parseFloat(row[row.length - 2])),
         type: 'scatter',
         mode: 'lines+markers',
-        name: 'Secondary Metric',
-        marker: { color: 'red' },
+        name: 'S&P 500 Index',
+        marker: { color: palette_green },
     };
 
     const layout = {
