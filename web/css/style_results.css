@@ -91,7 +91,7 @@
 
 .results-top-section, .results-bottom-section {
     flex: 1; /* Splits the height equally */
-    overflow-y: auto; /* Makes section scrollable */
+    overflow-y: hidden; /* Makes section scrollable */
     /* ... other styles ... */
 }
 
@@ -100,5 +100,5 @@
 .portholdings-scrollable-table-container,
 .portsummary-scrollable-table-container {
     max-height: 100%; /* Adjust to 100% of parent */
-    overflow-y: auto; /* Enable vertical scrolling */
+    /* overflow-y: hidden; */ /* Enable vertical scrolling */
 }
