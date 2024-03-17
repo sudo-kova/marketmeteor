@@ -4,12 +4,13 @@
     flex-direction: row;
     height: 100%;
     border-radius: 12px;
+    /* height: 100vh; */
 }
 
 .results-side-panel {
     width: 50%;
     height: 100%; /* Adjusted to 100% to match parent height */
-    outline: 1px solid #343437;
+    /* outline: 1px solid #343437; */
     background: #16161782;
     flex-shrink: 0;
     border-radius: 12px;
@@ -23,11 +24,12 @@
     height: 100%;
     border-radius: 12px;
     margin: 0 0.5rem;
+    /* flex-shrink: 0; */
 }
 
 .results-top-section, .results-bottom-section {
     flex: 1; /* Splits the remaining height equally */
-    outline: 1px solid #343437;
+    /* outline: 1px solid #343437; */
     background: #16161782;
     border-radius: 12px;
 }
@@ -66,4 +68,39 @@
     overflow-y: auto;  /* Enables vertical scrolling */
     /* overflow-x: hidden; */ /* Prevents horizontal scrolling */
     margin-top: 1vh;
+}
+
+
+
+
+
+
+.results-wrapper {
+    display: flex;
+    flex-direction: row;
+    height: 100vh; /* Set a specific height, e.g., 100vh for full viewport height */
+    border-radius: 12px;
+    overflow: hidden; /* To ensure child elements don't overflow */
+}
+
+.results-side-panel, .results-main-panel {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Allocate space dynamically */
+    height: 100%; /* Height set to 100% of the parent */
+    /* ... other styles ... */
+}
+
+.results-top-section, .results-bottom-section {
+    flex: 1; /* Splits the height equally */
+    overflow-y: auto; /* Makes section scrollable */
+    /* ... other styles ... */
+}
+
+/* ... other styles ... */
+
+.portholdings-scrollable-table-container,
+.portsummary-scrollable-table-container {
+    max-height: 100%; /* Adjust to 100% of parent */
+    overflow-y: auto; /* Enable vertical scrolling */
 }
