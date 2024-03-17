@@ -73,38 +73,55 @@ function postStartNr(startValue) {
 }
 
 function createScatterPlot(timeseries) {
-    const plotDiv = document.querySelector('.results-top-section');
-    plotDiv.id = 'plotly-div'; // Assign a unique ID
+    // Ensure timeseries data is available and has more than just the header row
+    if (!timeseries || timeseries.length <= 1) {
+        console.log("Insufficient data for plotting");
+        return;
+    }
 
-    const data = timeseries.map(item => ({
-        x: item['date_nr'],
-        y: item['Portfolio Value']
-    }));
+    // Prepare data for Plotly
+    const plotData = {
+        x: timeseries.map(row => row[0]), // Assuming date_nr is the first column
+        y: timeseries.map(row => parseFloat(row[1])), // Assuming Portfolio Value is the second column
+        type: 'scatter',
+        mode: 'lines+markers',
+        marker: { color: 'blue' },
+    };
 
     const layout = {
         title: 'Portfolio Value Over Time',
-        xaxis: {
-            title: 'Date Number'
-        },
-        yaxis: {
-            title: 'Portfolio Value'
-        }
+        xaxis: { title: 'Date Number' },
+        yaxis: { title: 'Portfolio Value' }
     };
 
-    Plotly.newPlot('plotly-div', [data], layout);
+    Plotly.newPlot('results-top-section', [plotData], layout);
 }
+
 
 function fillHoldingsHistoryTable(holdingsHistory) {
     const tableBody = document.getElementById('portsimholdings-table').getElementsByTagName('tbody')[0];
     tableBody.innerHTML = ''; // Clear existing rows
 
-    holdingsHistory.forEach(rowData => {
+    // holdingsHistory.forEach(rowData => {
+    //     let row = tableBody.insertRow();
+    //     rowData.forEach(cellData => {
+    //         let cell = row.insertCell();
+    //         cell.textContent = cellData;
+    //     });
+    // });
+
+    // Skip the first row (headers) and iterate over the rest
+    for (let i = 1; i < holdingsHistory.length; i++) {
         let row = tableBody.insertRow();
+        let rowData = holdingsHistory[i];
+
         rowData.forEach(cellData => {
             let cell = row.insertCell();
-            cell.textContent = cellData;
+            cell.textContent = formatDecimal(cellData);
         });
-    });
+    }
+
+
 }
 
 function formatDecimal(value) {
