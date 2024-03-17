@@ -739,8 +739,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // Add 'active' class to the clicked link
             this.classList.add('active');
 
-            // Move highlight
-            moveHighlightTo(this);
+            // TOGGLE the SPACE here
+            // ...
+
+            // for Results add display: none to .row and .footer
+
         });
     });
 

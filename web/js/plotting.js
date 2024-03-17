@@ -767,7 +767,7 @@ export function plotGraph_rollback(ticker) {
             }
             // ---- finished ensuring that the 1 minute plot is hiddden
 
-            config = {modeBarButtonsToRemove: ['toImage', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'toggleSpikelines', 'hoverClosestCartesian', 'hoverCompareCartesian'],
+            const config = {modeBarButtonsToRemove: ['toImage', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'toggleSpikelines', 'hoverClosestCartesian', 'hoverCompareCartesian'],
             displaylogo: false}
 
             data = data.slice(63); // full data, ignores first 63 rows

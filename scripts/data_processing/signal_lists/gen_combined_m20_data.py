@@ -30,11 +30,14 @@ else:
 
 # chartdata_path = r'X://Stockland//m20perf_L2016//charts//repo//m20//R06//chartdata2//'
 # validated_tickers_file = os.path.join(base_path, 'raw_stock_data', 'tickerlists', 'tickerlist_validated.txt')
-validated_tickers_file = '../../../data/tickerlists/0301/tickerlist_validated.txt'
+# validated_tickers_file = '../../../data/tickerlists/0301/tickerlist_validated.txt'
+validated_tickers_file = '../../../data/tickerlists/tickerlist_validated.txt'
 # daily_data_directory = os.path.join(base_path, 'raw_stock_data', 'daily_data')
 # m20_data_directory = os.path.join(base_path, 'm20perf_L2016', 'charts', 'repo', 'm20', 'R08', 'chartdata_forks')
-m20_data_directory = '../../../data/chartdata/historic/0301'
-output_file = '../../../data/signal_lists/combined_m20_data.csv'
+# m20_data_directory = '../../../data/chartdata/historic/0301'
+m20_data_directory = os.path.join(base_path, 'm20perf_L2016', 'charts', 'repo', 'm20', 'R08', 'chartdata2_filter6')
+# output_file = '../../../data/signal_lists/combined_m20_data.csv'
+output_file = '../../../data/signal_lists/combined_m252_data.csv'
 
 def get_m20_history(ticker, csv_file):
 
