@@ -73,6 +73,9 @@ function postStartNr(startValue) {
 }
 
 function createScatterPlot(timeseries) {
+    const plotDiv = document.querySelector('.results-top-section');
+    plotDiv.id = 'plotly-div'; // Assign a unique ID
+
     const data = timeseries.map(item => ({
         x: item['date_nr'],
         y: item['Portfolio Value']
@@ -88,7 +91,7 @@ function createScatterPlot(timeseries) {
         }
     };
 
-    Plotly.newPlot('results-top-section', [data], layout);
+    Plotly.newPlot('plotly-div', [data], layout);
 }
 
 function fillHoldingsHistoryTable(holdingsHistory) {
