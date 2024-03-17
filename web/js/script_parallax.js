@@ -730,27 +730,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 footerElements.forEach(el => el.style.display = 'none');
                 // show content-wrapper (display: flex)
             }
-
-            const navLink1 = document.getElementById('nav-link-swing'); // Replace with your actual ID
-            const navLink2 = document.getElementById('nav-link-results'); // Replace with your actual ID
-            const contentWrapper = document.querySelector('.content-wrapper');
-            // const rowElements = document.querySelectorAll('.row-element'); // Replace with actual selector
-            // const footerElements = document.querySelectorAll('.footer-element'); // Replace with actual selector
-        
-            navLink1.addEventListener('click', () => {
-                // rowElements.forEach(el => el.style.display = 'flex');
-                // footerElements.forEach(el => el.style.display = 'flex');
-                contentWrapper.style.display = 'none'; // Hide content-wrapper
-            });
-        
-            navLink2.addEventListener('click', () => {
-                // rowElements.forEach(el => el.style.display = 'none');
-                // footerElements.forEach(el => el.style.display = 'none');
-                contentWrapper.style.display = 'flex'; // Show content-wrapper
-            });
-
-
         });
+    });
+    
+    const navLink1 = document.getElementById('nav-link-swing'); // Replace with your actual ID
+    const navLink2 = document.getElementById('nav-link-results'); // Replace with your actual ID
+    const contentWrapper = document.querySelector('.content-wrapper');
+    // const rowElements = document.querySelectorAll('.row-element'); // Replace with actual selector
+    // const footerElements = document.querySelectorAll('.footer-element'); // Replace with actual selector
+
+    navLink1.addEventListener('click', () => {
+        // rowElements.forEach(el => el.style.display = 'flex');
+        // footerElements.forEach(el => el.style.display = 'flex');
+        contentWrapper.style.display = 'none'; // Hide content-wrapper
+    });
+
+    navLink2.addEventListener('click', () => {
+        // rowElements.forEach(el => el.style.display = 'none');
+        // footerElements.forEach(el => el.style.display = 'none');
+        contentWrapper.style.display = 'flex'; // Show content-wrapper
     });
 
 });
