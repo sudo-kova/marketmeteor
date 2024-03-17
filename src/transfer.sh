@@ -20,7 +20,7 @@ echo_green "Phase 1: cp to marketmeteor-data"
 # [1] Copying R08 chartdata2 folder
 echo_green "[1] Copying R08 chartdata2 folder"
 # copy the contents of the source chartdata2 directly into the destination chartdata2 (and not create an additional nested directory)
-cp -rf /media/share/Stockland/m20perf_L2016/charts/repo/m20/R08/chartdata2/* /media/share/repositories/marketmeteor-data/chartdata2/
+cp -rf /media/share/Stockland/m20perf_L2016/charts/repo/m20/R08/chartdata2_filter6/* /media/share/repositories/marketmeteor-data/chartdata2/
 
 # [2] copying tickers.json
 echo_green "[2] Copying tickers.json"
