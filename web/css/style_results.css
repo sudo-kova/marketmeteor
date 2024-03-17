@@ -1,0 +1,33 @@
+.content-wrapper {
+    display: none; /* Hide by default */
+    /* display: flex; */
+    flex-direction: row;
+    height: 100%;
+    border-radius: 12px;
+}
+
+.side-panel {
+    width: 30%;
+    height: 100%; /* Adjusted to 100% to match parent height */
+    outline: 1px solid #343437;
+    background: #16161782;
+    flex-shrink: 0;
+    border-radius: 12px;
+    margin: 0 0.5rem;
+}
+
+.main-panel {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 100%;
+    border-radius: 12px;
+    margin: 0 0.5rem;
+}
+
+.top-section, .bottom-section {
+    flex: 1; /* Splits the remaining height equally */
+    outline: 1px solid #343437;
+    background: #16161782;
+    border-radius: 12px;
+}

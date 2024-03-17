@@ -702,32 +702,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const rowElements = document.querySelectorAll('.row');
     const footerElements = document.querySelectorAll('.footer');
 
-    // function moveHighlightTo(link) {
-    //     const highlightWidth = highlight.offsetWidth; // Get the current width of the highlight
-    //     const startLeft = highlight.offsetLeft; // Get the current left position of the highlight
-    //     const endLeft = link.offsetLeft; // Get the left position of the target link
-    //     const endWidth = link.offsetWidth; // Get the width of the target link
-    
-    //     // Calculate the difference in left position
-    //     const leftDiff = endLeft - startLeft;
-    
-    //     // Calculate the necessary adjustment in width
-    //     const widthAdjustment = highlightWidth - endWidth;
-    
-    //     // Animate the highlight
-    //     highlight.style.transition = 'none'; // Disable transitions temporarily
-    //     highlight.style.left = `${startLeft}px`;
-    //     highlight.style.width = `${highlightWidth + leftDiff + widthAdjustment}px`;
-    
-    //     // Allow for the browser to render the frame
-    //     requestAnimationFrame(() => {
-    //         highlight.style.transition = 'left 0.3s ease, width 0.3s ease'; // Re-enable transitions
-    //         highlight.style.left = `${endLeft}px`;
-    //         highlight.style.width = `${endWidth}px`;
-    //     });
-    // }
-    
-
     // Initialize on the first active link
     // const activeLink = document.querySelector('.nav-link.active');
     // if (activeLink) {
@@ -750,10 +724,31 @@ document.addEventListener('DOMContentLoaded', () => {
             if (index === 0) { // First nav link clicked (SWING)
                 rowElements.forEach(el => el.style.display = 'flex');
                 footerElements.forEach(el => el.style.display = 'flex');
+                // hide content-wrapper 
             } else if (index === 1) { // Second nav link clicked (RESULTS)
                 rowElements.forEach(el => el.style.display = 'none');
                 footerElements.forEach(el => el.style.display = 'none');
+                // show content-wrapper (display: flex)
             }
+
+            const navLink1 = document.getElementById('nav-link-swing'); // Replace with your actual ID
+            const navLink2 = document.getElementById('nav-link-results'); // Replace with your actual ID
+            const contentWrapper = document.querySelector('.content-wrapper');
+            const rowElements = document.querySelectorAll('.row-element'); // Replace with actual selector
+            const footerElements = document.querySelectorAll('.footer-element'); // Replace with actual selector
+        
+            navLink1.addEventListener('click', () => {
+                // rowElements.forEach(el => el.style.display = 'flex');
+                // footerElements.forEach(el => el.style.display = 'flex');
+                contentWrapper.style.display = 'none'; // Hide content-wrapper
+            });
+        
+            navLink2.addEventListener('click', () => {
+                // rowElements.forEach(el => el.style.display = 'none');
+                // footerElements.forEach(el => el.style.display = 'none');
+                contentWrapper.style.display = 'flex'; // Show content-wrapper
+            });
+
 
         });
     });
