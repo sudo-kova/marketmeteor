@@ -24,6 +24,8 @@ export function fetch_portfolio_simulations() {
         const tableBody = document.getElementById('portsimsummary-table').getElementsByTagName('tbody')[0];
         tableBody.innerHTML = ''; // Clear existing rows
 
+        console.log(data)
+
         data.forEach(item => {
             let row = tableBody.insertRow();
             row.insertCell().textContent = item['Start'];
