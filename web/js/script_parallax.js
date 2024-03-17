@@ -744,6 +744,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // for Results add display: none to .row and .footer
 
+            if (index === 0) { // First nav link clicked (SWING)
+                rowElements.forEach(el => el.style.display = 'flex');
+                footerElements.forEach(el => el.style.display = 'flex');
+            } else if (index === 1) { // Second nav link clicked (RESULTS)
+                rowElements.forEach(el => el.style.display = 'none');
+                footerElements.forEach(el => el.style.display = 'none');
+            }
+
         });
     });
 
