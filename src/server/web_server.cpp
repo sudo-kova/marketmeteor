@@ -838,7 +838,7 @@ int main() {
                 }
             }
 
-        } else if (request.find("GET /api/get-portfolio-simulations HTTP") == 0) {
+        } else if (request.find("GET /api/get-portsim-summary HTTP") == 0) {
 
             std::cout << "Reading summary.csv..." << std::endl;
             auto portsimSummary = readCsv("../../data/PortSim/display/summary.csv");

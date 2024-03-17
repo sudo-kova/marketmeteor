@@ -15,7 +15,7 @@ export function fetch_portfolio_simulations() {
         // Sinkhole,
         // Buy Count
 
-    fetch('/api/get-portfolio-simulations', {
+    fetch('/api/get-portsim-summary', {
     cache: 'no-cache', // or 'reload'
     })
     .then(response => response.json())
