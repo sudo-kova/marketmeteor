@@ -50,4 +50,20 @@
     overflow-y: auto;  /* Enables vertical scrolling */
     /* overflow-x: hidden; */ /* Prevents horizontal scrolling */
     margin-top: 1vh;
-  }
+}
+
+#portsimholdingsdiv button:hover {
+    background-color: #555; /* Slightly lighter on hover for interactivity */
+}
+
+#portsimholdingsdiv label {
+    color: #f1f1f1; /* Light text for visibility */
+    margin-right: 5px;
+}
+
+.portholdings-scrollable-table-container {
+    max-height: 70vh; /* Adjust the height as needed */
+    overflow-y: auto;  /* Enables vertical scrolling */
+    /* overflow-x: hidden; */ /* Prevents horizontal scrolling */
+    margin-top: 1vh;
+}

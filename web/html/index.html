@@ -237,6 +237,38 @@
             </div>
             <div class="results-bottom-section">
               <!-- trade history of selected simulation -->
+
+                <div id = "portsimholdingsdiv" class="portholdings-scrollable-table-container" style = "display: block;">
+                  <table id="portsimholdings-table" class="dark-table">
+                    <!-- live on initial load, click refresh for latest -->
+      
+                    <thead>
+                        <tr style="
+                        position: sticky;
+                        top: 0;
+                        background: #101010;
+                        ">
+                            <th>date_number</th>
+                            <th>action</th>
+                            <th>ticker</th>
+                            <th>shares</th>
+                            <th>price</th>
+                            <th>max position size</th>
+                            <th>cash</th>
+                            <th>sell_date</th>
+                            <th>clear_date</th>
+                            <th>date</th>
+                            <th>nr</th>
+                        </tr>
+                    </thead>
+      
+                    <tbody>
+                        <!-- Data rows will go here -->
+                    </tbody>
+      
+                  </table>
+                </div>
+
             </div>
         </div>
       </div>

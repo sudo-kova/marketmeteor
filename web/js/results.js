@@ -60,8 +60,48 @@ function postStartNr(startValue) {
     .then(data => {
         // Handle the response data
         console.log(data);
+
+        // div with class "results-top-section"
+        // call a function to create a scatter plotlyjs using timeseries
+        createScatterPlot(data.timeseries);
+
+        // div with class "results-bottom-section"
+        // call a function to fill using holdingsHistory
+        fillHoldingsHistoryTable(data.holdingsHistory);
     })
     .catch(error => console.error('Error in POST request:', error));
+}
+
+function createScatterPlot(timeseries) {
+    const data = timeseries.map(item => ({
+        x: item['date_nr'],
+        y: item['Portfolio Value']
+    }));
+
+    const layout = {
+        title: 'Portfolio Value Over Time',
+        xaxis: {
+            title: 'Date Number'
+        },
+        yaxis: {
+            title: 'Portfolio Value'
+        }
+    };
+
+    Plotly.newPlot('results-top-section', [data], layout);
+}
+
+function fillHoldingsHistoryTable(holdingsHistory) {
+    const tableBody = document.getElementById('portsimholdings-table').getElementsByTagName('tbody')[0];
+    tableBody.innerHTML = ''; // Clear existing rows
+
+    holdingsHistory.forEach(rowData => {
+        let row = tableBody.insertRow();
+        rowData.forEach(cellData => {
+            let cell = row.insertCell();
+            cell.textContent = cellData;
+        });
+    });
 }
 
 function formatDecimal(value) {
