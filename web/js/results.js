@@ -26,21 +26,15 @@ export function fetch_portfolio_simulations() {
 
         console.log(data)
 
-        data.forEach(item => {
+        // Skip the first row (headers) and iterate over the rest
+        for (let i = 1; i < data.length; i++) {
             let row = tableBody.insertRow();
-            row.insertCell().textContent = item['Start'];
-            row.insertCell().textContent = item['Total Return'];
-            row.insertCell().textContent = item['Beta'];
-            row.insertCell().textContent = item['Alpha'];
-            row.insertCell().textContent = item['Standard Deviation'];
-            row.insertCell().textContent = item['Sharpe Ratio'];
-            row.insertCell().textContent = item['Information Ratio'];
-            row.insertCell().textContent = item['average_risk_free_rate'];
-            row.insertCell().textContent = item['GSPC'];
-            row.insertCell().textContent = item['CD'];
-            row.insertCell().textContent = item['Sinkhole'];
-            row.insertCell().textContent = item['Buy Count'];
-        });
+            let rowData = data[i];
+            rowData.forEach(cellData => {
+                let cell = row.insertCell();
+                cell.textContent = cellData;
+            });
+        }
 
     })
     .catch(error => console.error('Error fetching data:', error));
