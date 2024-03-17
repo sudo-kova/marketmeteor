@@ -724,31 +724,31 @@ document.addEventListener('DOMContentLoaded', () => {
             if (index === 0) { // First nav link clicked (SWING)
                 rowElements.forEach(el => el.style.display = 'flex');
                 footerElements.forEach(el => el.style.display = 'flex');
-                // hide content-wrapper 
+                // hide results-wrapper
             } else if (index === 1) { // Second nav link clicked (RESULTS)
                 rowElements.forEach(el => el.style.display = 'none');
                 footerElements.forEach(el => el.style.display = 'none');
-                // show content-wrapper (display: flex)
+                // show results-wrapper (display: flex)
             }
         });
     });
-    
+
     const navLink1 = document.getElementById('nav-link-swing'); // Replace with your actual ID
     const navLink2 = document.getElementById('nav-link-results'); // Replace with your actual ID
-    const contentWrapper = document.querySelector('.content-wrapper');
+    const contentWrapper = document.querySelector('.results-wrapper');
     // const rowElements = document.querySelectorAll('.row-element'); // Replace with actual selector
     // const footerElements = document.querySelectorAll('.footer-element'); // Replace with actual selector
 
     navLink1.addEventListener('click', () => {
         // rowElements.forEach(el => el.style.display = 'flex');
         // footerElements.forEach(el => el.style.display = 'flex');
-        contentWrapper.style.display = 'none'; // Hide content-wrapper
+        contentWrapper.style.display = 'none'; // Hide results-wrapper
     });
 
     navLink2.addEventListener('click', () => {
         // rowElements.forEach(el => el.style.display = 'none');
         // footerElements.forEach(el => el.style.display = 'none');
-        contentWrapper.style.display = 'flex'; // Show content-wrapper
+        contentWrapper.style.display = 'flex'; // Show results-wrapper
     });
 
 });
