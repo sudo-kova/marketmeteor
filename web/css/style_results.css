@@ -7,7 +7,7 @@
 }
 
 .results-side-panel {
-    width: 30%;
+    width: 50%;
     height: 100%; /* Adjusted to 100% to match parent height */
     outline: 1px solid #343437;
     background: #16161782;

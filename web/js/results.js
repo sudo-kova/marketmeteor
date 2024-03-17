@@ -30,6 +30,12 @@ export function fetch_portfolio_simulations() {
         for (let i = 1; i < data.length; i++) {
             let row = tableBody.insertRow();
             let rowData = data[i];
+
+            // Add click event listener to each row
+            row.addEventListener('click', function() {
+                postStartNr(rowData[0]); // Sends the first column ('Start') value
+            });
+
             rowData.forEach(cellData => {
                 let cell = row.insertCell();
                 cell.textContent = formatDecimal(cellData);
@@ -38,6 +44,24 @@ export function fetch_portfolio_simulations() {
 
     })
     .catch(error => console.error('Error fetching data:', error));
+}
+
+function postStartNr(startValue) {
+
+    // sends the (portfolio) start number to retrieve dateN/port_timeseries.csv and dateN/portsim.csv
+    fetch('/api/post-porttimeseries', { 
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ start: startValue }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Handle the response data
+        console.log(data);
+    })
+    .catch(error => console.error('Error in POST request:', error));
 }
 
 function formatDecimal(value) {

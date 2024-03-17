@@ -857,6 +857,47 @@ int main() {
                         << jsonResponse;
             response = responseStream.str();
 
+        } else if (request.find("POST /api/post-porttimeseries HTTP") == 0){
+
+            // Find the start of the body (after headers)
+            size_t headerEnd_porttimeseries = request.find("\r\n\r\n");
+            if (headerEnd_porttimeseries == std::string::npos) {
+                headerEnd_porttimeseries = request.find("\n\n"); // Fallback to just "\n\n"
+            }
+            std::string body_porttimeseries = request.substr(headerEnd_porttimeseries + 4); // Adjust the offset based on the line ending used
+            printGreen("POST request (body):\n");
+            std::cout << body_porttimeseries << std::endl;
+
+            json requestBody_porttimeseries = json::parse(body_porttimeseries);
+            std::string startNr = requestBody_porttimeseries["start"];
+
+            std::cout << "startNr: " << startNr << std::endl;
+
+            // Construct file paths
+            std::string timeseriesCsvPath = "../../data/PortSim/display/date" + startNr + "/port_timeseries.csv";
+            std::string holdingsHistoryCsvPath = "../../data/PortSim/display/date" + startNr + "/portsim.csv";
+
+            // Read CSV files and convert to JSON
+            auto timeseriesJson = readCsvToJson(timeseriesCsvPath);
+            auto holdingsHistoryJson = readCsvToJson(holdingsHistoryCsvPath);
+
+            // Combine both JSON objects into a single JSON object
+            nlohmann::json combinedJson;
+            combinedJson["timeseries"] = timeseriesJson;
+            combinedJson["holdingsHistory"] = holdingsHistoryJson;
+
+            // Convert the combined JSON object to a string
+            std::string jsonResponse = combinedJson.dump();
+
+            // Create the HTTP response
+            std::ostringstream responseStream;
+            responseStream << "HTTP/1.1 200 OK\r\n"
+                        << "Content-Type: application/json\r\n"
+                        << "Content-Length: " << jsonResponse.length() << "\r\n"
+                        << "\r\n"
+                        << jsonResponse;
+            response = responseStream.str();
+
         } else {
 
             std::string filePath = getFilePath(request);
