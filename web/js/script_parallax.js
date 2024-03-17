@@ -114,6 +114,7 @@ import { setActiveTicker } from './tickerFunctions.js';
 import { fetchPortData } from './holdings.js';
 import { applyFilter_m20data, fetchAndDisplayData } from './meteors.js';
 import { setupTitlesInteraction, setupWalkaround } from './tutorial.js';
+import { fetch_portfolio_simulations } from './results.js';
 
 // SETUP MAIN BUTTONS (CALENDAR AND SEARCH)
 
@@ -749,6 +750,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // rowElements.forEach(el => el.style.display = 'none');
         // footerElements.forEach(el => el.style.display = 'none');
         contentWrapper.style.display = 'flex'; // Show results-wrapper
+        fetch_portfolio_simulations();
     });
 
 });
