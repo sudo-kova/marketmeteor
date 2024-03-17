@@ -76,7 +76,7 @@
 
 
 .results-wrapper {
-    display: flex;
+    /* display: flex; */
     flex-direction: row;
     height: 100vh; /* Set a specific height, e.g., 100vh for full viewport height */
     border-radius: 12px;
