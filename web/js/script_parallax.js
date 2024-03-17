@@ -698,6 +698,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const navLinks = document.querySelectorAll('.nav-link');
     // const highlight = document.querySelector('.highlight');
+    // const highlight = document.querySelector('.highlight');
+    const rowElements = document.querySelectorAll('.row');
+    const footerElements = document.querySelectorAll('.footer');
 
     // function moveHighlightTo(link) {
     //     const highlightWidth = highlight.offsetWidth; // Get the current width of the highlight
@@ -731,7 +734,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //     moveHighlightTo(activeLink);
     // }
 
-    navLinks.forEach(link => {
+    navLinks.forEach((link, index) => {
         link.addEventListener('click', function() {
             // Remove 'active' class from all links
             navLinks.forEach(l => l.classList.remove('active'));
