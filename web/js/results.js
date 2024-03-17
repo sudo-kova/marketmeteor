@@ -32,10 +32,22 @@ export function fetch_portfolio_simulations() {
             let rowData = data[i];
             rowData.forEach(cellData => {
                 let cell = row.insertCell();
-                cell.textContent = cellData;
+                cell.textContent = formatDecimal(cellData);
             });
         }
 
     })
     .catch(error => console.error('Error fetching data:', error));
+}
+
+function formatDecimal(value) {
+    // The formatDecimal function checks if a value is a number and has a decimal point.
+    // If it's a decimal number, it formats it to have a maximum of two decimal places using toFixed(2).
+    // If it's not a number or doesn't have a decimal, it returns the value unchanged.
+
+    // Check if the value is a number
+    if (!isNaN(value) && value.toString().indexOf('.') != -1) {
+        return parseFloat(value).toFixed(2);
+    }
+    return value;
 }
