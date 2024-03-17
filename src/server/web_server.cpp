@@ -878,8 +878,8 @@ int main() {
             std::string holdingsHistoryCsvPath = "../../data/PortSim/display/date" + startNr + "/portsim.csv";
 
             // Read CSV files and convert to JSON
-            auto timeseriesJson = csvToJson(timeseriesCsvPath);
-            auto holdingsHistoryJson = csvToJson(holdingsHistoryCsvPath);
+            auto timeseriesJson = readCsv(timeseriesCsvPath);
+            auto holdingsHistoryJson = readCsv(holdingsHistoryCsvPath);
 
             // Combine both JSON objects into a single JSON object
             nlohmann::json combinedJson;
