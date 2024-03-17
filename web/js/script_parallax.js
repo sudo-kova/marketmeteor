@@ -734,8 +734,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const navLink1 = document.getElementById('nav-link-swing'); // Replace with your actual ID
             const navLink2 = document.getElementById('nav-link-results'); // Replace with your actual ID
             const contentWrapper = document.querySelector('.content-wrapper');
-            const rowElements = document.querySelectorAll('.row-element'); // Replace with actual selector
-            const footerElements = document.querySelectorAll('.footer-element'); // Replace with actual selector
+            // const rowElements = document.querySelectorAll('.row-element'); // Replace with actual selector
+            // const footerElements = document.querySelectorAll('.footer-element'); // Replace with actual selector
         
             navLink1.addEventListener('click', () => {
                 // rowElements.forEach(el => el.style.display = 'flex');
