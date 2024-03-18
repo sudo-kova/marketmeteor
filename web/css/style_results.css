@@ -102,3 +102,13 @@
     max-height: 100%; /* Adjust to 100% of parent */
     /* overflow-y: hidden; */ /* Enable vertical scrolling */
 }
+
+#summary-list {
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2;    /* Firefox */
+    column-count: 2;         /* Standard syntax */
+    
+    -webkit-column-gap: 20px; /* Chrome, Safari, Opera */
+    -moz-column-gap: 20px;    /* Firefox */
+    column-gap: 20px;         /* Standard syntax */
+}
