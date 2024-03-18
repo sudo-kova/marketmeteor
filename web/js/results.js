@@ -201,17 +201,23 @@ function fillHoldingsHistoryTable(holdingsHistory) {
 }
 
 function fillSummary(scenarioSummary) {
-    const list = document.getElementById('summary-list'); // Ensure this element exists in your HTML
-    if (list) { // Check if the element exists to avoid errors
+    const list = document.getElementById('summary-list');
+    if (list) {
         list.innerHTML = ''; // Clear existing list items
 
-        // Skip the headers, which are at index 0
-        scenarioSummary.slice(1).forEach((scenario) => {
-            let listItem = document.createElement('li');
-            // Skip the first two values ('Scenario' and 'Base Path') and join the rest
-            let content = scenario.slice(2).map(value => formatDecimal(value)).join(', ');
-            listItem.textContent = content;
-            list.appendChild(listItem);
+        // Get headers from the first row and data rows by skipping the first array
+        const headers = scenarioSummary[0].slice(2); // Skip 'Scenario' and 'Base Path' in headers
+        const dataRows = scenarioSummary.slice(1); // Skip headers row for data processing
+
+        // Iterate over data rows
+        dataRows.forEach((data) => {
+            // Start from the third element to skip 'Scenario' and 'Base Path'
+            for (let i = 2; i < data.length; i++) {
+                let listItem = document.createElement('li');
+                // Combine the title from the headers and the formatted cell value
+                listItem.textContent = headers[i - 2] + ": " + formatDecimal(data[i]);
+                list.appendChild(listItem);
+            }
         });
     } else {
         console.error("Element with id 'summary-list' was not found.");
