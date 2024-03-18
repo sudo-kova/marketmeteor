@@ -26,9 +26,12 @@ export function fetch_portfolio_simulations() {
         const tableBody = document.getElementById('portsimsummary-table').getElementsByTagName('tbody')[0];
         tableBody.innerHTML = ''; // Clear existing rows
 
-        console.log(data)
+        console.log(data);
 
-        fillPortSimSummaryTable(data.portsimsummary)
+        fillSummary(data.scenariosummary);
+
+        fillPortSimSummaryTable(data.portsimsummary);
+        
 
         // // Skip the first row (headers) and iterate over the rest
         // for (let i = 1; i < data.length; i++) {
@@ -195,6 +198,22 @@ function fillHoldingsHistoryTable(holdingsHistory) {
     }
 
 
+}
+
+function fillSummary(scenarioSummary) {
+    const list = document.getElementById('summary-list'); // Assume you have <ul id="summary-list"></ul> in your HTML
+    list.innerHTML = ''; // Clear existing list items
+
+    // Iterate over the scenarioSummary array
+    scenarioSummary.forEach((scenario, index) => {
+        // Skip the headers and base path values
+        if (index > 1) {
+            let listItem = document.createElement('li');
+            let content = scenario.slice(2).map(value => formatDecimal(value)).join(', '); // Skip the first two values and join the rest
+            listItem.textContent = content;
+            list.appendChild(listItem);
+        }
+    });
 }
 
 function fillPortSimSummaryTable(data){

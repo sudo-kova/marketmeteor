@@ -199,6 +199,7 @@
         ">Top 10 and Bottom 10 Simulations</span></h1>
 
           <ul>
+            <li>Last updated: 3/1/2024</li>
             <li>Market Meteors with the following filter: Pwin &gt;= 80, earnings [-63,14), average duration &lt;=7, daily delta &gt;= -0.05, 63 d% &gt;= -0.35, &lt;126 days below threshold</li>
             <li>Starting Cash: 10000</li>
             <li>Maximum Position Size: 2000</li>
@@ -206,6 +207,10 @@
             <li>Positons do not have to be unique</li>
             <li>No fractional shares</li>
           </ul>
+
+        <div id = "summary-list">
+          <!-- fillSummary (results.js) -->
+        </div>
 
         <div id = "portsimsummarydiv" class="portsummary-scrollable-table-container" style = "display: block;">
             <table id="portsimsummary-table" class="dark-table">
@@ -240,6 +245,8 @@
 
 
         </div>
+
+
         <div class="results-main-panel">
             <div class="results-top-section">
               <!-- plotlyjs of timeseries csv of selected simulation -->
