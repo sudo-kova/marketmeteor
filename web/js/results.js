@@ -201,20 +201,23 @@ function fillHoldingsHistoryTable(holdingsHistory) {
 }
 
 function fillSummary(scenarioSummary) {
-    const list = document.getElementById('summary-list'); // Assume you have <ul id="summary-list"></ul> in your HTML
-    list.innerHTML = ''; // Clear existing list items
+    const list = document.getElementById('summary-list'); // Ensure this element exists in your HTML
+    if (list) { // Check if the element exists to avoid errors
+        list.innerHTML = ''; // Clear existing list items
 
-    // Iterate over the scenarioSummary array
-    scenarioSummary.forEach((scenario, index) => {
-        // Skip the headers and base path values
-        if (index > 1) {
+        // Skip the headers, which are at index 0
+        scenarioSummary.slice(1).forEach((scenario) => {
             let listItem = document.createElement('li');
-            let content = scenario.slice(2).map(value => formatDecimal(value)).join(', '); // Skip the first two values and join the rest
+            // Skip the first two values ('Scenario' and 'Base Path') and join the rest
+            let content = scenario.slice(2).map(value => formatDecimal(value)).join(', ');
             listItem.textContent = content;
             list.appendChild(listItem);
-        }
-    });
+        });
+    } else {
+        console.error("Element with id 'summary-list' was not found.");
+    }
 }
+
 
 function fillPortSimSummaryTable(data){
 
