@@ -843,11 +843,17 @@ int main() {
             std::cout << "Reading summary.csv..." << std::endl;
             auto portsimSummary = readCsv("../../data/PortSim/display/summary.csv");
             std::cout << "summary.csv read. Number of rows: " << portsimSummary.size() << std::endl;
+            auto scenarioSummary = readCsv("../../data/PortSim/display/PortSimSummariesPy.csv");
 
-            std::cout << "Converting merged data to JSON..." << std::endl;
-            nlohmann::json jsonOutput = nlohmann::json(portsimSummary);
-            std::string jsonResponse = jsonOutput.dump();
-            std::cout << "JSON conversion complete. JSON length: " << jsonResponse.length() << std::endl;
+            // std::cout << "Converting merged data to JSON..." << std::endl;
+            // nlohmann::json jsonOutput = nlohmann::json(portsimSummary);
+            // std::string jsonResponse = jsonOutput.dump();
+            // std::cout << "JSON conversion complete. JSON length: " << jsonResponse.length() << std::endl;
+
+            nlohmann::json combinedJson;
+            combinedJson["scenariosummary"] = scenarioSummary;
+            combinedJson["portsimsummary"] = portsimSummary;
+            std::string jsonResponse = combinedJson.dump();
 
             std::ostringstream responseStream;
             responseStream << "HTTP/1.1 200 OK\r\n"

@@ -28,21 +28,23 @@ export function fetch_portfolio_simulations() {
 
         console.log(data)
 
-        // Skip the first row (headers) and iterate over the rest
-        for (let i = 1; i < data.length; i++) {
-            let row = tableBody.insertRow();
-            let rowData = data[i];
+        fillPortSimSummaryTable(data.portsimsummary)
 
-            // Add click event listener to each row
-            row.addEventListener('click', function() {
-                postStartNr(rowData[0]); // Sends the first column ('Start') value
-            });
+        // // Skip the first row (headers) and iterate over the rest
+        // for (let i = 1; i < data.length; i++) {
+        //     let row = tableBody.insertRow();
+        //     let rowData = data[i];
 
-            rowData.forEach(cellData => {
-                let cell = row.insertCell();
-                cell.textContent = formatDecimal(cellData);
-            });
-        }
+        //     // Add click event listener to each row
+        //     row.addEventListener('click', function() {
+        //         postStartNr(rowData[0]); // Sends the first column ('Start') value
+        //     });
+
+        //     rowData.forEach(cellData => {
+        //         let cell = row.insertCell();
+        //         cell.textContent = formatDecimal(cellData);
+        //     });
+        // }
 
     })
     .catch(error => console.error('Error fetching data:', error));
@@ -192,6 +194,32 @@ function fillHoldingsHistoryTable(holdingsHistory) {
         });
     }
 
+
+}
+
+function fillPortSimSummaryTable(data){
+
+
+    const tableBody = document.getElementById('portsimsummary-table').getElementsByTagName('tbody')[0];
+    tableBody.innerHTML = ''; // Clear existing rows
+
+    console.log(data)
+
+    // Skip the first row (headers) and iterate over the rest
+    for (let i = 1; i < data.length; i++) {
+        let row = tableBody.insertRow();
+        let rowData = data[i];
+
+        // Add click event listener to each row
+        row.addEventListener('click', function() {
+            postStartNr(rowData[0]); // Sends the first column ('Start') value
+        });
+
+        rowData.forEach(cellData => {
+            let cell = row.insertCell();
+            cell.textContent = formatDecimal(cellData);
+        });
+    }
 
 }
 
