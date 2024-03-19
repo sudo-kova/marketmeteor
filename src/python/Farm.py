@@ -18,7 +18,8 @@ class Farm:
         # data directories
         self.daily_data_directory = os.path.join(self.base_path, 'raw_stock_data', 'daily_data')
         
-        self.chart_data_directory = os.path.join(self.base_path, 'm20perf_L2016', 'charts', 'repo', 'm20', 'R08', 'chartdata2')
+        # self.chart_data_directory = os.path.join(self.base_path, 'm20perf_L2016', 'charts', 'repo', 'm20', 'R08', 'chartdata2')
+        self.chart_data_directory = os.path.join(self.base_path, 'm20perf_L2016', 'charts', 'repo', 'm20', 'R08', 'chartdata2_filter6')
         self.chart_data_directory_droplet = os.path.join('/incoming', 'marketmeteor-data', 'chartdata2')
         
         self.r08_directory = os.path.join(self.base_path, 'm20perf_L2016', 'charts', 'repo', 'm20', 'R08')
