@@ -713,11 +713,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // for Results add display: none to .row and .footer
 
-            if (index === 0) { // First nav link clicked (SWING)
+            if (index === 0) { // First nav link clicked (Overview)
+                // hide row and footer elements
+                rowElements.forEach(el => el.style.display = 'none');
+                footerElements.forEach(el => el.style.display = 'none');
+                // show results-wrapper (display: flex)
+            } else if (index === 1) { // First nav link clicked (SWING)
                 rowElements.forEach(el => el.style.display = 'flex');
                 footerElements.forEach(el => el.style.display = 'flex');
                 // hide results-wrapper
-            } else if (index === 1) { // Second nav link clicked (RESULTS)
+            } else if (index === 2) { // Second nav link clicked (RESULTS)
+                // hide row and footer elements
                 rowElements.forEach(el => el.style.display = 'none');
                 footerElements.forEach(el => el.style.display = 'none');
                 // show results-wrapper (display: flex)
@@ -725,9 +731,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    const navLink0 = document.getElementById('nav-link-overview');
     const navLink1 = document.getElementById('nav-link-swing');
     const navLink2 = document.getElementById('nav-link-results');
     const contentWrapper = document.querySelector('.results-wrapper');
+
+    navLink0.addEventListener('click', () => {
+        contentWrapper.style.display = 'none'; // Hide results-wrapper
+        // show overview-wrapper
+    });
 
     navLink1.addEventListener('click', () => {
         contentWrapper.style.display = 'none'; // Hide results-wrapper
