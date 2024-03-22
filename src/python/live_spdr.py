@@ -64,7 +64,7 @@ def get_last_price(ticker, prices):
         # last_price = yf.Ticker(ticker).info['currentPrice'] # this attribute does not exist for ETFs
         last_price = get_last_trading_price(ticker)
         prices[ticker] = (last_price, timestamp)
-        # print(last_price)
+        print((last_price, timestamp))
     except Exception as e:
         # pass
         print(f"Failed to get data for {ticker}: {e}")
