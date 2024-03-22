@@ -698,9 +698,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ---- Background image swap ----
-    function changeBackgroundImage() {
+    function changeBackgroundImage(imageName) {
         const overflowElement = document.querySelector('.overflow');
-        overflowElement.style.backgroundImage = "linear-gradient(360deg, #7a76ff7d 0%, #2a2b2e 50%, #414345 100%), url('../img/wallstreet.png')";
+        const imageUrl = `url('../img/${imageName}.png')`;
+        overflowElement.style.backgroundImage = `linear-gradient(360deg, #7a76ff7d 0%, #2a2b2e 50%, #414345 100%), ${imageUrl}`;
     }
 
     // ---- FOR NAVIGATION ----
@@ -746,18 +747,21 @@ document.addEventListener('DOMContentLoaded', () => {
     navLink0.addEventListener('click', () => {
         contentWrapper.style.display = 'none'; // Hide results-wrapper
         overviewWrapper.style.display = 'flex'; // show overview-wrapper
-        changeBackgroundImage(); // Change the background image
+        changeBackgroundImage('wallstreet');
     });
 
     navLink1.addEventListener('click', () => {
         contentWrapper.style.display = 'none'; // Hide results-wrapper
         overviewWrapper.style.display = 'none'; // Hide overview-wrapper
+        changeBackgroundImage('lab');
     });
 
     navLink2.addEventListener('click', () => {
         contentWrapper.style.display = 'flex'; // Show results-wrapper
         overviewWrapper.style.display = 'none'; // Hide overview-wrapper
         fetch_portfolio_simulations();
+        changeBackgroundImage('analyst');
+        
     });
 
     // ---- END of NAVIGATION ----
