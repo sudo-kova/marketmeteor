@@ -147,7 +147,7 @@ export function fill_gainers_table(){
             }
 
             // Extract the prices and calculate the percent difference
-            const currentPrice = parseFloat(item['Current Price']).toFixed(2) || 'N/A';
+            const currentPrice = parseFloat(item['Current Price']) || 'N/A';
             const m20Price = parseFloat(item['m20tmrw']).toFixed(2) || 'N/A';
             const pricediff = -(currentPrice - m20Price).toFixed(2);
             const pricediffpct = (pricediff/currentPrice*100).toFixed(2);
@@ -214,7 +214,7 @@ export function fill_gainers_table(){
 
                 row.insertCell().textContent = item['Ticker'];        // Changed from item.ticker
                 row.insertCell().textContent = item[overallRecordKey];
-                row.insertCell().textContent = `${item['Current Price']} (${live_1d})`
+                row.insertCell().textContent = `${item['Current Price'].toFixed(2)} (${live_1d})`
                 row.insertCell().textContent = item['Close'];
                 row.insertCell().textContent = m20Price;       // This is correct
                 row.insertCell().textContent = `${pricediff} (${pricediffpct}%)`;
