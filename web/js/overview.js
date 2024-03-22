@@ -58,6 +58,7 @@ export function plot_indicies(){
 
         // Layout configuration
         const layout = {
+            // height: 600,  // Set the plot height
             margin: { l: 50, r: 25, b: 25, t: 25 },
             paper_bgcolor: 'rgb(16 16 16 / 0%)',
             plot_bgcolor: 'rgb(16 16 16 / 0%)',
@@ -65,17 +66,21 @@ export function plot_indicies(){
                 color: '#868D98',
                 gridcolor: '#444',
                 // range: [trace[0] ? trace[0].Datetime : '09:30', '15:59']  // Set the x-axis range
-                range: [rangeStart, rangeEnd]  // Set the x-axis range
+                range: [rangeStart, rangeEnd],  // Set the x-axis range
                 // range: [trace.x[0], trace.x[trace.x.length - 1]]
+                title: 'Time'  // Add a title to the X-axis
             },
             yaxis: {
                 color: '#868D98',
-                gridcolor: '#444'
+                gridcolor: '#444',
+                title: '% Change'  // Add a title to the Y-axis
+
             }
         };
 
         // Configuration for the plot
         const config = {
+            responsive: true, // Ensures plot resizes with container
             modeBarButtonsToRemove: ['toImage', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'toggleSpikelines', 'hoverClosestCartesian', 'hoverCompareCartesian']
         };
 
