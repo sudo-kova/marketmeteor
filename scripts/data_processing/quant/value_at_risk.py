@@ -12,6 +12,9 @@ import os
 import platform
 import traceback
 
+
+
+
 """
 Value at Risk (VaR) for a list of validated stock tickers using two different methods: Historical and Variance-Covariance. 
 
@@ -168,6 +171,8 @@ def main():
     var_df = pd.DataFrame(var_results, columns=['Ticker', 'Hist VaR 95%', 'Hist VaR 99%', 'Var-Covar VaR 95%', 'Var-Covar VaR 99%'])
     var_df.to_csv(output_file, index=False)
     print(f"VaR calculations saved to {output_file}")
+
+
 
 if __name__ == "__main__":
 
