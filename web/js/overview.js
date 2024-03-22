@@ -102,6 +102,8 @@ export function fill_gainers_table(){
     const maxPriceDiffPct = 50;
     const minEarnings = -63;
     const maxEarnings = 63;
+    const minGainPct = parseFloat(document.getElementById('minGainPct').value) || 5;
+    const minLossPct = parseFloat(document.getElementById('minLossPct').value) || -5;
 
     fetch('/api/get-gainers-data', {
         cache: 'no-cache', // or 'reload'
@@ -185,8 +187,9 @@ export function fill_gainers_table(){
             if (pricediffpct >= minPriceDiffPct && 
                 pricediffpct <= maxPriceDiffPct && 
                 overallRecordPct >= minOverallRecordPct &&
+                (oneDayPctVal > minGainPct || oneDayPctVal < minLossPct) &&
                 earningsInRange) {
-                    
+
             // if (pricediffpct >= minPriceDiffPct && pricediffpct <= maxPriceDiffPct && overallRecordPct >= minOverallRecordPct && (isNaN(oneDayPctVal) || oneDayPctVal < 0)) {
             // if (pricediffpct >= -2 && pricediffpct <= 2 && overallRecordPct >= 80) {
             // if (pricediffpct >= -2 && pricediffpct <= 2) {
