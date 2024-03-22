@@ -68,7 +68,7 @@ export function plot_indicies(){
                 // range: [trace[0] ? trace[0].Datetime : '09:30', '15:59']  // Set the x-axis range
                 range: [rangeStart, rangeEnd],  // Set the x-axis range
                 // range: [trace.x[0], trace.x[trace.x.length - 1]]
-                title: 'Time'  // Add a title to the X-axis
+                // title: 'Time'  // Add a title to the X-axis
             },
             yaxis: {
                 color: '#868D98',
