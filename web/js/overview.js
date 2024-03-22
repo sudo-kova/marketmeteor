@@ -1,4 +1,4 @@
-import { palette_purple, palette_red, palette_yellow, palette_green } from './colors.js';
+import { palette_purple, palette_red, palette_yellow, palette_green, palette_light_gray } from './colors.js';
 
 export function plot_indicies(){
 
