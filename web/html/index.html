@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="../css/style_parallax.css">
   <link rel="stylesheet" href="../css/style_spaces.css">
   <link rel="stylesheet" href="../css/style_results.css">
+  <link rel="stylesheet" href="../css/style_overview.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
@@ -288,6 +289,104 @@
       </div>
 
       <!-- FOR OVERVIEW -->
+      <div class="overview-wrapper">
+        <div class="overview-side-panel">
+          <!-- summary of overall portfolio simulation loaded here -->
+          <!-- table of portfolio simulations loaded here -->
+          <h1 id="divTitle">Portfolio Simulations <span style="
+            font-size: 11px;
+            color: #868D98 !important;
+        ">Top 10 and Bottom 10 Simulations</span></h1>
+
+          <ul>
+            <li>Last updated: 3/1/2024</li>
+            <li>Market Meteors with the following filter: Pwin &gt;= 80, earnings [-63,14), average duration &lt;=7, daily delta &gt;= -0.05, 63 d% &gt;= -0.35, &lt;126 days below threshold</li>
+            <li>Starting Cash: 10000</li>
+            <li>Maximum Position Size: 2000</li>
+            <li>Cash Settlement: 3 days (loss in portfolio value until it clears)</li>
+            <li>Positons do not have to be unique</li>
+            <li>No fractional shares</li>
+          </ul>
+        
+        <!-- fillSummary (results.js) -->
+        <!-- <ul id="summary-list"></ul> -->
+
+        <div id = "portsimsummarydiv" class="portsummary-scrollable-table-container" style = "display: block;">
+            <table id="portsimsummary-table" class="dark-table">
+
+
+              <thead>
+                  <tr style="
+                  position: sticky;
+                  top: 0;
+                  background: #101010;
+                  ">
+                      <th>Start</th>
+                      <th>Total Return</th>
+                      <th>Beta</th>
+                      <th>Alpha</th>
+                      <th>Standard Deviation</th>
+                      <th>Sharpe Ratio</th>
+                      <th>Information Ratio</th>
+                      <th>average_risk_free_rate</th>
+                      <th>GSPC</th>
+                      <th>CD</th>
+                      <th>Buy Count</th>
+                  </tr>
+              </thead>
+
+              <tbody>
+                  <!-- Data rows will go here -->
+              </tbody>
+
+            </table>
+        </div>
+
+        <!-- end of side panel -->
+        </div> 
+
+
+        <div class="overview-main-panel">
+            <div class="overview-top-section">
+              <!-- plotlyjs of timeseries csv of selected simulation -->
+            </div>
+            <div class="overview-bottom-section">
+              <!-- trade history of selected simulation -->
+
+                <div id = "portsimholdingsdiv" class="portholdings-scrollable-table-container" style = "display: block;">
+                  <table id="portsimholdings-table" class="dark-table">
+                    <!-- live on initial load, click refresh for latest -->
+      
+                    <thead>
+                        <tr style="
+                        position: sticky;
+                        top: 0;
+                        background: #101010;
+                        ">
+                            <th>date_number</th>
+                            <th>action</th>
+                            <th>ticker</th>
+                            <th>shares</th>
+                            <th>price</th>
+                            <th>max position size</th>
+                            <th>cash</th>
+                            <th>sell_date</th>
+                            <th>clear_date</th>
+                            <th>date</th>
+                            <th>nr</th>
+                        </tr>
+                    </thead>
+      
+                    <tbody>
+                        <!-- Data rows will go here -->
+                    </tbody>
+      
+                  </table>
+                </div>
+
+            </div>
+        </div>
+      </div>
 
       <!-- FOR SWING  -->
 

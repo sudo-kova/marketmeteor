@@ -1,0 +1,114 @@
+.overview-wrapper{
+    display: none; /* Hide by default */
+    /* display: flex; */
+    flex-direction: row;
+    height: 100%;
+    border-radius: 12px;
+    /* height: 100vh; */
+}
+
+.overview-side-panel {
+    width: 50%;
+    height: 100%; /* Adjusted to 100% to match parent height */
+    /* outline: 1px solid #343437; */
+    background: #16161782;
+    flex-shrink: 0;
+    border-radius: 12px;
+    margin: 0 0.5rem;
+}
+
+.overview-main-panel {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 100%;
+    border-radius: 12px;
+    margin: 0 0.5rem;
+    /* flex-shrink: 0; */
+}
+
+.overview-top-section, .overview-bottom-section {
+    flex: 1; /* Splits the remaining height equally */
+    /* outline: 1px solid #343437; */
+    background: #16161782;
+    border-radius: 12px;
+}
+
+.overview-bottom-section {
+    margin-top: 1em;
+}
+
+#portsimsummarydiv button:hover {
+    background-color: #555; /* Slightly lighter on hover for interactivity */
+}
+
+#portsimsummarydiv label {
+    color: #f1f1f1; /* Light text for visibility */
+    margin-right: 5px;
+}
+
+.portsummary-scrollable-table-container {
+    max-height: 70vh; /* Adjust the height as needed */
+    overflow-y: auto;  /* Enables vertical scrolling */
+    /* overflow-x: hidden; */ /* Prevents horizontal scrolling */
+    margin-top: 1vh;
+}
+
+
+
+#portsimholdingsdiv button:hover {
+    background-color: #555; /* Slightly lighter on hover for interactivity */
+}
+
+#portsimholdingsdiv label {
+    color: #f1f1f1; /* Light text for visibility */
+    margin-right: 5px;
+}
+
+.portholdings-scrollable-table-container {
+    max-height: 70vh; /* Adjust the height as needed */
+    overflow-y: auto;  /* Enables vertical scrolling */
+    /* overflow-x: hidden; */ /* Prevents horizontal scrolling */
+    margin-top: 1vh;
+}
+
+
+.overview-wrapper {
+    /* display: flex; */
+    flex-direction: row;
+    height: 100vh; /* Set a specific height, e.g., 100vh for full viewport height */
+    border-radius: 12px;
+    overflow: hidden; /* To ensure child elements don't overflow */
+}
+
+.overview-side-panel, .overview-main-panel {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Allocate space dynamically */
+    height: 100%; /* Height set to 100% of the parent */
+    /* ... other styles ... */
+}
+
+.overview-top-section, .overview-bottom-section {
+    flex: 1; /* Splits the height equally */
+    overflow-y: hidden; /* Makes section scrollable */
+    /* ... other styles ... */
+}
+
+/* ... other styles ... */
+
+.portholdings-scrollable-table-container,
+.portsummary-scrollable-table-container {
+    max-height: 100%; /* Adjust to 100% of parent */
+    /* overflow-y: hidden; */ /* Enable vertical scrolling */
+}
+
+#summary-list {
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2;    /* Firefox */
+    column-count: 2;         /* Standard syntax */
+    
+    -webkit-column-gap: 20px; /* Chrome, Safari, Opera */
+    -moz-column-gap: 20px;    /* Firefox */
+    column-gap: 20px;         /* Standard syntax */
+}
