@@ -735,18 +735,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLink1 = document.getElementById('nav-link-swing');
     const navLink2 = document.getElementById('nav-link-results');
     const contentWrapper = document.querySelector('.results-wrapper');
+    const overviewWrapper = document.querySelector('.overview-wrapper');
 
     navLink0.addEventListener('click', () => {
         contentWrapper.style.display = 'none'; // Hide results-wrapper
-        // show overview-wrapper
+        overviewWrapper.style.display = 'flex'; // show overview-wrapper
     });
 
     navLink1.addEventListener('click', () => {
         contentWrapper.style.display = 'none'; // Hide results-wrapper
+        overviewWrapper.style.display = 'none'; // Hide overview-wrapper
     });
 
     navLink2.addEventListener('click', () => {
         contentWrapper.style.display = 'flex'; // Show results-wrapper
+        overviewWrapper.style.display = 'none'; // Hide overview-wrapper
         fetch_portfolio_simulations();
     });
 
