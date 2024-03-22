@@ -3,17 +3,17 @@ import { palette_purple, palette_red, palette_yellow, palette_green } from './co
 export function plot_indicies(){
 
     fetch("/api/majorindicies-timeseries", { cache: 'no-cache' })
-    .then(response => response.text()) // Get the response text instead of trying to parse as JSON
+    .then(response => response.json())  // Parse as JSON
     .then(data => {
         const traces = [];
 
-        // Check if data is an array and has at least one entry
         if (Array.isArray(data) && data.length > 0) {
+            // Iterate over all keys in the data objects, except "Datetime"
             for (let index in data[0]) {
                 if (index !== "Datetime") {
                     const trace = {
                         x: data.map(entry => entry.Datetime),
-                        y: data.map(entry => parseFloat(entry[index]) || null), // Convert to float, use null for empty strings
+                        y: data.map(entry => entry[index] ? parseFloat(entry[index]) : null),  // Handle blank values
                         type: 'scatter',
                         mode: 'lines',
                         line: {
@@ -68,7 +68,8 @@ export function plot_indicies(){
         };
 
         // Render the plot
-        Plotly.newPlot('graphDivMajorIndicies', [trace], layout, config);
+        // Plotly.newPlot('graphDivMajorIndicies', [trace], layout, config);
+        Plotly.newPlot('graphDivMajorIndicies', traces, layout, config, {responsive: true});
 
 
     })
