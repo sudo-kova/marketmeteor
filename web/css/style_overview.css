@@ -117,10 +117,7 @@
 #graphDivMajorIndicies{
     display: flex !important;
     border-radius: 8px;
-    background: #28282ac7;
+    /* background: #28282ac7; */
     margin: 0 auto;
-    flex-grow: 1;
-    /* height: 80%; */
-    /* height: calc((80vh - 1vh)); */
     flex-grow: 1;
 }
