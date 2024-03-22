@@ -508,7 +508,9 @@ int main() {
                            << jsonResponse;
             response = responseStream.str();
         } else if (request.find("GET /api/majorindicies-timeseries HTTP") == 0) {
-            // Handle sectors-data request
+            // Handle major indicies time series request
+
+            std::system("bash -c 'source /marketmeteor/web_server/myenv/bin/activate && python3 ../python/live_1m_data_indicies.py'");
 
             // auto csvData = readCsv("/marketmeteor/web_server/dataset/sectors.csv");
             auto csvData = readCsv("../../data/raw/minute/combined_tickers.csv");

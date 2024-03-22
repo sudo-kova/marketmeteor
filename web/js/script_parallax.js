@@ -115,6 +115,7 @@ import { fetchPortData } from './holdings.js';
 import { applyFilter_m20data, fetchAndDisplayData } from './meteors.js';
 import { setupTitlesInteraction, setupWalkaround } from './tutorial.js';
 import { fetch_portfolio_simulations } from './results.js';
+import { plot_indicies } from './overview.js';
 
 // SETUP MAIN BUTTONS (CALENDAR AND SEARCH)
 
@@ -748,6 +749,7 @@ document.addEventListener('DOMContentLoaded', () => {
         contentWrapper.style.display = 'none'; // Hide results-wrapper
         overviewWrapper.style.display = 'flex'; // show overview-wrapper
         changeBackgroundImage('wallstreet');
+        plot_indicies();
     });
 
     navLink1.addEventListener('click', () => {
