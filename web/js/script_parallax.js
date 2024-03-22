@@ -697,6 +697,12 @@ document.addEventListener('DOMContentLoaded', () => {
         refreshholdings.addEventListener('click', fetchPortData);
     }
 
+    // ---- Background image swap ----
+    function changeBackgroundImage() {
+        const overflowElement = document.querySelector('.overflow');
+        overflowElement.style.backgroundImage = "linear-gradient(360deg, #7a76ff7d 0%, #2a2b2e 50%, #414345 100%), url('../img/wallstreet.png')";
+    }
+
     // ---- FOR NAVIGATION ----
 
     const navLinks = document.querySelectorAll('.nav-link');
@@ -740,6 +746,7 @@ document.addEventListener('DOMContentLoaded', () => {
     navLink0.addEventListener('click', () => {
         contentWrapper.style.display = 'none'; // Hide results-wrapper
         overviewWrapper.style.display = 'flex'; // show overview-wrapper
+        changeBackgroundImage(); // Change the background image
     });
 
     navLink1.addEventListener('click', () => {
