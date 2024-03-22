@@ -99,7 +99,7 @@ with open(csv_filename, mode='w', newline='') as file:
 
 # pull prices every 30 seconds for 15 minutes
 start_time = time.time()
-end_time = start_time + 30*60  # 15 minutes
+actual_end_time = time.time()
 
 prices = pull_prices(tickers)
 
@@ -108,4 +108,6 @@ with open(csv_filename, mode='w', newline='') as file:
     writer.writerow(["Ticker", "Current Price", "Pulled At"])  # Write the header each time
     for ticker, (price, timestamp) in prices.items():
         writer.writerow([ticker, price, timestamp])  # Write stock, current price, and the timestamp of the pull
-print(start_time-end_time)
+
+actual_runtime = actual_end_time - start_time
+print(actual_runtime)
