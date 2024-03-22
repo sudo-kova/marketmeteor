@@ -27,6 +27,7 @@ export function plot_indicies(){
                                 color: index === '^DJI' ? palette_red : 
                                 index === '^GSPC' ? palette_green : 
                                 index === '^NDX' ? palette_purple : 
+                                index === '^VIX' ? palette_light_gray : 
                                 palette_yellow, // Default color for other indices
                                 width: 2
                             },
