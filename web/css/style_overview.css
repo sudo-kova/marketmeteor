@@ -91,11 +91,11 @@
 
 .overview-top-section, .overview-bottom-section {
     flex: 1; /* Splits the height equally */
+    flex-direction: column;
     overflow-y: hidden; /* Makes section scrollable */
-    /* ... other styles ... */
+    height: 100%;
+    display: flex;
 }
-
-/* ... other styles ... */
 
 .portholdings-scrollable-table-container,
 .portsummary-scrollable-table-container {
@@ -120,6 +120,7 @@
     background: #28282ac7;
     margin: 0 auto;
     flex-grow: 1;
-    height: 80%;
+    /* height: 80%; */
     /* height: calc((80vh - 1vh)); */
+    flex-grow: 1;
 }
