@@ -7,6 +7,11 @@ import platform
 import threading
 import sys
 
+import warnings
+
+# Suppress specific FutureWarning
+warnings.filterwarnings('ignore', category=FutureWarning, module='yfinance.*')
+
 # adapted from live_data_single.py for all stocks for gainers table (spdr.txt)
 
 operating_system = platform.system()
@@ -103,4 +108,4 @@ with open(csv_filename, mode='w', newline='') as file:
     writer.writerow(["Ticker", "Current Price", "Pulled At"])  # Write the header each time
     for ticker, (price, timestamp) in prices.items():
         writer.writerow([ticker, price, timestamp])  # Write stock, current price, and the timestamp of the pull
-print(time.time())
+print(start_time-end_time)
