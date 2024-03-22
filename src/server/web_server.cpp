@@ -507,6 +507,23 @@ int main() {
                            << "\r\n"
                            << jsonResponse;
             response = responseStream.str();
+        } else if (request.find("GET /api/majorindicies-timeseries HTTP") == 0) {
+            // Handle sectors-data request
+
+            // auto csvData = readCsv("/marketmeteor/web_server/dataset/sectors.csv");
+            auto csvData = readCsv("../../data/raw/minute/combined_tickers.csv");
+            nlohmann::json jsonOutput = csvToJson(csvData);
+            std::string jsonResponse = jsonOutput.dump();
+
+            // std::string jsonResponse = csvToJson(csvData);
+            std::ostringstream responseStream;
+            responseStream << "HTTP/1.1 200 OK\r\n"
+                           << "Content-Type: application/json\r\n"
+                           << "Content-Length: " << jsonResponse.length() << "\r\n"
+                           << "\r\n"
+                           << jsonResponse;
+            response = responseStream.str();
+
         } else if (request.find("GET /api/get-m20-data HTTP") == 0) {
 
             std::cout << "executing live_data_single.py ..." << std::endl;
