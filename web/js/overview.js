@@ -60,7 +60,8 @@ export function plot_indicies(){
         // Layout configuration
         const layout = {
             // height: 600,  // Set the plot height
-            margin: { l: 50, r: 25, b: 25, t: 25 },
+            // margin: { l: 50, r: 25, b: 25, t: 25 },
+            margin: { l: 50, r: 50, b: 50, t: 50 },  // Increased margins
             paper_bgcolor: 'rgb(16 16 16 / 0%)',
             plot_bgcolor: 'rgb(16 16 16 / 0%)',
             xaxis: {
