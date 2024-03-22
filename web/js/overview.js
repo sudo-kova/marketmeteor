@@ -356,7 +356,7 @@ export function apply_filter_to_gainers_table(){
     tableBody.innerHTML = ''; // Clear existing rows
 
     // Populate the table with new rows
-    getglobalData_gainers.forEach(item => {
+    getglobalData_gainers().forEach(item => {
         
         // Handle potentially undefined or malformed 'Overall Record'
 
