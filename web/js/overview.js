@@ -103,7 +103,7 @@ export function fill_gainers_table(){
 
         // console.log(data); // verified that json file contains all columns
         // globalData = data; // store for applyFilter_m20data() later
-        setglobalData(data)
+        // setglobalData(data)
 
         // Assuming the data is an array of objects with {ticker, currentPrice, m20tmrw, lastUpdated}
         const tableBody = document.getElementById('gainers-table').getElementsByTagName('tbody')[0];
