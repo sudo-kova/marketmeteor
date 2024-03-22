@@ -697,17 +697,11 @@ document.addEventListener('DOMContentLoaded', () => {
         refreshholdings.addEventListener('click', fetchPortData);
     }
 
+    // ---- FOR NAVIGATION ----
+
     const navLinks = document.querySelectorAll('.nav-link');
-    // const highlight = document.querySelector('.highlight');
-    // const highlight = document.querySelector('.highlight');
     const rowElements = document.querySelectorAll('.row');
     const footerElements = document.querySelectorAll('.footer');
-
-    // Initialize on the first active link
-    // const activeLink = document.querySelector('.nav-link.active');
-    // if (activeLink) {
-    //     moveHighlightTo(activeLink);
-    // }
 
     navLinks.forEach((link, index) => {
         link.addEventListener('click', function() {
@@ -716,9 +710,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Add 'active' class to the clicked link
             this.classList.add('active');
-
-            // TOGGLE the SPACE here
-            // ...
 
             // for Results add display: none to .row and .footer
 
@@ -734,23 +725,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const navLink1 = document.getElementById('nav-link-swing'); // Replace with your actual ID
-    const navLink2 = document.getElementById('nav-link-results'); // Replace with your actual ID
+    const navLink1 = document.getElementById('nav-link-swing');
+    const navLink2 = document.getElementById('nav-link-results');
     const contentWrapper = document.querySelector('.results-wrapper');
-    // const rowElements = document.querySelectorAll('.row-element'); // Replace with actual selector
-    // const footerElements = document.querySelectorAll('.footer-element'); // Replace with actual selector
 
     navLink1.addEventListener('click', () => {
-        // rowElements.forEach(el => el.style.display = 'flex');
-        // footerElements.forEach(el => el.style.display = 'flex');
         contentWrapper.style.display = 'none'; // Hide results-wrapper
     });
 
     navLink2.addEventListener('click', () => {
-        // rowElements.forEach(el => el.style.display = 'none');
-        // footerElements.forEach(el => el.style.display = 'none');
         contentWrapper.style.display = 'flex'; // Show results-wrapper
         fetch_portfolio_simulations();
     });
+
+    // ---- END of NAVIGATION ----
 
 });
