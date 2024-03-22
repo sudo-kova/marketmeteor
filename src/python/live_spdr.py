@@ -14,9 +14,10 @@ operating_system = platform.system()
 if operating_system == "Windows":
     # running on droplet only so this code is not used in this case
     base_path = "X:\\Stockland"
-    NRSUBPROCESSES = 10
+    NRSUBPROCESSES = 1
 
-    validated_tickers_file = os.path.join(base_path, 'raw_stock_data', 'tickerlists', 'tickerlist_validated.txt')
+    validated_tickers_file = "../../data/tickerlists/spdr.txt"
+    # validated_tickers_file = os.path.join(base_path, 'raw_stock_data', 'tickerlists', 'tickerlist_validated.txt')
     # csv_filename = os.path.join(base_path, 'live', 'stock_prices.csv')
 
     base_path2 = "X:\\repositories"
@@ -45,16 +46,28 @@ with open(validated_tickers_file, 'r') as f:
 # tickers = tickers[:30]
 print(tickers)
 
-# 7 seconds delay
+def get_last_trading_price(ticker_symbol):
+    ticker = yf.Ticker(ticker_symbol)
+    # Fetching data for the last day
+    df = ticker.history(period="1d")
+    if not df.empty:
+        # The last row, assuming it's sorted by date
+        last_price = df['Close'].iloc[-1]
+        return last_price
+    else:
+        raise ValueError(f"No historical data available for {ticker_symbol}")
 
 def get_last_price(ticker, prices):
     try:
         timestamp = datetime.now().strftime("%H:%M:%S")
-        last_price = yf.Ticker(ticker).info['currentPrice']
+        # print( yf.Ticker(ticker).info)
+        # last_price = yf.Ticker(ticker).info['currentPrice'] # this attribute does not exist for ETFs
+        last_price = get_last_trading_price(ticker)
         prices[ticker] = (last_price, timestamp)
+        # print(last_price)
     except Exception as e:
-        pass
-        # print(f"Failed to get data for {ticker}: {e}")
+        # pass
+        print(f"Failed to get data for {ticker}: {e}")
 
 # pull prices for all tickers
 def pull_prices(tickers):
