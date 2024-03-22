@@ -121,3 +121,50 @@
     margin: 0 auto;
     flex-grow: 1;
 }
+
+#gainerswatchlistdiv label {
+    color: #f1f1f1; /* Light text for visibility */
+    margin-right: 5px;
+  }
+
+  #gainerswatchlistdiv button:hover {
+    background-color: #555; /* Slightly lighter on hover for interactivity */
+  }
+  
+  #gainerswatchlistdiv label[for="minOverallRecordPct"] {
+    padding: 10px;
+    display: inline-block; /* This makes padding effective */
+    color: #f1f1f1;
+    margin-right: 5px;
+  }
+
+  .scrollable-table-container {
+    max-height: 70vh; /* Adjust the height as needed */
+    overflow-y: auto;  /* Enables vertical scrolling */
+    /* overflow-x: hidden; */ /* Prevents horizontal scrolling */
+    margin-top: 1vh;
+  }
+  
+  /* Style the scrollbar track (background) */
+  .scrollable-table-container::-webkit-scrollbar-track {
+    background-color: #2e2e2e; /* Dark track background */
+    /* border-radius: 10px; /* Rounded corners for the track */
+  }
+  
+  /* Style the scrollbar thumb (the moving part) */
+  .scrollable-table-container::-webkit-scrollbar-thumb {
+    background-color: #555; /* Darker color for the thumb */
+    /* border-radius: 10px; /* Rounded corners for the thumb */
+    border: 3px solid #2e2e2e; /* Match the track's color */
+  }
+  
+  /* Handle hover over the scrollbar thumb */
+  .scrollable-table-container::-webkit-scrollbar-thumb:hover {
+    background-color: #777; /* Slightly lighter on hover */
+  }
+  
+  /* Set the width (or height for horizontal scrollbars) */
+  .scrollable-table-container::-webkit-scrollbar {
+    width: 11px; /* Width of the scrollbar */
+    height: 11px; /* Height (necessary for horizontal scrollbars) */
+  }
