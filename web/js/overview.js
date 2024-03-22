@@ -183,12 +183,14 @@ export function fill_gainers_table(){
             const earningsInRangeFilt6 = !isNaN(earningsValue) && earningsValue >= -63 && earningsValue <= 14;
 
             // console.log(`Ticker: ${item['Ticker']}, Current Price: ${currentPrice}, m20 Price: ${m20Price}, Price Diff: ${pricediff}, Price Diff Pct: ${pricediffpct}, Overall Record Pct: ${overallRecordPct}, One Day Pct Val: ${oneDayPctVal}, Earnings In Range: ${earningsInRange}`);
-
+            console.log(`oneDayPctVal: ${oneDayPctVal}, minGainPct: ${minGainPct}, minLossPct: ${minLossPct}`);
             if (pricediffpct >= minPriceDiffPct && 
                 pricediffpct <= maxPriceDiffPct && 
                 overallRecordPct >= minOverallRecordPct &&
                 (oneDayPctVal > minGainPct || oneDayPctVal < minLossPct) &&
                 earningsInRange) {
+
+                console.log(`ADDED TO TABLE: oneDayPctVal: ${oneDayPctVal}, minGainPct: ${minGainPct}, minLossPct: ${minLossPct}`);
 
             // if (pricediffpct >= minPriceDiffPct && pricediffpct <= maxPriceDiffPct && overallRecordPct >= minOverallRecordPct && (isNaN(oneDayPctVal) || oneDayPctVal < 0)) {
             // if (pricediffpct >= -2 && pricediffpct <= 2 && overallRecordPct >= 80) {
