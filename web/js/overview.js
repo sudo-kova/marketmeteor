@@ -147,7 +147,7 @@ export function fill_gainers_table(){
             }
 
             // Extract the prices and calculate the percent difference
-            const currentPrice = parseFloat(item['Current Price']) || 'N/A';
+            const currentPrice = parseFloat(item['Current Price']).toFixed(2) || 'N/A';
             const m20Price = parseFloat(item['m20tmrw']).toFixed(2) || 'N/A';
             const pricediff = -(currentPrice - m20Price).toFixed(2);
             const pricediffpct = (pricediff/currentPrice*100).toFixed(2);
@@ -184,8 +184,8 @@ export function fill_gainers_table(){
             if (pricediffpct >= minPriceDiffPct && 
                 pricediffpct <= maxPriceDiffPct && 
                 overallRecordPct >= minOverallRecordPct &&
-                (isNaN(oneDayPctVal) || oneDayPctVal < 0) &&
                 earningsInRange) {
+                    
             // if (pricediffpct >= minPriceDiffPct && pricediffpct <= maxPriceDiffPct && overallRecordPct >= minOverallRecordPct && (isNaN(oneDayPctVal) || oneDayPctVal < 0)) {
             // if (pricediffpct >= -2 && pricediffpct <= 2 && overallRecordPct >= 80) {
             // if (pricediffpct >= -2 && pricediffpct <= 2) {
