@@ -7,22 +7,23 @@ export function plot_indicies(){
     .then(data => {
         const traces = [];
 
-        // Assuming data is an array of objects, each representing a timestamp with multiple indices
-        for (let index in data[0]) {
-            if (index !== "Datetime") {
-                const trace = {
-                    x: data.map(entry => entry.Datetime),
-                    y: data.map(entry => parseFloat(entry[index]) || null), // Convert to float, use null for empty strings
-                    type: 'scatter',
-                    mode: 'lines',
-                    line: {
-                        // Example: use different colors for different indices
-                        color: index === '^DJI' ? palette_red : index === '^GSPC' ? palette_green : palette_yellow,
-                        width: 2
-                    },
-                    name: index
-                };
-                traces.push(trace);
+        // Check if data is an array and has at least one entry
+        if (Array.isArray(data) && data.length > 0) {
+            for (let index in data[0]) {
+                if (index !== "Datetime") {
+                    const trace = {
+                        x: data.map(entry => entry.Datetime),
+                        y: data.map(entry => parseFloat(entry[index]) || null), // Convert to float, use null for empty strings
+                        type: 'scatter',
+                        mode: 'lines',
+                        line: {
+                            color: index === '^DJI' ? palette_red : index === '^GSPC' ? palette_green : palette_yellow,
+                            width: 2
+                        },
+                        name: index
+                    };
+                    traces.push(trace);
+                }
             }
         }
 
