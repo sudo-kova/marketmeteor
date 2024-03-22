@@ -31,6 +31,14 @@ export function getglobalData() {
     return globalData;
 }
 
+let globalData_gainers = [];
+export function setglobalData_gainers(data_input) {
+    globalData_gainers = data_input;
+}
+export function getglobalData_gainers() {
+    return globalData_gainers;
+}
+
 let minuteDataShown = false;
 export function getMinuteDataShown() {
     return minuteDataShown;
@@ -115,7 +123,7 @@ import { fetchPortData } from './holdings.js';
 import { applyFilter_m20data, fetchAndDisplayData } from './meteors.js';
 import { setupTitlesInteraction, setupWalkaround } from './tutorial.js';
 import { fetch_portfolio_simulations } from './results.js';
-import { plot_indicies, fill_gainers_table } from './overview.js';
+import { plot_indicies, fill_gainers_table, apply_filter_to_gainers_table} from './overview.js';
 
 // SETUP MAIN BUTTONS (CALENDAR AND SEARCH)
 
@@ -703,6 +711,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const overflowElement = document.querySelector('.overflow');
         const imageUrl = `url('../img/${imageName}.png')`;
         overflowElement.style.backgroundImage = `linear-gradient(360deg, #7a76ff7d 0%, #2a2b2e 50%, #414345 100%), ${imageUrl}`;
+    }
+
+    const gainers_applyfilter_m20 = document.getElementById('gainers_applyfilter_m20');
+    if (gainers_applyfilter_m20) {
+        gainers_applyfilter_m20.addEventListener('click', apply_filter_to_gainers_table);
     }
 
     // ---- FOR NAVIGATION ----
