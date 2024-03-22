@@ -80,8 +80,8 @@ export function plot_indicies(){
         };
 
         // Render the plot
-        // Plotly.newPlot('graphDivMajorIndicies', [trace], layout, config);
-        Plotly.newPlot('graphDivMajorIndicies', traces, layout, config, {responsive: true});
+        // Plotly.newPlot('graphDivMajorIndicies', traces, layout, config, {responsive: true});
+        Plotly.newPlot('graphDivMajorIndicies', traces, layout, config);
 
 
     })
