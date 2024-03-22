@@ -444,7 +444,7 @@ h2 {
   margin-bottom: 8px;
 }
 
-#graphDiv, #graphDiv2, #graphDiv3, #graphDiv4, #graphDiv6, #graphDivMajorIndicies{
+#graphDiv, #graphDiv2, #graphDiv3, #graphDiv4, #graphDiv6{
   /* height: calc((80vh - 1vh)); */
   display: flex !important;
   border-radius: 8px;
