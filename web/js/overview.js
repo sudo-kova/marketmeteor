@@ -170,7 +170,7 @@ export function fill_gainers_table(){
 
 
             const live_1d = (item['Current Price'] && item['Close']) ? 
-                ((parseFloat(item['Current Price'])/parseFloat(item['Close']) - 1) * 100).toFixed(2) + '%' : 
+                ((parseFloat(item['Current Price'])/parseFloat(item['Close']) - 1) * 100).toFixed(2) : 
                 'N/A';
 
             const live_63d_peak = (item['Current Price'] && item['63d peak']) ? 
@@ -183,14 +183,14 @@ export function fill_gainers_table(){
             const earningsInRangeFilt6 = !isNaN(earningsValue) && earningsValue >= -63 && earningsValue <= 14;
 
             // console.log(`Ticker: ${item['Ticker']}, Current Price: ${currentPrice}, m20 Price: ${m20Price}, Price Diff: ${pricediff}, Price Diff Pct: ${pricediffpct}, Overall Record Pct: ${overallRecordPct}, One Day Pct Val: ${oneDayPctVal}, Earnings In Range: ${earningsInRange}`);
-            console.log(`oneDayPctVal: ${oneDayPctVal}, minGainPct: ${minGainPct}, minLossPct: ${minLossPct}`);
+            console.log(`Ticker: ${item['Ticker']}, live_1d: ${live_1d}, minGainPct: ${minGainPct}, minLossPct: ${minLossPct}`);
             if (pricediffpct >= minPriceDiffPct && 
                 pricediffpct <= maxPriceDiffPct && 
                 overallRecordPct >= minOverallRecordPct &&
-                (oneDayPctVal > minGainPct || oneDayPctVal < minLossPct) &&
+                (live_1d > minGainPct || live_1d < minLossPct) &&
                 earningsInRange) {
 
-                console.log(`ADDED TO TABLE: oneDayPctVal: ${oneDayPctVal}, minGainPct: ${minGainPct}, minLossPct: ${minLossPct}`);
+                    console.log(`ADDED TO TABLE: Ticker: ${item['Ticker']}, live_1d: ${live_1d}, minGainPct: ${minGainPct}, minLossPct: ${minLossPct}`);
 
             // if (pricediffpct >= minPriceDiffPct && pricediffpct <= maxPriceDiffPct && overallRecordPct >= minOverallRecordPct && (isNaN(oneDayPctVal) || oneDayPctVal < 0)) {
             // if (pricediffpct >= -2 && pricediffpct <= 2 && overallRecordPct >= 80) {
@@ -220,7 +220,7 @@ export function fill_gainers_table(){
 
                 row.insertCell().textContent = item['Ticker'];        // Changed from item.ticker
                 row.insertCell().textContent = item[overallRecordKey];
-                row.insertCell().textContent = `${currentPrice} (${live_1d})`
+                row.insertCell().textContent = `${currentPrice} (${live_1d}%)`
                 row.insertCell().textContent = item['Close'];
                 row.insertCell().textContent = m20Price;       // This is correct
                 row.insertCell().textContent = `${pricediff} (${pricediffpct}%)`;
