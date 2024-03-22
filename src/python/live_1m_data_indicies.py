@@ -27,13 +27,14 @@ start_time = time.time()
 
 if __name__ == "__main__":
 
+    Farm = Farm()  # Initialize Farm
+
     validated_tickers_file = "../../data/tickerlists/indicies.txt"
 
     with open(validated_tickers_file, 'r') as f:
         tickers = f.read().splitlines()
 
     for ticker in tickers:
-        Farm = Farm()  # Initialize Farm
 
         # Start timing
         start_time = time.time()
