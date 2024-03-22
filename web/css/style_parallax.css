@@ -630,7 +630,7 @@ div#tablemenu {
   /* background-color: #333; */
   text-align: left;
   max-height: 400px; /* Set the maximum height for your table container */
-  overflow-y: auto;  /* Enables vertical scrolling */    
+  overflow-y: auto;  /* Enables vertical scrolling */
   /* margin-top: 1vh; */
   font-size: 12px;
   width: max-content;

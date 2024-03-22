@@ -87,6 +87,8 @@
     flex: 1; /* Allocate space dynamically */
     height: 100%; /* Height set to 100% of the parent */
     /* ... other styles ... */
+    min-width: 0; /* Add this */
+    overflow: hidden; /* And/or this */
 }
 
 .overview-top-section, .overview-bottom-section {
@@ -141,7 +143,7 @@
   .scrollable-table-container {
     max-height: 70vh; /* Adjust the height as needed */
     overflow-y: auto;  /* Enables vertical scrolling */
-    /* overflow-x: hidden; */ /* Prevents horizontal scrolling */
+    overflow-x: auto; /* Prevents horizontal scrolling */
     margin-top: 1vh;
   }
   
