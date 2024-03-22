@@ -8,21 +8,32 @@ export function plot_indicies(){
         const traces = [];
 
         if (Array.isArray(data) && data.length > 0) {
-            // Iterate over all keys in the data objects, except "Datetime"
             for (let index in data[0]) {
                 if (index !== "Datetime") {
-                    const trace = {
-                        x: data.map(entry => entry.Datetime),
-                        y: data.map(entry => entry[index] ? parseFloat(entry[index]) : null),  // Handle blank values
-                        type: 'scatter',
-                        mode: 'lines',
-                        line: {
-                            color: index === '^DJI' ? palette_red : index === '^GSPC' ? palette_green : palette_yellow,
-                            width: 2
-                        },
-                        name: index
-                    };
-                    traces.push(trace);
+                    // Find the first non-null value as the baseline for percentage calculation
+                    const firstNonEmptyEntry = data.find(entry => entry[index]);
+                    const baseline = firstNonEmptyEntry ? parseFloat(firstNonEmptyEntry[index]) : null;
+
+                    if (baseline) { // Proceed only if a baseline is found
+                        const trace = {
+                            x: data.map(entry => entry.Datetime),
+                            y: data.map(entry => {
+                                const value = parseFloat(entry[index]);
+                                return value ? ((value - baseline) / baseline) * 100 : null; // Calculate percentage change
+                            }),
+                            type: 'scatter',
+                            mode: 'lines',
+                            line: {
+                                color: index === '^DJI' ? palette_red : 
+                                index === '^GSPC' ? palette_green : 
+                                index === '^NDX' ? palette_purple : 
+                                palette_yellow, // Default color for other indices
+                                width: 2
+                            },
+                            name: index
+                        };
+                        traces.push(trace);
+                    }
                 }
             }
         }
