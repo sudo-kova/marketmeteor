@@ -157,7 +157,7 @@ export function fill_gainers_table(){
 
             const sixtyThreeDayPct = item['63d %'] ? (parseFloat(item['63d %'])*100).toFixed(2) + '%' : 'N/A'; // Handle NaN or blank
             const prevoneDayPct = item['previous daily delta'] ? (parseFloat(item['previous daily delta'])*100).toFixed(2) + '%' : 'N/A'; // Handle NaN or blank
-            const oneDayPctVal = parseFloat(item['daily delta']); // Separate variable for numerical comparison
+            const oneDayPctVal = parseFloat(item['daily delta']*100); // Separate variable for numerical comparison
             const oneDayPct = item['daily delta'] ? (parseFloat(item['daily delta'])*100).toFixed(2) + '%' : 'N/A'; // Handle NaN or blank
             const earningsOffsetClosest = item['Earnings Offset Closest'] || 'N/A'; // Handle NaN or blank
 
