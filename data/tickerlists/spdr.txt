@@ -1,8 +1,8 @@
-XLC
-XLY
-XLP
-XLF
-XLI
-XLB
-XLK
-XLU
+^XLC
+^XLY
+^XLP
+^XLF
+^XLI
+^XLB
+^XLK
+^XLU

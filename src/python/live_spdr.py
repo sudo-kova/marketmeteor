@@ -29,6 +29,8 @@ else:
         # full list
         validated_tickers_file = "../../data/tickerlists/tickerlist_validated.txt"
     else:
+        # command line argument 1
+
         NRSUBPROCESSES = 1
         # when the site runs live, it reads from here because the full list is too much to update live
         validated_tickers_file = "../../data/tickerlists/spdr.txt"
