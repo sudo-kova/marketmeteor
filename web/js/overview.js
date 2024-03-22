@@ -1,4 +1,5 @@
 import { palette_purple, palette_red, palette_yellow, palette_green, palette_light_gray } from './colors.js';
+import { setMinuteDataShown, getMinuteDataShown } from './script_parallax.js';
 
 export function plot_indicies(){
 
@@ -94,6 +95,12 @@ export function plot_indicies(){
 }
 
 export function fill_gainers_table(){
+
+    const minOverallRecordPct = 50;
+    const minPriceDiffPct = -50;
+    const maxPriceDiffPct = 50;
+    const minEarnings = -63;
+    const maxEarnings = 63;
 
     fetch('/api/get-gainers-data', {
         cache: 'no-cache', // or 'reload'
