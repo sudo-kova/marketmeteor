@@ -574,7 +574,7 @@ int main() {
             // std::system("bash -c 'source /marketmeteor/web_server/myenv/bin/activate && python3 ../../scripts/data_processing/heatmap/stitch.py'");
             
             // uses relative paths not absolute paths. need to cd into directory before running
-            std::system("bash -c 'cd /media/share/repositories/collab/marketmeteor/scripts/data_processing/heatmap && source /marketmeteor/web_server/myenv/bin/activate && python3 stitch.py'");
+            std::system("bash -c 'cd /repos/marketmeteor/scripts/data_processing/heatmap && source /marketmeteor/web_server/myenv/bin/activate && python3 stitch.py'");
 
 
             std::cout << "Reading stitched.csv..." << std::endl;
