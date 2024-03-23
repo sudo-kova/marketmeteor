@@ -9,17 +9,21 @@ export function create_heatmap() {
             return rows.map(row => row[key]);
         }
 
+        function createTooltipText(rows) {
+            return rows.map(row => row.join('<br>')); // Joining all column values with <br>
+        }
+
         // Define your color scale here
         const scl = [[0, 'rgb(150,0,90)'], [0.125, 'rgb(0, 0, 200)'], /* ... other color stops ... */ [1, 'rgb(255, 0, 0)']];
 
         var data = [{
             type: 'scattergeo',
             mode: 'markers',
-            text: unpack(data, 3),  // Using the City for the hover text
+            text: createTooltipText(data),
             lon: unpack(data, 6),   // Using column 7 for longitude
             lat: unpack(data, 7),   // Using column 8 for latitude
             marker: {
-                color: unpack(data, 9),  // Using live1d for coloring
+                color: unpack(data, 8),  // Using live1d for coloring
                 colorscale: scl,
                 cmin: -10,
                 cmax: 10,
