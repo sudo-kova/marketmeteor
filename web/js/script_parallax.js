@@ -763,8 +763,11 @@ document.addEventListener('DOMContentLoaded', () => {
         contentWrapper.style.display = 'none'; // Hide results-wrapper
         overviewWrapper.style.display = 'flex'; // show overview-wrapper
         changeBackgroundImage('wallstreet');
-        plot_indicies();
+
+        // left sidebar first
         fill_spdr_table();
+        // main content
+        plot_indicies();
         fill_gainers_table();
     });
 

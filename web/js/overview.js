@@ -82,7 +82,7 @@ export function plot_indicies(){
         const config = {
             responsive: true, // Ensures plot resizes with container
             displayModeBar: true, // Forces the mode bar to be displayed
-            modeBarButtonsToRemove: ['toImage', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'toggleSpikelines', 'hoverClosestCartesian', 'hoverCompareCartesian']
+            // modeBarButtonsToRemove: ['toImage', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'toggleSpikelines', 'hoverClosestCartesian', 'hoverCompareCartesian']
         };
 
         Plotly.newPlot('graphDivMajorIndicies', traces, layout, config);
