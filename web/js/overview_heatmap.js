@@ -4,37 +4,59 @@ export function create_heatmap() {
     })
     .then(response => response.json())
     .then(data => {
-        // Extract the header and rows
-        const header = data[0];
-        const rows = data.slice(1);
+        // Function to extract column values from the dataset
+        function unpack(rows, key) {
+            return rows.map(row => row[key]);
+        }
 
-        // Extract the columns we need
-        const tickers = rows.map(row => row[0]);
-        const live1d = rows.map(row => parseFloat(row[6]));
+        // Define your color scale here
+        const scl = [[0, 'rgb(150,0,90)'], [0.125, 'rgb(0, 0, 200)'], /* ... other color stops ... */ [1, 'rgb(255, 0, 0)']];
 
-        // Prepare data for the heatmap
-        const heatmapData = [{
-            type: 'heatmap',
-            x: tickers,  // Tickers on x-axis
-            y: ['Live 1D'],  // Single y-axis category
-            z: [live1d],  // live1d values as 2D array
-            colorscale: 'Viridis',  // Color scale
+        var data = [{
+            type: 'scattergeo',
+            mode: 'markers',
+            text: unpack(data, 3),  // Using the City for the hover text
+            lon: unpack(data, 4),   // Assuming State represents longitude for example purposes
+            lat: unpack(data, 5),   // Assuming Close represents latitude for example purposes
+            marker: {
+                color: unpack(data, 6),  // Using live1d for coloring
+                colorscale: scl,
+                cmin: -10,
+                cmax: 10,
+                reversescale: true,
+                opacity: 0.5,
+                size: 10,
+                colorbar: {
+                    title: 'Live 1D Change'
+                }
+            },
         }];
 
-        // Define layout
-        const layout = {
-            title: 'Live 1D Change Heatmap',
-            xaxis: {
-                title: 'Ticker',
-                type: 'category'
+        var layout = {
+            geo: {
+                scope: 'north america',
+                showland: true,
+                landcolor: 'rgb(212,212,212)',
+                subunitcolor: 'rgb(255,255,255)',
+                countrycolor: 'rgb(255,255,255)',
+                showlakes: true,
+                lakecolor: 'rgb(255,255,255)',
+                showsubunits: true,
+                showcountries: true,
+                resolution: 50,
+                projection: {
+                    type: 'conic conformal',
+                    rotation: {
+                        long: -100
+                    }
+                },
             },
-            yaxis: {
-                title: ''
-            }
+            title: 'Ticker Data Visualization',
+            width: 600,
+            height: 600
         };
 
-        // Create the plot in the div with id 'graphDivHeatmap'
-        Plotly.newPlot('graphDivHeatmap', heatmapData, layout);
+        Plotly.newPlot('graphDivHeatmap', data, layout);
     })
     .catch(error => {
         console.error('Error fetching heatmap data:', error);
