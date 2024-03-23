@@ -760,14 +760,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const contentWrapper = document.querySelector('.results-wrapper');
     const overviewWrapper = document.querySelector('.overview-wrapper');
 
-    navLink0.addEventListener('click', () => {
+    navLink0.addEventListener('click', async () => {
         contentWrapper.style.display = 'none'; // Hide results-wrapper
         overviewWrapper.style.display = 'flex'; // show overview-wrapper
         changeBackgroundImage('wallstreet');
 
         // left sidebar first
-        create_heatmap();
-        fill_spdr_table();
+        await create_heatmap();
+        await fill_spdr_table();
         
         // main content
         plot_indicies();
