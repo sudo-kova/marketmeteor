@@ -124,6 +124,7 @@ import { applyFilter_m20data, fetchAndDisplayData } from './meteors.js';
 import { setupTitlesInteraction, setupWalkaround } from './tutorial.js';
 import { fetch_portfolio_simulations } from './results.js';
 import { plot_indicies, fill_gainers_table, apply_filter_to_gainers_table} from './overview.js';
+import { fill_spdr_table } from './overview_spdr.js'
 
 // SETUP MAIN BUTTONS (CALENDAR AND SEARCH)
 
@@ -763,6 +764,7 @@ document.addEventListener('DOMContentLoaded', () => {
         overviewWrapper.style.display = 'flex'; // show overview-wrapper
         changeBackgroundImage('wallstreet');
         plot_indicies();
+        fill_spdr_table();
         fill_gainers_table();
     });
 
