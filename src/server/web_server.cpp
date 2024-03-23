@@ -624,8 +624,8 @@ int main() {
             // stock_prices.csv and m20tmrw_prices.csv will typically only contain SELECTED tickers
 
             std::cout << "Reading spdr_prices.csv..." << std::endl;
-            auto stockData = readCsv("../../data/marketmeteors/spdr_prices.csv");
-            std::cout << "spdr_prices.csv read. Number of rows: " << stockData.size() << std::endl;
+            auto spdrData = readCsv("../../data/marketmeteors/spdr_prices.csv");
+            std::cout << "spdr_prices.csv read. Number of rows: " << spdrData.size() << std::endl;
 
             // std::cout << "Reading m20tmrw_prices.csv..." << std::endl;
             // auto m20Data = readCsv("../../data/marketmeteors/m20tmrw_prices.csv");
@@ -636,7 +636,7 @@ int main() {
             // std::cout << "Data merged. Number of merged rows: " << mergedData.size() << std::endl;
 
             std::cout << "Converting merged data to JSON..." << std::endl;
-            nlohmann::json jsonOutput = nlohmann::json(m20Data);
+            nlohmann::json jsonOutput = nlohmann::json(spdrData);
             std::string jsonResponse = jsonOutput.dump();
             std::cout << "JSON conversion complete. JSON length: " << jsonResponse.length() << std::endl;
 
