@@ -125,6 +125,7 @@ import { setupTitlesInteraction, setupWalkaround } from './tutorial.js';
 import { fetch_portfolio_simulations } from './results.js';
 import { plot_indicies, fill_gainers_table, apply_filter_to_gainers_table} from './overview.js';
 import { fill_spdr_table } from './overview_spdr.js'
+import { create_heatmap } from './overview_heatmap.js'
 
 // SETUP MAIN BUTTONS (CALENDAR AND SEARCH)
 
@@ -765,7 +766,9 @@ document.addEventListener('DOMContentLoaded', () => {
         changeBackgroundImage('wallstreet');
 
         // left sidebar first
+        create_heatmap();
         fill_spdr_table();
+        
         // main content
         plot_indicies();
         fill_gainers_table();
