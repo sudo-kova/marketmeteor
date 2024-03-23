@@ -62,7 +62,7 @@ export function create_heatmap() {
                 countrycolor: '#555',  // Darker country border color
                 showlakes: true,
                 lakecolor: '#444',  // Darker lake color
-                bgcolor: 'rgb(16, 16, 16)',  // Dark background color for the map
+                bgcolor: 'rgb(16 16 16 / 0%)',
                 // bordercolor: 'red',  // Darker border color
                 coastlinecolor: '#555',  // Darker coastline color
                 showsubunits: true,
@@ -76,8 +76,8 @@ export function create_heatmap() {
                     lat: 20
                 }
             },
-            paper_bgcolor: 'rgb(16, 16, 16)',  // Dark background color
-            plot_bgcolor: 'rgb(16, 16, 16)',  // Dark plot area color
+            paper_bgcolor: 'rgb(16 16 16 / 0%)',
+            plot_bgcolor: 'rgb(16 16 16 / 0%)',
             width: 600,
             height: 600
         };
