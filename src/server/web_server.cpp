@@ -567,6 +567,29 @@ int main() {
                         << jsonResponse;
             response = responseStream.str();
 
+        } else if (request.find("GET /api/get-heatmap-data HTTP") == 0) {
+
+            std::cout << "executing stitch.py ..." << std::endl;
+
+            std::system("bash -c 'source /marketmeteor/web_server/myenv/bin/activate && python3 ../../scripts/data_processing/heatmap/stitch.py'");
+
+            std::cout << "Reading stitched.csv..." << std::endl;
+            auto spdrData = readCsv("../../data/sectors/stitched.csv");
+            std::cout << "spdr_prices.csv read. Number of rows: " << spdrData.size() << std::endl;
+
+            std::cout << "Converting merged data to JSON..." << std::endl;
+            nlohmann::json jsonOutput = nlohmann::json(spdrData);
+            std::string jsonResponse = jsonOutput.dump();
+            std::cout << "JSON conversion complete. JSON length: " << jsonResponse.length() << std::endl;
+
+            std::ostringstream responseStream;
+            responseStream << "HTTP/1.1 200 OK\r\n"
+                        << "Content-Type: application/json\r\n"
+                        << "Content-Length: " << jsonResponse.length() << "\r\n"
+                        << "\r\n"
+                        << jsonResponse;
+            response = responseStream.str();
+
         } else if (request.find("GET /api/get-gainers-data HTTP") == 0) {
 
             std::cout << "executing live_gainers.py ..." << std::endl;

@@ -24,7 +24,7 @@ run_from_directory() {
 }
 
 echo -e "\033[0;32mSelect a category to run scripts from:\033[0m"
-select CATEGORY in ../scripts/data_processing/signal_lists ../scripts/data_processing/PortSim ../scripts/data_processing/chartdata ../scripts/data_processing/historic_Pwin; do
+select CATEGORY in ../scripts/data_processing/signal_lists ../scripts/data_processing/PortSim ../scripts/data_processing/chartdata ../scripts/data_processing/historic_Pwin ../scripts/data_processing/heatmap; do
     case $CATEGORY in
         ../scripts/data_processing/signal_lists)
             run_from_directory $CATEGORY
@@ -36,6 +36,9 @@ select CATEGORY in ../scripts/data_processing/signal_lists ../scripts/data_proce
             run_from_directory $CATEGORY
             ;;
         ../scripts/data_processing/historic_Pwin)
+            run_from_directory $CATEGORY
+            ;;
+        ../scripts/data_processing/heatmap)
             run_from_directory $CATEGORY
             ;;
         *)

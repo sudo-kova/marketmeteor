@@ -128,6 +128,14 @@
     flex-grow: 1;
 }
 
+#graphDivHeatmap{
+    display: flex !important;
+    border-radius: 8px;
+    /* background: #28282ac7; */
+    margin: 0 auto;
+    flex-grow: 1;
+}
+
 #gainerswatchlistdiv label {
     color: #f1f1f1; /* Light text for visibility */
     margin-right: 5px;
