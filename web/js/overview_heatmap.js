@@ -13,8 +13,14 @@ export function create_heatmap() {
             return rows.map(row => row.join('<br>')); // Joining all column values with <br>
         }
 
-        scl = [[0, 'rgb(150,0,90)'],[0.125, 'rgb(0, 0, 200)'],[0.25,'rgb(0, 25, 255)'],[0.375,'rgb(0, 152, 255)'],[0.5,'rgb(44, 255, 150)'],[0.625,'rgb(151, 255, 0)'],[0.75,'rgb(255, 234, 0)'],[0.875,'rgb(255, 111, 0)'],[1,'rgb(255, 0, 0)']];
+        const scl = [
+            [0, '#ff76b6'],       // Red for the smallest value (0% of the scale, assuming negative values)
+            [0.5, '#fbff76'],     // Red up to the middle of the scale (0 on your scale)
+            [0.5, '#76ffbf'],   // Green from the middle of the scale (0 on your scale)
+            [1, '#76ffbf']      // Green for the largest value (100% of the scale, assuming positive values)
+        ];
 
+        
         var data = [{
             type: 'scattergeo',
             mode: 'markers',
@@ -31,19 +37,23 @@ export function create_heatmap() {
                 size: 3,
                 colorbar: {
                     title: '% Change',
-                    thickness: 10,
-                    titleside: 'right',
-                    outlinecolor: 'rgba(68,68,68,0)',
+                    thickness: 20,
+                    // titleside: 'right',
                     ticks: 'outside',
-                    ticklen: 3,
+                    ticklen: 1,
                     shoticksuffix: 'last',
-                    ticksuffix: 'inches',
-                    dtick: 0.1
+                    dtick: 5
                 }
             },
         }];
 
         var layout = {
+            margin: {
+                l: 50,  // Left margin
+                r: 50,  // Right margin
+                t: 50,  // Top margin
+                b: 50   // Bottom margin
+            },      
             geo: {
                 scope: 'world', // Use 'world' to have the flexibility to show multiple regions
                 showland: true,
@@ -53,11 +63,11 @@ export function create_heatmap() {
                 showlakes: true,
                 lakecolor: '#444',  // Darker lake color
                 bgcolor: 'rgb(16, 16, 16)',  // Dark background color for the map
-                bordercolor: '#555',  // Darker border color
+                // bordercolor: 'red',  // Darker border color
                 coastlinecolor: '#555',  // Darker coastline color
                 showsubunits: true,
                 showcountries: true,
-                resolution: 50,
+                resolution: 100,
                 projection: {
                     type: 'mercator', // A projection type that works well for world maps
                 },
