@@ -12,6 +12,9 @@ Stitch - stitches columns of csvs together.
 import pandas as pd
 import os
 
+# Print the current working directory
+print("Current working directory:", os.getcwd())
+
 # Read the first CSV into a DataFrame
 gainers_prices_df = pd.read_csv('../../../data/marketmeteors/gainers_prices.csv')
 
@@ -30,9 +33,6 @@ stitched_df = pd.merge(stitched_df, m20tmrw_prices_df[['Ticker', 'Close']], on='
 
 # Calculate the 'live1d' column and add it to the stitched DataFrame
 stitched_df['live1d'] = (stitched_df['Current Price'] / stitched_df['Close'] - 1) * 100
-
-# Print the current working directory
-print("Current working directory:", os.getcwd())
 
 # Write the final merged DataFrame to a new CSV file
 stitched_df.to_csv('../../../data/sectors/stitched.csv', index=False)

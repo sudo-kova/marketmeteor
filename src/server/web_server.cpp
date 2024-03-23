@@ -575,7 +575,7 @@ int main() {
 
             std::cout << "Reading stitched.csv..." << std::endl;
             auto spdrData = readCsv("../../data/sectors/stitched.csv");
-            std::cout << "spdr_prices.csv read. Number of rows: " << spdrData.size() << std::endl;
+            std::cout << "stitched.csv read. Number of rows: " << spdrData.size() << std::endl;
 
             std::cout << "Converting merged data to JSON..." << std::endl;
             nlohmann::json jsonOutput = nlohmann::json(spdrData);
