@@ -21,7 +21,7 @@ export function create_heatmap() {
             mode: 'markers',
             text: createTooltipText(data),
             lon: unpack(data, 6),   // Using column 7 for longitude
-            lat: unpack(data, 7),   // Using column 8 for latitude
+            lat: unpack(data, 5),   // Using column 8 for latitude
             marker: {
                 color: unpack(data, 8),  // Using live1d for coloring
                 colorscale: scl,
