@@ -13,15 +13,17 @@ export function create_heatmap() {
             return rows.map(row => row.join('<br>')); // Joining all column values with <br>
         }
 
-        // Define your color scale here
-        const scl = [[0, 'rgb(150,0,90)'], [0.125, 'rgb(0, 0, 200)'], /* ... other color stops ... */ [1, 'rgb(255, 0, 0)']];
+        const scl = [
+            [0, '#FF76B7'],     // Red at the smallest value (0% of the scale)
+            [1, '#76FFBF']      // Green at the largest value (100% of the scale)
+        ];
 
         var data = [{
             type: 'scattergeo',
             mode: 'markers',
             text: createTooltipText(data),
-            lon: unpack(data, 6),   // Using column 7 for longitude
             lat: unpack(data, 5),   // Using column 8 for latitude
+            lon: unpack(data, 6),   // Using column 7 for longitude
             marker: {
                 color: unpack(data, 8),  // Using live1d for coloring
                 colorscale: scl,
