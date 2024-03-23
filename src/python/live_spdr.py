@@ -87,20 +87,22 @@ def pull_prices(tickers):
 
 
 # csv_filename = 'stock_prices.csv'
-with open(csv_filename, mode='w', newline='') as file:
-    writer = csv.writer(file)
-    # Write the header
-    writer.writerow(["Ticker", "Current Price", "Pulled At"])
+# with open(csv_filename, mode='w', newline='') as file:
+#     writer = csv.writer(file)
+#     # Write the header
+#     writer.writerow(["Ticker", "Current Price", "Pulled At"])
 
-# pull prices every 30 seconds for 15 minutes
-start_time = time.time()
-end_time = start_time + 30*60  # 15 minutes
+# # pull prices every 30 seconds for 15 minutes
+# start_time = time.time()
+# end_time = start_time + 30*60  # 15 minutes
 
 prices = pull_prices(tickers)
 
 with open(csv_filename, mode='w', newline='') as file:
     writer = csv.writer(file)
-    writer.writerow(["Ticker", "Current Price", "Pulled At"])  # Write the header each time
+    writer.writerow(["Ticker", "Current Price", "Close Price", "Pulled At"])  # Update the header with "Close Price"
     for ticker, (price, timestamp) in prices.items():
-        writer.writerow([ticker, price, timestamp])  # Write stock, current price, and the timestamp of the pull
-print(time.time())
+        prev_close = yf.Ticker(ticker).info['previousClose']
+        writer.writerow([ticker, price, prev_close, timestamp])  # Write stock, last price, close price, and the timestamp of the pull
+        # writer.writerow([ticker, price, timestamp])  # Write stock, current price, and the timestamp of the pull
+# print(time.time())

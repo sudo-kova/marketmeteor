@@ -8,6 +8,8 @@ data/PortSim/Sweep/*
 data/temp/*
 Thumbs.db
 
+data/marketmeteors/spdr_prices.csv
+
 # GITHUB Python default .gitignore
 
 # Byte-compiled / optimized / DLL files
