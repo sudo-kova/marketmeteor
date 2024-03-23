@@ -19,12 +19,11 @@ export function fill_spdr_table(){
             const pulledAt = item[3].trim(); // Trim the new line character
 
             const live_1d = (item[1] && item[2]) ? 
-                (((currentPrice - closePrice) / closePrice) * 100).toFixed(2) + '%' : 
+                (((currentPrice - closePrice) / closePrice) * 100).toFixed(2) : 
                 'N/A';
 
             row.insertCell().textContent = ticker;  
-            row.insertCell().textContent = currentPrice;
-            row.insertCell().textContent = live_1d; 
+            row.insertCell().textContent = `${currentPrice} (${live_1d}%)`
             row.insertCell().textContent = closePrice;
             row.insertCell().textContent = pulledAt;   
         });
