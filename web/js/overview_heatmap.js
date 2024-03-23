@@ -13,10 +13,7 @@ export function create_heatmap() {
             return rows.map(row => row.join('<br>')); // Joining all column values with <br>
         }
 
-        const scl = [
-            [0, '#FF76B7'],     // Red at the smallest value (0% of the scale)
-            [1, '#76FFBF']      // Green at the largest value (100% of the scale)
-        ];
+        scl = [[0, 'rgb(150,0,90)'],[0.125, 'rgb(0, 0, 200)'],[0.25,'rgb(0, 25, 255)'],[0.375,'rgb(0, 152, 255)'],[0.5,'rgb(44, 255, 150)'],[0.625,'rgb(151, 255, 0)'],[0.75,'rgb(255, 234, 0)'],[0.875,'rgb(255, 111, 0)'],[1,'rgb(255, 0, 0)']];
 
         var data = [{
             type: 'scattergeo',
@@ -27,13 +24,21 @@ export function create_heatmap() {
             marker: {
                 color: unpack(data, 8),  // Using live1d for coloring
                 colorscale: scl,
-                cmin: -10,
-                cmax: 10,
+                cmin: -20,
+                cmax: 20,
                 reversescale: false,
                 opacity: 0.5,
-                size: 10,
+                size: 3,
                 colorbar: {
-                    title: '% Change'
+                    title: '% Change',
+                    thickness: 10,
+                    titleside: 'right',
+                    outlinecolor: 'rgba(68,68,68,0)',
+                    ticks: 'outside',
+                    ticklen: 3,
+                    shoticksuffix: 'last',
+                    ticksuffix: 'inches',
+                    dtick: 0.1
                 }
             },
         }];
