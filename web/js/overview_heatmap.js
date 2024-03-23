@@ -29,35 +29,40 @@ export function create_heatmap() {
                 colorscale: scl,
                 cmin: -10,
                 cmax: 10,
-                reversescale: true,
+                reversescale: false,
                 opacity: 0.5,
                 size: 10,
                 colorbar: {
-                    title: 'Live 1D Change'
+                    title: '% Change'
                 }
             },
         }];
 
         var layout = {
             geo: {
-                scope: 'north america',
+                scope: 'world', // Use 'world' to have the flexibility to show multiple regions
                 showland: true,
-                landcolor: 'rgb(212,212,212)',
-                subunitcolor: 'rgb(255,255,255)',
-                countrycolor: 'rgb(255,255,255)',
+                landcolor: '#333',  // Darker land color
+                subunitcolor: '#444',  // Darker subunit color
+                countrycolor: '#555',  // Darker country border color
                 showlakes: true,
-                lakecolor: 'rgb(255,255,255)',
+                lakecolor: '#444',  // Darker lake color
+                bgcolor: 'rgb(16, 16, 16)',  // Dark background color for the map
+                bordercolor: '#555',  // Darker border color
+                coastlinecolor: '#555',  // Darker coastline color
                 showsubunits: true,
                 showcountries: true,
                 resolution: 50,
                 projection: {
-                    type: 'conic conformal',
-                    rotation: {
-                        long: -100
-                    }
+                    type: 'mercator', // A projection type that works well for world maps
                 },
+                center: { // Manually adjust the center to show South America and the UK
+                    lon: -30,
+                    lat: 20
+                }
             },
-            title: 'Ticker Data Visualization',
+            paper_bgcolor: 'rgb(16, 16, 16)',  // Dark background color
+            plot_bgcolor: 'rgb(16, 16, 16)',  // Dark plot area color
             width: 600,
             height: 600
         };
