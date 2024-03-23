@@ -20,7 +20,7 @@ gainers_prices_df = pd.read_csv('../../../data/marketmeteors/gainers_prices.csv'
 
 # Read the second CSV into another DataFrame, assigning column names since there are no headers
 columns = ['Ticker', 'Address', 'City', 'State', 'Country', 'Website', 'Sector', 'Industry', 'Description', 'Latitude', 'Longitude']
-locations_df = pd.read_csv('../../../data/sectors/locations.csv', names=columns)
+locations_df = pd.read_csv('../../../data/sectors/locations_geo.csv', names=columns)
 
 # Merge the DataFrames on the 'Ticker' column for locations
 stitched_df = pd.merge(gainers_prices_df, locations_df[['Ticker', 'City', 'State', 'Latitude', 'Longitude']], on='Ticker', how='left')
