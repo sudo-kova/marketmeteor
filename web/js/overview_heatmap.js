@@ -16,10 +16,10 @@ export function create_heatmap() {
             type: 'scattergeo',
             mode: 'markers',
             text: unpack(data, 3),  // Using the City for the hover text
-            lon: unpack(data, 4),   // Assuming State represents longitude for example purposes
-            lat: unpack(data, 5),   // Assuming Close represents latitude for example purposes
+            lon: unpack(data, 6),   // Using column 7 for longitude
+            lat: unpack(data, 7),   // Using column 8 for latitude
             marker: {
-                color: unpack(data, 6),  // Using live1d for coloring
+                color: unpack(data, 9),  // Using live1d for coloring
                 colorscale: scl,
                 cmin: -10,
                 cmax: 10,
