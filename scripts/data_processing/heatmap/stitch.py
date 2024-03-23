@@ -23,7 +23,7 @@ columns = ['Ticker', 'Address', 'City', 'State', 'Country', 'Website', 'Sector',
 locations_df = pd.read_csv('../../../data/sectors/locations.csv', names=columns)
 
 # Merge the DataFrames on the 'Ticker' column for locations
-stitched_df = pd.merge(gainers_prices_df, locations_df[['Ticker', 'City', 'State']], on='Ticker', how='left')
+stitched_df = pd.merge(gainers_prices_df, locations_df[['Ticker', 'City', 'State', 'Latitude', 'Longitude']], on='Ticker', how='left')
 
 # Read the third CSV for the 'Close' column
 m20tmrw_prices_df = pd.read_csv('../../../data/marketmeteors/m20tmrw_prices.csv')
