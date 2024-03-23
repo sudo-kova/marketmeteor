@@ -10,7 +10,15 @@ export function create_heatmap() {
         }
 
         function createTooltipText(rows) {
-            return rows.map(row => row.join('<br>')); // Joining all column values with <br>
+            return rows.map(row => {
+                return `Ticker: ${row[0]}<br>` +
+                       `Current Price: ${parseFloat(row[1]).toFixed(2)}<br>` +
+                       `Pulled At: ${row[2]}<br>` +
+                       `City: ${row[3]}<br>` +
+                       `State: ${row[4]}<br>` +
+                       `Close: ${row[7]}<br>` +
+                       `1d %: ${ parseFloat(row[8]).toFixed(2)}`;
+            });
         }
 
         const scl = [
@@ -49,10 +57,10 @@ export function create_heatmap() {
 
         var layout = {
             margin: {
-                l: 50,  // Left margin
-                r: 50,  // Right margin
-                t: 50,  // Top margin
-                b: 50   // Bottom margin
+                l: 10,  // Left margin
+                r: 0,  // Right margin
+                t: 0,  // Top margin
+                b: 0   // Bottom margin
             },      
             geo: {
                 scope: 'world', // Use 'world' to have the flexibility to show multiple regions
@@ -67,14 +75,15 @@ export function create_heatmap() {
                 coastlinecolor: '#555',  // Darker coastline color
                 showsubunits: true,
                 showcountries: true,
+                showframe: false,       // Hide frame
                 resolution: 100,
                 projection: {
                     type: 'mercator', // A projection type that works well for world maps
                 },
-                center: { // Manually adjust the center to show South America and the UK
-                    lon: -30,
-                    lat: 20
-                }
+                // center: { // Manually adjust the center to show South America and the UK
+                //     lon: -30,
+                //     lat: 20
+                // }
             },
             paper_bgcolor: 'rgb(16 16 16 / 0%)',
             plot_bgcolor: 'rgb(16 16 16 / 0%)',
