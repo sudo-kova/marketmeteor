@@ -775,7 +775,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // main content
         plot_indicies();
-        // fill_gainers_table();
+        fill_gainers_table();
 
     });
 

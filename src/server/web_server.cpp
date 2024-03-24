@@ -634,6 +634,47 @@ int main() {
                         << "\r\n"
                         << jsonResponse;
             response = responseStream.str();
+        } else if (request.find("GET /api/get-closedmarket-gainers-data HTTP") == 0) {
+
+            // std::cout << "executing live_gainers.py ..." << std::endl;
+
+            // dangerous, runs out of memory
+            // if running with the full list of ~1300 tickers, it will fail and OVERWRITE stock_prices.csv, IF it exists
+            // std::system("bash -c 'source /marketmeteor/web_server/myenv/bin/activate && python3 ../python/live_gainers.py 1'");
+
+            // !!!! if watchlist doesn't exist, it will load the last cached stock_prices and m20tmrw_prices (which is typically the full list)
+            // !!!! watchlist is added to select tickers to live update during the day
+
+            // std::system("python3 /marketmeteor/web_server/live_data_single.py");
+            // it will wait for the script to finish
+
+            // stock_prices.csv and m20tmrw_prices.csv will typically only contain SELECTED tickers
+
+            std::cout << "Reading gainers_prices.csv..." << std::endl;
+            auto stockData = readCsv("../../data/marketmeteors/gainers_prices.csv");
+            std::cout << "gainers_prices.csv read. Number of rows: " << stockData.size() << std::endl;
+
+            std::cout << "Reading m20tmrw_prices.csv..." << std::endl;
+            auto m20Data = readCsv("../../data/marketmeteors/m20tmrw_prices.csv");
+            std::cout << "m20tmrw_prices.csv read. Number of rows: " << m20Data.size() << std::endl;
+
+            std::cout << "Merging data..." << std::endl;
+            auto mergedData = mergeData(stockData, m20Data);
+            std::cout << "Data merged. Number of merged rows: " << mergedData.size() << std::endl;
+
+            std::cout << "Converting merged data to JSON..." << std::endl;
+            nlohmann::json jsonOutput = nlohmann::json(mergedData);
+            std::string jsonResponse = jsonOutput.dump();
+            std::cout << "JSON conversion complete. JSON length: " << jsonResponse.length() << std::endl;
+
+            std::ostringstream responseStream;
+            responseStream << "HTTP/1.1 200 OK\r\n"
+                        << "Content-Type: application/json\r\n"
+                        << "Content-Length: " << jsonResponse.length() << "\r\n"
+                        << "\r\n"
+                        << jsonResponse;
+            response = responseStream.str();
+
         } else if (request.find("GET /api/get-spdr-data HTTP") == 0) {
 
             std::cout << "executing live_spdr.py ..." << std::endl;

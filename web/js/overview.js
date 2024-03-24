@@ -102,7 +102,21 @@ export function fill_gainers_table(){
     const minGainPct = parseFloat(document.getElementById('minGainPct').value) || 5;
     const minLossPct = parseFloat(document.getElementById('minLossPct').value) || -5;
 
-    fetch('/api/get-gainers-data', {
+    // Get the time from the nyClock div
+    const nyTimeStr = document.getElementById('nyClock').textContent;
+    const nyTime = new Date('1970-01-01 ' + nyTimeStr);
+    
+    // Define market open and close times (9:30 AM to 4:00 PM)
+    const marketOpen = new Date('1970-01-01 09:30:00');
+    const marketClose = new Date('1970-01-01 16:00:00');
+
+    // Check if current time is within market hours
+    let apiUrl = '/api/get-gainers-data';
+    if (nyTime < marketOpen || nyTime > marketClose) {
+        apiUrl = '/api/get-closedmarket-gainers-data';
+    }
+
+    fetch(apiUrl, {
         cache: 'no-cache', // or 'reload'
     })
     .then(response => response.json())
