@@ -1167,93 +1167,98 @@ div#nyClock {
 
 /* MEDIA QUERY for smaller screens (e.g., phones) */
 @media (max-width: 1000px) {
-  .meteor-ui .row {
-    justify-content: center;
-    flex-direction: column;
-	  height: auto; /* Adjust height based on content */
-	  margin-bottom: 10px; /* Space between rows */
+    .meteor-ui .row {
+      justify-content: center;
+      flex-direction: column;
+      height: auto; /* Adjust height based on content */
+      margin-bottom: 10px; /* Space between rows */
 
-  }
+    }
 
-  .meteor-ui {
-    height: auto !important;
-    width: auto !important;
-  }
+    .meteor-ui {
+      height: auto !important;
+      width: auto !important;
+    }
 
-  .roundedDiv {
-    margin-bottom: 10px !important;
-	  width: auto !important;
-    outline: none; /* Disable outline */
-    margin: 0; /* Reset margin */
-  }
+    .roundedDiv {
+      margin-bottom: 10px !important;
+      width: auto !important;
+      outline: none; /* Disable outline */
+      margin: 0; /* Reset margin */
+    }
 
-  #graphDiv, #graphDiv2, #graphDiv3, #graphDiv4, #graphDiv6 {
-    background: none; /* Disable background */
-  }
+    #graphDiv, #graphDiv2, #graphDiv3, #graphDiv4, #graphDiv6 {
+      background: none; /* Disable background */
+    }
 
-  /* Disable flexbox for .titles class */
-  .titles {
-    display: block;
-    justify-content: flex-start; /* This line can be removed as it won't apply to block elements */
-  }
+    /* Disable flexbox for .titles class */
+    .titles {
+      display: block;
+      justify-content: flex-start; /* This line can be removed as it won't apply to block elements */
+    }
 
-  .ticker-tape {
-    margin-right: 12px; /* Adjust right margin to match left */
-    overflow-x: auto; /* Allow horizontal scrolling */
-    font-size: 14px; /* Optional: Adjust font size for smaller screens */
-  }
+    .ticker-tape {
+      margin-right: 12px; /* Adjust right margin to match left */
+      overflow-x: auto; /* Allow horizontal scrolling */
+      font-size: 14px; /* Optional: Adjust font size for smaller screens */
+    }
 
-  .footer{
-    display: block !important;
-  }
+    .footer{
+      display: block !important;
+    }
 
-  .title-bar{
-    height: 1vh;
-  }
+    .title-bar{
+      height: 1vh;
+    }
 
-  #divTitle{
-	  font-size: 1.4117647059rem;
-  }
+    #divTitle{
+      font-size: 1.4117647059rem;
+    }
 
-  #overflowsubtitle{
-    font-size: 1.1176470588rem;
-    line-height: 1.4211026316;
-    max-width: 87.5%;
-  }
+    #overflowsubtitle{
+      font-size: 1.1176470588rem;
+      line-height: 1.4211026316;
+      max-width: 87.5%;
+    }
 
-  #overflowtitle{
-    font-size: 1.6470588235rem;
-    line-height: 1.1428571429;
-    font-weight: 600;
-    letter-spacing: .007em;
-  }
+    #overflowtitle{
+      font-size: 1.6470588235rem;
+      line-height: 1.1428571429;
+      font-weight: 600;
+      letter-spacing: .007em;
+    }
 
 
-  .footer {
-    display: block; /* Stack content vertically */
-    width: 90vw; /* Adjust width for smaller screens */
-    height: auto; /* Let the height grow as needed */
-    padding: 10px; /* Add some padding */
-    font-size: 14px; /* Increase font size for readability */
-  }
+    .footer {
+      display: block; /* Stack content vertically */
+      width: 90vw; /* Adjust width for smaller screens */
+      height: auto; /* Let the height grow as needed */
+      padding: 10px; /* Add some padding */
+      font-size: 14px; /* Increase font size for readability */
+    }
 
-  .footer p {
-    flex: none; /* Disable flex properties */
-    margin: 5px 0; /* Add some vertical space between items */
-    text-align: left; /* Align text to the left */
-    height: auto; /* Allow height to adjust to content */
-  }
+    .footer p {
+      flex: none; /* Disable flex properties */
+      margin: 5px 0; /* Add some vertical space between items */
+      text-align: left; /* Align text to the left */
+      height: auto; /* Allow height to adjust to content */
+    }
 
-  #search-overlay{
-    background: #555;
-    border-radius: 4px;
-    padding: 4px;
-    display: block !important;
-    position: static; /* or 'relative', depending on your needs */
-    margin-top: 4px;
-    margin-bottom: 4px;
-  }
-  #search-box {
-    text-align: left; /* or any other value as per your requirement */
-  }
+    #search-overlay{
+      background: #555;
+      border-radius: 4px;
+      padding: 4px;
+      display: block !important;
+      position: static; /* or 'relative', depending on your needs */
+      margin-top: 4px;
+      margin-bottom: 4px;
+    }
+    #search-box {
+      text-align: left; /* or any other value as per your requirement */
+    }
+
+    .navbar{
+      position: relative !important;
+      justify-content: center;
+    }
 }
