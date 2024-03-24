@@ -766,6 +766,9 @@ document.addEventListener('DOMContentLoaded', () => {
         overviewWrapper.style.display = 'flex'; // show overview-wrapper
         changeBackgroundImage('wallstreet');
 
+
+        // a refresh button will have to call these 4 functions
+
         // left sidebar first
         await create_heatmap();
         await fill_spdr_table();
@@ -773,6 +776,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // main content
         plot_indicies();
         // fill_gainers_table();
+
     });
 
     navLink1.addEventListener('click', () => {

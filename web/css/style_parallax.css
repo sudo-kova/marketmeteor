@@ -318,7 +318,7 @@ h2 {
   justify-content: space-between; /* Aligns children to the extreme ends */
   align-items: center; /* Aligns children vertically in the middle */
   white-space: nowrap;
-  font-size: 20px;
+  /* font-size: 20px; */
   height: 1.25%;
 }
 #search-box {
