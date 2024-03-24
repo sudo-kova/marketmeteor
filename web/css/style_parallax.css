@@ -1260,5 +1260,23 @@ div#nyClock {
     .navbar{
       position: relative !important;
       justify-content: center;
+      left: 0;
     }
+
+    .nav.rounded_search {
+      display: none;
+    }
+
+    .overview-wrapper {
+      flex-direction: column !important; /* Stack the child elements vertically */
+     
+  }
+
+  .overview-side-panel, .overview-main-panel {
+      width: 100% !important; /* Make each child take full width */
+      max-width: none !important; /* Override any max-width */
+      margin: 0.5rem 0 !important; /* Adjust margin for vertical stacking */
+      flex: none !important; /* Override any flex property */
+  }
+
 }
