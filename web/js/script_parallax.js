@@ -791,12 +791,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     activateSearch.addEventListener('click', () => {
         var searchInput = document.getElementById('search-input');
+        var navLink = document.getElementById('nav-link-activate').querySelector('.nav-link');
+    
         if (searchInput.style.display === 'none' || searchInput.style.display === '') {
             searchInput.style.display = 'flex';
+            navLink.textContent = 'Close Search'; // change text to say "Close Search"
         } else {
             searchInput.style.display = 'none';
+            navLink.textContent = 'Enter a Ticker'; // change text back to "Enter a Ticker"
         }
     });
+    
 
     // ---- END of NAVIGATION ----
 

@@ -4,6 +4,15 @@ export function create_heatmap() {
     })
     .then(response => response.json())
     .then(data => {
+
+        // Count bearish and bullish entries
+        let bearishCount = data.filter(row => parseFloat(row[8]) < 0).length;
+        let bullishCount = data.filter(row => parseFloat(row[8]) > 0).length;
+
+        // Update the divTitle with these counts
+        document.getElementById('divTitle').innerHTML = `Return by Region <span style="font-size: 11px; color: #868D98 !important;">${bearishCount} Bearish | ${bullishCount} Bullish</span>`;
+
+
         // Function to extract column values from the dataset
         function unpack(rows, key) {
             return rows.map(row => row[key]);

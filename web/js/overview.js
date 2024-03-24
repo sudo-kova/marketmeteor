@@ -21,7 +21,7 @@ export function plot_indicies(){
                             x: data.map(entry => entry.Datetime),
                             y: data.map(entry => {
                                 const value = parseFloat(entry[index]);
-                                return value ? ((value - baseline) / baseline) * 100 : null; // Calculate percentage change
+                                return value ? (((value - baseline) / baseline) * 100).toFixed(2) : null; // Calculate percentage change
                             }),
                             type: 'scatter',
                             mode: 'lines',
