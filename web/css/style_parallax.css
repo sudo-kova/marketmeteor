@@ -1160,6 +1160,11 @@ li {
   color: #76FFBF
 }
 
+div#nyClock {
+  /* padding-left: 12px; */
+  margin-left: 10px;
+}
+
 /* MEDIA QUERY for smaller screens (e.g., phones) */
 @media (max-width: 1000px) {
   .meteor-ui .row {
