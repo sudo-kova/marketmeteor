@@ -25,6 +25,7 @@
     border-radius: 12px;
     margin: 0 0.5rem;
     /* flex-shrink: 0; */
+    flex: 1; /* Allocate space dynamically */
 }
 
 .results-top-section, .results-bottom-section {
@@ -84,7 +85,7 @@
 .results-side-panel, .results-main-panel {
     display: flex;
     flex-direction: column;
-    flex: 1; /* Allocate space dynamically */
+    
     height: 100%; /* Height set to 100% of the parent */
     /* ... other styles ... */
 }
