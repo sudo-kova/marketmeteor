@@ -757,6 +757,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLink0 = document.getElementById('nav-link-overview');
     const navLink1 = document.getElementById('nav-link-swing');
     const navLink2 = document.getElementById('nav-link-results');
+    const activateSearch = document.getElementById('nav-link-activate');
     const contentWrapper = document.querySelector('.results-wrapper');
     const overviewWrapper = document.querySelector('.overview-wrapper');
 
@@ -786,6 +787,15 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch_portfolio_simulations();
         changeBackgroundImage('analyst');
         
+    });
+
+    activateSearch.addEventListener('click', () => {
+        var searchInput = document.getElementById('search-input');
+        if (searchInput.style.display === 'none' || searchInput.style.display === '') {
+            searchInput.style.display = 'flex';
+        } else {
+            searchInput.style.display = 'none';
+        }
     });
 
     // ---- END of NAVIGATION ----

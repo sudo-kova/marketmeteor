@@ -23,10 +23,10 @@ ul.search-list {
 }
 
 li#search-input {
-    display: flex;
+    /* display: flex; */
     position: relative;
     z-index: 1;
-    /* display: none; */
+    display: none;
     padding: 0px 0px;
     align-items: center;
     /* background-color: transparent; */
