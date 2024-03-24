@@ -1269,6 +1269,7 @@ div#nyClock {
 
     .overview-wrapper {
       flex-direction: column !important; /* Stack the child elements vertically */
+      height: fit-content !important;
      
   }
 
