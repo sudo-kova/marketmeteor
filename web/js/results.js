@@ -126,6 +126,7 @@ function createScatterPlot(timeseries) {
     plotDiv.id = 'plotly-div'; // Assign a unique ID
 
     let configport = {
+        responsive: true, // Ensures plot resizes with container
         modeBarButtonsToRemove: ['toImage', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'toggleSpikelines', 'hoverClosestCartesian', 'hoverCompareCartesian'],
         displaylogo: false
     };
