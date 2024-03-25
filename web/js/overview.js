@@ -126,6 +126,9 @@ export function fill_gainers_table(){
         // globalData = data; // store for applyFilter_m20data() later
         setglobalData_gainers(data)
 
+        console.log(data)
+        console.log('globalData (gainers) has been set')
+
         // Assuming the data is an array of objects with {ticker, currentPrice, m20tmrw, lastUpdated}
         const tableBody = document.getElementById('gainers-table').getElementsByTagName('tbody')[0];
         tableBody.innerHTML = ''; // Clear existing rows
