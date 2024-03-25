@@ -197,7 +197,7 @@ export function fill_gainers_table(){
             const earningsInRangeFilt6 = !isNaN(earningsValue) && earningsValue >= -63 && earningsValue <= 14;
 
             // console.log(`Ticker: ${item['Ticker']}, Current Price: ${currentPrice}, m20 Price: ${m20Price}, Price Diff: ${pricediff}, Price Diff Pct: ${pricediffpct}, Overall Record Pct: ${overallRecordPct}, One Day Pct Val: ${oneDayPctVal}, Earnings In Range: ${earningsInRange}`);
-            console.log(`Ticker: ${item['Ticker']}, live_1d: ${live_1d}, minGainPct: ${minGainPct}, minLossPct: ${minLossPct}`);
+            // console.log(`Ticker: ${item['Ticker']}, live_1d: ${live_1d}, minGainPct: ${minGainPct}, minLossPct: ${minLossPct}`);
             if (pricediffpct >= minPriceDiffPct && 
                 pricediffpct <= maxPriceDiffPct && 
                 overallRecordPct >= minOverallRecordPct &&
